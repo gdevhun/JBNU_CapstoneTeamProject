@@ -135,7 +135,20 @@ public class TowerManager : MonoBehaviour
         // 설치 패널 비활성화
         towerBuildPanel.SetActive(false);
 
-        // 설치 패널 비활성화된 상태
+        // 패널 비활성화된 상태
+        isPanel = false;
+    }
+
+    // 타워 해제
+    public void DeleteTower()
+    {
+        // 자식에 있던 타워 파괴
+        Destroy(selectedTowerBuildPos.GetChild(0).gameObject);
+
+        // 업그레이드 패널 비활성화
+        towerUpgradePanel.SetActive(false);
+
+        // 패널 비활성화된 상태
         isPanel = false;
     }
 }
