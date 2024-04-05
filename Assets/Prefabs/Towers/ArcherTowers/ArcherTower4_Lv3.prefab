@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4fb2eaeb08fc342aef761910e8a730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 3
   towerWeaponType: 2
 --- !u!1 &292211672281241922
 GameObject:

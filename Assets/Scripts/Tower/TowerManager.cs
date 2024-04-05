@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 // 타워 타입 -> 키로 사용
 public enum TowerType
@@ -27,12 +29,17 @@ public class TowerManager : MonoBehaviour
     public GameObject towerBuildPanel; // 타워 설치 패널
     public GameObject towerUpgradePanel; // 타워 업글 패널
     public LayerMask towerBuildPosLayerMask; // 타워 설치 위치만 클릭
+    public Image upgradePanelTowerImage; // 업그레이드 패널 타워 이미지
+    public TMP_Text upgradePanelTowerLvText; // 업그레이드 패널 타워 레벨 텍스트
+    public TMP_Text upgradePanelTowerPriceText; // 업그레이드 패널 타워 업그레이드 비용 텍스트
 
     // 타워 맵핑 관련
     [SerializeField]
     public List<TowerLvList> towerPrefs = new List<TowerLvList>(); // 타워 프리팹들 -> 인스펙터에서 할당
+    public List<Sprite> towerSpritePrefs = new List<Sprite>(); // 타워 이미지 바꿀 스프라이트들 -> 인스펙터에서 할당
 
     private Dictionary<TowerType, TowerLvList> towers = new Dictionary<TowerType, TowerLvList>(); // (타워타입, 타입에 해당하는 타워 Lv1 ~ Lv3) 맵핑
+    private Dictionary<TowerType, Sprite> towerSprites = new Dictionary<TowerType, Sprite>(); // (타워타입, 타입에 해당하는 타워 스프라이트) 맵핑
 
     // 타워 맵핑
     void Awake()
@@ -40,6 +47,7 @@ public class TowerManager : MonoBehaviour
         for(int i = 0; i < towerPrefs.Count; i++)
         {
             towers[(TowerType)i] = towerPrefs[i];
+            towerSprites[(TowerType)i] = towerSpritePrefs[i];
         }
     }
 
@@ -83,6 +91,12 @@ public class TowerManager : MonoBehaviour
                         else
                         {
                             towerUpgradePanel.SetActive(true);
+
+                            // 선택된 타워 타입으로 업데이트 패널 갱신
+                            TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
+                            upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
+                            upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
+                            upgradePanelTowerPriceText.text = (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
                         }
 
                         // 패널이 활성화된 상태
@@ -150,5 +164,30 @@ public class TowerManager : MonoBehaviour
 
         // 패널 비활성화된 상태
         isPanel = false;
+    }
+
+    // 타워 업그레이드 
+    public void TowerUpgrade()
+    {
+        // 최대레벨이면 리턴
+        if(selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().towerLv == 3)
+        {
+            return;
+        }
+
+        // 업그레이드 하면 레벨 및 타워스탯 증가
+        selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().towerLv++;
+        selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().basicDamage *= selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().towerLv;
+
+        // 선택된 타워 타입으로 업데이트 패널 갱신
+        TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
+        upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
+        upgradePanelTowerPriceText.text = (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
+
+        // 최대레벨이면 텍스트 지움
+        if(selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().towerLv == 3)
+        {
+            upgradePanelTowerPriceText.text = "";
+        }
     }
 }

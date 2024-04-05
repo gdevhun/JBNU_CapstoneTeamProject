@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2990710edad590479d50b61400c163d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerType: 6
   towerWeaponType: 5
 --- !u!1 &7474904326992244154
 GameObject:

@@ -9,6 +9,7 @@ public class ArcherTower4 : TowerBase
     {
         basicDamage = 500;
         attackSpeed = 2.5f;
+        towerUpgradeBasicPrice = 300;
     }
 
     // 타겟 공격

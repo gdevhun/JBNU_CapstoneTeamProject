@@ -6,9 +6,12 @@ public class TowerBase : MonoBehaviour
 {
     protected Transform target; // 타겟 몬스터
     protected bool isTarget = false; // 타겟이 설정되었는지 체크
-    protected int basicDamage = 100; // 타워 기본 데미지
+    public int basicDamage = 100; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
     protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
+    public TowerType towerType; // 타워 타입
+    public int towerLv = 1; // 타워 레벨
+    public int towerUpgradeBasicPrice = 100; // 타워 업그레이드 기본비용
 
     [SerializeField]
     protected PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입

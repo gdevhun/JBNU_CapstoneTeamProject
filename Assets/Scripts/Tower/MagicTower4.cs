@@ -9,6 +9,6 @@ public class MagicTower4 : MagicTowerBase
     {
         basicDamage = 500;
         attackSpeed = 1.2f;
-        splashDamage = 125;
+        towerUpgradeBasicPrice = 250;
     }
 }

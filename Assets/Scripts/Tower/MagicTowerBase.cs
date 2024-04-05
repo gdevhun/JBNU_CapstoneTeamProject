@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MagicTowerBase : TowerBase
 {
-    protected int splashDamage = 50; // 스플래쉬 데미지
-
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
@@ -45,7 +43,7 @@ public class MagicTowerBase : TowerBase
                 if (hit.CompareTag("Enemy") && splashCnt < 2 && hit.gameObject != target.gameObject)
                 {
                     //hit.GetComponent<Enemy>().health -= splashDamage;
-                    Debug.Log("스플래쉬 : " + hit.gameObject.name + ", 데미지 : " + splashDamage);
+                    Debug.Log("스플래쉬 : " + hit.gameObject.name + ", 데미지 : " + basicDamage / 2);
                     splashCnt++;
                 }
             }

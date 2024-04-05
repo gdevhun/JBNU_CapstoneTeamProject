@@ -9,5 +9,6 @@ public class ArcherTower3 : TowerBase
     {
         basicDamage = 200;
         attackSpeed = 0.3f;
+        towerUpgradeBasicPrice = 200;
     }
 }
