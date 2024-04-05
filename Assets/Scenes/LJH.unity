@@ -13765,6 +13765,21 @@ MonoBehaviour:
     prefab: {fileID: 371108101597520382, guid: 0cadd910d843e5b4783564824d183542, type: 3}
   - type: 39
     prefab: {fileID: 1811206697491385435, guid: 7c6d012497b9fe14aa23ea6200a65c09, type: 3}
+  towerWeaponPrefabs:
+  - type: 0
+    prefab: {fileID: 37753329491657706, guid: 67e6310ce7ab63648a05de5eb6826f17, type: 3}
+  - type: 1
+    prefab: {fileID: 6342248482316686203, guid: 15a194fbbc6dc9143b83040017780c96, type: 3}
+  - type: 2
+    prefab: {fileID: 1876152008327596022, guid: a47455a5f63ee6c48bfe2a203e4ad620, type: 3}
+  - type: 3
+    prefab: {fileID: 5196171293966630302, guid: cd79c3bbb4b027841b80c9d0d67902c9, type: 3}
+  - type: 4
+    prefab: {fileID: 6655273686495766906, guid: b5eea4ce082f1594f936547d8cd171f5, type: 3}
+  - type: 5
+    prefab: {fileID: 8152912836768447438, guid: e438465e497bb2044a517c6e8fb2a40f, type: 3}
+  - type: 6
+    prefab: {fileID: 1567022500591183630, guid: abc7a90075814b64ab8fbefbf05af3a7, type: 3}
 --- !u!4 &1551599429
 Transform:
   m_ObjectHideFlags: 0
@@ -14844,9 +14859,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838920827358373979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddd5e082dfce4204ebbaa7d29e50d856, type: 3}
+  m_Script: {fileID: 11500000, guid: c95c3b93346ed964ca0d50c0f9e7ed30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  towerWeaponType: 0
 --- !u!4 &4240275681707274692
 Transform:
   m_ObjectHideFlags: 0

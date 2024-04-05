@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
-    protected Transform target; // 타겟 몬스터
+    public Transform target; // 타겟 몬스터
     protected bool isTarget = false; // 타겟이 설정되었는지 체크
     protected int basicDamage = 100; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
     protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
+
+    [SerializeField]
+    protected PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
 
     // 타겟 설정
     // 일단 타겟이 나갔을때만 처리
@@ -39,9 +42,32 @@ public class TowerBase : MonoBehaviour
     {
         while (isTarget)
         {
-            yield return new WaitForSeconds(attackSpeed); // 공격속도만큼 대기
+            // 공격속도만큼 대기
+            yield return new WaitForSeconds(attackSpeed);
 
-            Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+            // 타워 무기 가져오기
+            GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
+            Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
+
+            // 위치 및 회전 초기화
+            towerWeapon.transform.position = transform.position;
+            towerWeapon.transform.rotation = towerWeapon.transform.rotation;
+
+            // 타워 무기 발사
+            Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
+            towerWeaponRigid.velocity = direction * 5f;
+
+            // 무기 발사 각도
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            if(towerWeapon.CompareTag("ArcherWeapon123")) angle -= 45;
+            towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // 몬스터 체력 감소
+            // target.GetComponent<Enemy>.health -= basicDamage;
+
+            // 1초 대기 후 타워 무기 비활성화
+            yield return new WaitForSeconds(1f);
+            towerWeapon.gameObject.SetActive(false);
         }
     }
 }
