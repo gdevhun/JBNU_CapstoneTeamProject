@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2824685
 Transform:
   m_ObjectHideFlags: 0
@@ -5233,7 +5233,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 84721334}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &84721334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7059,7 +7083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &209720435
 Transform:
   m_ObjectHideFlags: 0
@@ -7507,7 +7531,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 298943596}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &298943596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8717,6 +8765,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 425548742}
   m_CullTransparentMesh: 1
+--- !u!1 &513752381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513752382}
+  - component: {fileID: 513752383}
+  - component: {fileID: 513752384}
+  m_Layer: 3
+  m_Name: TowerBuildPos3
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &513752382
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513752381}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.3034432, y: 0.06567109, z: 0.024681494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1216021831}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513752383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513752381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0677a870c3e86749a32e383189fddfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerBuildPos: {fileID: 513752381}
+  towerBuildPanel: {fileID: 297052317}
+  towerUpgradePanel: {fileID: 1815220343}
+  towerBuildPosLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  towerPrefs:
+  - towerPrefabs:
+    - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
+    - {fileID: 1097452073359712910, guid: 729a62fba363ad247895c65fa66517aa, type: 3}
+    - {fileID: 2745311269068544901, guid: bb022a46c6c880e4bbbfdc3390f6611a, type: 3}
+  - towerPrefabs:
+    - {fileID: 1194315276412055991, guid: afaeac1134948ab438855d442d64a15c, type: 3}
+    - {fileID: 8627747473539600477, guid: c5f3bf723fbf370468e1f42a5fa67273, type: 3}
+    - {fileID: 1090844972452132404, guid: 7f97ea4d3bf7bb84088de35b6027f678, type: 3}
+  - towerPrefabs:
+    - {fileID: 131627206793606420, guid: 6efdade463ebad84887a800c4ee2b44a, type: 3}
+    - {fileID: 5312366678179197052, guid: 1548d8799912c014ba871772787aa806, type: 3}
+    - {fileID: 792670262601485099, guid: da4bb9acc48ed9d4f94dfa213235c7b3, type: 3}
+  - towerPrefabs:
+    - {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+    - {fileID: 8145527592348961728, guid: 7861825c7293a3f41b814a53539f72c1, type: 3}
+    - {fileID: 86678602655726472, guid: d0f6816d878b8ab46a38e078748f90c7, type: 3}
+  - towerPrefabs:
+    - {fileID: 3573329054772962495, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
+    - {fileID: 4541270213525020684, guid: b1b1580f5fedfa844ae3ca191a870ae7, type: 3}
+    - {fileID: 8950127610928415661, guid: ac3c3dbf395338a4fadaa8b29cc3b454, type: 3}
+  - towerPrefabs:
+    - {fileID: 8638696627391564945, guid: b7ce6c776dbfcb54683271de6b7a08ec, type: 3}
+    - {fileID: 7128823432761627722, guid: d2182b3d1b72f594497047047dabb110, type: 3}
+    - {fileID: 2570390578677882972, guid: 84716effbdc1ca446bcb305f7e60a25a, type: 3}
+  - towerPrefabs:
+    - {fileID: 3658177527902096494, guid: de85b07e8756ae74b8e50b002777fb6d, type: 3}
+    - {fileID: 7459518718621574552, guid: 08a9506fa668ee94a8aeb8ced4c5d3df, type: 3}
+    - {fileID: 6451988191467109642, guid: 14affbea297661344831182753c24dd0, type: 3}
+  - towerPrefabs:
+    - {fileID: 125986149753964940, guid: a141bc52030575447b5ca14141920233, type: 3}
+    - {fileID: 3771465954150751026, guid: df9da5ba172408b409d050ce5aa8d3ee, type: 3}
+    - {fileID: 7218299492336084938, guid: a78bf9a0cc9c5dd46a1bd22bd19b120c, type: 3}
+--- !u!61 &513752384
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513752381}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -9149,7 +9326,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 561772425}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &561772425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9297,6 +9498,135 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.4188889, y: 0.4488889}
+  m_EdgeRadius: 0
+--- !u!1 &667666206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 667666207}
+  - component: {fileID: 667666208}
+  - component: {fileID: 667666209}
+  m_Layer: 3
+  m_Name: TowerBuildPos2
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &667666207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667666206}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6165569, y: 0.06567109, z: 0.024681494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1216021831}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &667666208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667666206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0677a870c3e86749a32e383189fddfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerBuildPos: {fileID: 667666206}
+  towerBuildPanel: {fileID: 297052317}
+  towerUpgradePanel: {fileID: 1815220343}
+  towerBuildPosLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  towerPrefs:
+  - towerPrefabs:
+    - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
+    - {fileID: 1097452073359712910, guid: 729a62fba363ad247895c65fa66517aa, type: 3}
+    - {fileID: 2745311269068544901, guid: bb022a46c6c880e4bbbfdc3390f6611a, type: 3}
+  - towerPrefabs:
+    - {fileID: 1194315276412055991, guid: afaeac1134948ab438855d442d64a15c, type: 3}
+    - {fileID: 8627747473539600477, guid: c5f3bf723fbf370468e1f42a5fa67273, type: 3}
+    - {fileID: 1090844972452132404, guid: 7f97ea4d3bf7bb84088de35b6027f678, type: 3}
+  - towerPrefabs:
+    - {fileID: 131627206793606420, guid: 6efdade463ebad84887a800c4ee2b44a, type: 3}
+    - {fileID: 5312366678179197052, guid: 1548d8799912c014ba871772787aa806, type: 3}
+    - {fileID: 792670262601485099, guid: da4bb9acc48ed9d4f94dfa213235c7b3, type: 3}
+  - towerPrefabs:
+    - {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+    - {fileID: 8145527592348961728, guid: 7861825c7293a3f41b814a53539f72c1, type: 3}
+    - {fileID: 86678602655726472, guid: d0f6816d878b8ab46a38e078748f90c7, type: 3}
+  - towerPrefabs:
+    - {fileID: 3573329054772962495, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
+    - {fileID: 4541270213525020684, guid: b1b1580f5fedfa844ae3ca191a870ae7, type: 3}
+    - {fileID: 8950127610928415661, guid: ac3c3dbf395338a4fadaa8b29cc3b454, type: 3}
+  - towerPrefabs:
+    - {fileID: 8638696627391564945, guid: b7ce6c776dbfcb54683271de6b7a08ec, type: 3}
+    - {fileID: 7128823432761627722, guid: d2182b3d1b72f594497047047dabb110, type: 3}
+    - {fileID: 2570390578677882972, guid: 84716effbdc1ca446bcb305f7e60a25a, type: 3}
+  - towerPrefabs:
+    - {fileID: 3658177527902096494, guid: de85b07e8756ae74b8e50b002777fb6d, type: 3}
+    - {fileID: 7459518718621574552, guid: 08a9506fa668ee94a8aeb8ced4c5d3df, type: 3}
+    - {fileID: 6451988191467109642, guid: 14affbea297661344831182753c24dd0, type: 3}
+  - towerPrefabs:
+    - {fileID: 125986149753964940, guid: a141bc52030575447b5ca14141920233, type: 3}
+    - {fileID: 3771465954150751026, guid: df9da5ba172408b409d050ce5aa8d3ee, type: 3}
+    - {fileID: 7218299492336084938, guid: a78bf9a0cc9c5dd46a1bd22bd19b120c, type: 3}
+--- !u!61 &667666209
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667666206}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &683156005
 GameObject:
@@ -9584,16 +9914,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1815220343}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: ExitPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: upgrade
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &727807191
@@ -11678,16 +12008,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 297052317}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: ExitPanel
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: build
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &865188735
@@ -12099,7 +12429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &989483317
 Transform:
   m_ObjectHideFlags: 0
@@ -12324,7 +12654,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1033532610}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1033532610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12378,7 +12732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1111138458
 Transform:
   m_ObjectHideFlags: 0
@@ -12481,7 +12835,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1122544212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1122544212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12592,6 +12970,40 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 638942079}
   m_SourcePrefab: {fileID: 100100000, guid: bb106f106a801da40a53e59d9c226879, type: 3}
+--- !u!1 &1216021830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1216021831}
+  m_Layer: 0
+  m_Name: TestTowerBuild
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1216021831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216021830}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.116557, y: 0.5543289, z: -0.024681494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1511121955}
+  - {fileID: 667666207}
+  - {fileID: 513752382}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1255017679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14444,7 +14856,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1449127300}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1449127300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14693,6 +15129,135 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2006810056}
   m_SourcePrefab: {fileID: 100100000, guid: aed4cfca6713599439b0a0df5524519e, type: 3}
+--- !u!1 &1511121954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511121955}
+  - component: {fileID: 1511121956}
+  - component: {fileID: 1511121957}
+  m_Layer: 3
+  m_Name: TowerBuildPos1
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1511121955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511121954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.6265569, y: 0.06567109, z: 0.024681494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1216021831}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1511121956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511121954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0677a870c3e86749a32e383189fddfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerBuildPos: {fileID: 1511121954}
+  towerBuildPanel: {fileID: 297052317}
+  towerUpgradePanel: {fileID: 1815220343}
+  towerBuildPosLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  towerPrefs:
+  - towerPrefabs:
+    - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
+    - {fileID: 1097452073359712910, guid: 729a62fba363ad247895c65fa66517aa, type: 3}
+    - {fileID: 2745311269068544901, guid: bb022a46c6c880e4bbbfdc3390f6611a, type: 3}
+  - towerPrefabs:
+    - {fileID: 1194315276412055991, guid: afaeac1134948ab438855d442d64a15c, type: 3}
+    - {fileID: 8627747473539600477, guid: c5f3bf723fbf370468e1f42a5fa67273, type: 3}
+    - {fileID: 1090844972452132404, guid: 7f97ea4d3bf7bb84088de35b6027f678, type: 3}
+  - towerPrefabs:
+    - {fileID: 131627206793606420, guid: 6efdade463ebad84887a800c4ee2b44a, type: 3}
+    - {fileID: 5312366678179197052, guid: 1548d8799912c014ba871772787aa806, type: 3}
+    - {fileID: 792670262601485099, guid: da4bb9acc48ed9d4f94dfa213235c7b3, type: 3}
+  - towerPrefabs:
+    - {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+    - {fileID: 8145527592348961728, guid: 7861825c7293a3f41b814a53539f72c1, type: 3}
+    - {fileID: 86678602655726472, guid: d0f6816d878b8ab46a38e078748f90c7, type: 3}
+  - towerPrefabs:
+    - {fileID: 3573329054772962495, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
+    - {fileID: 4541270213525020684, guid: b1b1580f5fedfa844ae3ca191a870ae7, type: 3}
+    - {fileID: 8950127610928415661, guid: ac3c3dbf395338a4fadaa8b29cc3b454, type: 3}
+  - towerPrefabs:
+    - {fileID: 8638696627391564945, guid: b7ce6c776dbfcb54683271de6b7a08ec, type: 3}
+    - {fileID: 7128823432761627722, guid: d2182b3d1b72f594497047047dabb110, type: 3}
+    - {fileID: 2570390578677882972, guid: 84716effbdc1ca446bcb305f7e60a25a, type: 3}
+  - towerPrefabs:
+    - {fileID: 3658177527902096494, guid: de85b07e8756ae74b8e50b002777fb6d, type: 3}
+    - {fileID: 7459518718621574552, guid: 08a9506fa668ee94a8aeb8ced4c5d3df, type: 3}
+    - {fileID: 6451988191467109642, guid: 14affbea297661344831182753c24dd0, type: 3}
+  - towerPrefabs:
+    - {fileID: 125986149753964940, guid: a141bc52030575447b5ca14141920233, type: 3}
+    - {fileID: 3771465954150751026, guid: df9da5ba172408b409d050ce5aa8d3ee, type: 3}
+    - {fileID: 7218299492336084938, guid: a78bf9a0cc9c5dd46a1bd22bd19b120c, type: 3}
+--- !u!61 &1511121957
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511121954}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1551599427
 GameObject:
   m_ObjectHideFlags: 0
@@ -14916,7 +15481,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1556637264}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1556637264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15826,7 +16415,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1854911037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: SelectTower
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1854911037
 MonoBehaviour:
   m_ObjectHideFlags: 0
