@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
-    public Transform target; // 타겟 몬스터
+    protected Transform target; // 타겟 몬스터
     protected bool isTarget = false; // 타겟이 설정되었는지 체크
     protected int basicDamage = 100; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
@@ -63,7 +63,8 @@ public class TowerBase : MonoBehaviour
             towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // 몬스터 체력 감소
-            // target.GetComponent<Enemy>.health -= basicDamage;
+            // target.GetComponent<Enemy>().health -= basicDamage;
+            Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
             // 1초 대기 후 타워 무기 비활성화
             yield return new WaitForSeconds(1f);

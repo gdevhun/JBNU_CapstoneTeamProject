@@ -14244,7 +14244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9048904663887293125, guid: bb106f106a801da40a53e59d9c226879, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.4996767
+      value: 4.01
       objectReference: {fileID: 0}
     - target: {fileID: 9048904663887293125, guid: bb106f106a801da40a53e59d9c226879, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14859,11 +14859,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838920827358373979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c95c3b93346ed964ca0d50c0f9e7ed30, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4fb2eaeb08fc342aef761910e8a730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  towerWeaponType: 0
+  towerWeaponType: 1
 --- !u!4 &4240275681707274692
 Transform:
   m_ObjectHideFlags: 0
