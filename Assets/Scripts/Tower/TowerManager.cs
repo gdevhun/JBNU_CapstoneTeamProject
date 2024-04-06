@@ -21,17 +21,21 @@ public class TowerLvList
 // 타워 설치, 해제, 업그레이드 관리
 public class TowerManager : MonoBehaviour
 {
-    // 기타 필드
+    // 타워 설치 관련
     public GameObject towerBuildPos; // 각 타워를 설치할 위치
-    public static Transform selectedTowerBuildPos; // 선택된 타워를 설치할 위치
-    public static GameObject selectedTowerPref; // 선택된 설치할 타워 프리팹
-    public static bool isPanel = false; // 패널이 활성화중인지 체크
     public GameObject towerBuildPanel; // 타워 설치 패널
-    public GameObject towerUpgradePanel; // 타워 업글 패널
     public LayerMask towerBuildPosLayerMask; // 타워 설치 위치만 클릭
+
+    // 타워 업글 관련
+    public GameObject towerUpgradePanel; // 타워 업글 패널
     public Image upgradePanelTowerImage; // 업그레이드 패널 타워 이미지
     public TMP_Text upgradePanelTowerLvText; // 업그레이드 패널 타워 레벨 텍스트
     public TMP_Text upgradePanelTowerPriceText; // 업그레이드 패널 타워 업그레이드 비용 텍스트
+
+    // 타워 공유 관련
+    public static Transform selectedTowerBuildPos; // 선택된 타워를 설치할 위치
+    public static GameObject selectedTowerPref; // 선택된 설치할 타워 프리팹
+    public static bool isPanel = false; // 패널이 활성화중인지 체크
 
     // 타워 맵핑 관련
     [SerializeField]
@@ -51,12 +55,20 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    // 설치 패널 활성화
+    // 설치 패널 및 업글 패널 활성화
     void Update()
     {
-        // 패널이 활성화중이면 리턴
+        // 패널이 활성화중인지 체크
         if(isPanel) return;
 
+        // 설치 패널 및 업글 패널 활성화
+        EnterPanel();
+    }
+
+    // 설치 패널 및 업글 패널 띄우기
+    // 나중에 마우스 클릭 대신 터치포지션으로 변경
+    private void EnterPanel()
+    {
         // 마우스 왼쪽 클릭시
         if (Input.GetMouseButtonDown(0))
         {
@@ -68,54 +80,44 @@ public class TowerManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero, Mathf.Infinity, towerBuildPosLayerMask);
 
             // 히트된 콜라이더가 있는지 체크
-            if (hit.collider != null)
+            if(hit.collider == null) return;
+
+            // 타워매니저 
+            TowerManager towerManager = hit.collider.gameObject.GetComponent<TowerManager>();
+
+            // 타워매니저가 있는지 체크 
+            if(towerManager == null) return;
+
+            // 히트된 콜라이더의 게임오브젝트가 클릭한 영역의 설치할 위치인지 체크
+            if(!hit.collider.gameObject.Equals(towerManager.towerBuildPos)) return;
+
+            // 선택된 타워 설치 위치 저장
+            selectedTowerBuildPos = towerManager.towerBuildPos.transform;
+
+            // 패널이 활성화된 상태
+            isPanel = true;
+
+            // 디버깅
+            Debug.Log(selectedTowerBuildPos);
+
+            // 설치된 상태가 아니면 설치 패널 활성화
+            if(selectedTowerBuildPos.transform.childCount == 0) 
             {
-                // 타워매니저 
-                TowerManager towerManager = hit.collider.gameObject.GetComponent<TowerManager>();
+                towerBuildPanel.SetActive(true);
 
-                // 타워매니저가 있는지 체크 
-                if (towerManager != null)
-                {
-                    // 히트된 콜라이더의 게임오브젝트가 클릭한 영역의 설치할 위치면
-                    if (hit.collider.gameObject.Equals(towerManager.towerBuildPos))
-                    {
-                        // 선택된 타워 설치 위치 저장
-                        selectedTowerBuildPos = towerManager.towerBuildPos.transform;
-
-                        // 설치된 상태가 아니면 설치 패널 활성화
-                        // 설치된 상태면 업그레이드 패널 활성화
-                        if(selectedTowerBuildPos.transform.childCount == 0)
-                        {
-                            towerBuildPanel.SetActive(true);
-                        }
-                        else
-                        {
-                            towerUpgradePanel.SetActive(true);
-
-                            // 선택된 타워 타입으로 업데이트 패널 갱신
-                            TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
-                            upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
-                            upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
-
-                            // 최대레벨이면 텍스트 지우고 아니면 갱신
-                            if(selectedTowerBase.towerLv == 3)
-                            {
-                                upgradePanelTowerPriceText.text = "";
-                            }
-                            else
-                            {
-                                upgradePanelTowerPriceText.text = (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
-                            }
-                        }
-
-                        // 패널이 활성화된 상태
-                        isPanel = true;
-
-                        // 디버깅
-                        Debug.Log(selectedTowerBuildPos);
-                    }
-                }
+                return;
             }
+
+            // 설치된 상태면 업그레이드 패널 활성화
+            towerUpgradePanel.SetActive(true);
+
+            // 선택된 타워 타입으로 업데이트 패널 갱신
+            TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
+            upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
+            upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
+
+            // 최대레벨이면 텍스트 지우고 아니면 갱신
+            upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
         }
     }
 
@@ -123,14 +125,8 @@ public class TowerManager : MonoBehaviour
     public void ExitPanel(string panelName)
     {
         // 설치 패널 및 업글 패널 닫기
-        if(panelName.Equals("build"))
-        {
-            towerBuildPanel.SetActive(false);
-        }
-        else if(panelName.Equals("upgrade"))
-        {
-            towerUpgradePanel.SetActive(false);
-        }
+        if(panelName.Equals("build")) towerBuildPanel.SetActive(false);
+        else towerUpgradePanel.SetActive(false);
 
         // 패널이 비활성화된 상태
         isPanel = false;
@@ -182,10 +178,7 @@ public class TowerManager : MonoBehaviour
         TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
 
         // 최대레벨이면 리턴
-        if(selectedTowerBase.towerLv == 3)
-        {
-            return;
-        }
+        if(selectedTowerBase.towerLv == 3) return;
 
         // 업그레이드 하면 레벨 및 타워스탯 증가
         selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>().basicDamage *= ++selectedTowerBase.towerLv;
@@ -195,9 +188,6 @@ public class TowerManager : MonoBehaviour
         upgradePanelTowerPriceText.text = (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
 
         // 최대레벨이면 텍스트 지움
-        if(selectedTowerBase.towerLv == 3)
-        {
-            upgradePanelTowerPriceText.text = "";
-        }
+        if(selectedTowerBase.towerLv == 3) upgradePanelTowerPriceText.text = "";
     }
 }

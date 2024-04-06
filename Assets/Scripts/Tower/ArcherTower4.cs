@@ -7,9 +7,7 @@ public class ArcherTower4 : TowerBase
     // 스탯 조정
     private void Awake()
     {
-        basicDamage = 500;
-        attackSpeed = 2.5f;
-        towerUpgradeBasicPrice = 300;
+        InitTower(500, 2.5f, 300);
     }
 
     // 타겟 공격
@@ -44,6 +42,7 @@ public class ArcherTower4 : TowerBase
             {
                 if (hit.CompareTag("Enemy"))
                 {
+                    // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
                     //hit.GetComponent<Enemy>().health -= basicDamage;
                     Debug.Log("광역 : " + hit.gameObject.name + ", 데미지 : " + basicDamage);
                 }
@@ -54,7 +53,9 @@ public class ArcherTower4 : TowerBase
             Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
 
             // 1초 대기 후 타워 무기 비활성화
-            yield return new WaitForSeconds(1f);
+            // TowerWeapon 스크립트 만들어서 타워 무기에 붙이고
+            // 타겟 정보 넘겨서 타겟과 충돌하면 비활성화
+            yield return waitOneSecond;
             towerWeapon.gameObject.SetActive(false);
         }
     }

@@ -7,8 +7,6 @@ public class MagicTower3 : MagicTowerBase
     // 스탯 조정
     private void Awake()
     {
-        basicDamage = 400;
-        attackSpeed = 1.3f;
-        towerUpgradeBasicPrice = 200;
+        InitTower(400, 1.3f, 200);
     }
 }

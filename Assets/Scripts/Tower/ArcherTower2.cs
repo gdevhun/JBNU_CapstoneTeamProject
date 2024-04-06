@@ -7,8 +7,6 @@ public class ArcherTower2 : TowerBase
     // 스탯 조정
     private void Awake()
     {
-        basicDamage = 150;
-        attackSpeed = 0.5f;
-        towerUpgradeBasicPrice = 150;
+        InitTower(150, 0.5f, 150);
     }
 }

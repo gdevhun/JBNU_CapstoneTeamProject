@@ -4,17 +4,33 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
-    protected Transform target; // 타겟 몬스터
-    protected bool isTarget = false; // 타겟이 설정되었는지 체크
+    // 타워 스탯 관련
     public int basicDamage = 100; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
-    protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
-    public TowerType towerType; // 타워 타입
+
+    // 타워 업글 관련
     public int towerLv = 1; // 타워 레벨
     public int towerUpgradeBasicPrice = 100; // 타워 업그레이드 기본비용
 
-    [SerializeField]
-    protected PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
+    // 타워 타겟 관련 
+    protected Transform target; // 타겟 몬스터
+    protected bool isTarget = false; // 타겟이 설정되었는지 체크
+
+    // 타워 공격 관련
+    protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
+    protected WaitForSeconds waitOneSecond = new WaitForSeconds(1f); // 타워 무기 비활성화 대기시간
+
+    // 타워 타입 관련
+    public TowerType towerType; // 타워 타입
+    public PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
+
+    // 타워 스탯 초기화
+    protected virtual void InitTower(int dmg = 100, float speed = 1.0f, int price = 100)
+    {
+        basicDamage = dmg;
+        attackSpeed = speed;
+        towerUpgradeBasicPrice = price;
+    }
 
     // 타겟 설정
     // 일단 타겟이 나갔을때만 처리
@@ -27,14 +43,14 @@ public class TowerBase : MonoBehaviour
     // 타겟 나감
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.transform == target) isTarget = false;
+        if (other.transform == target) isTarget = false; // 타겟이 설정되지 않은 상태
     }
 
     // 타겟 설정
     private void TargetEnemy(Transform enemy)
     {
-        target = enemy;
-        isTarget = true;
+        target = enemy; // 타겟 설정
+        isTarget = true; // 타겟이 설정된 상태
         if (attackCoroutine != null) StopCoroutine(attackCoroutine); // 이전 공격 코루틴 중지
         attackCoroutine = StartCoroutine(Attack()); // 새로운 공격 코루틴 시작
     }
@@ -66,11 +82,14 @@ public class TowerBase : MonoBehaviour
             towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // 몬스터 체력 감소
+            // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
             // target.GetComponent<Enemy>().health -= basicDamage;
             Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
             // 1초 대기 후 타워 무기 비활성화
-            yield return new WaitForSeconds(1f);
+            // TowerWeapon 스크립트 만들어서 타워 무기에 붙이고
+            // 타겟 정보 넘겨서 타겟과 충돌하면 비활성화
+            yield return waitOneSecond;
             towerWeapon.gameObject.SetActive(false);
         }
     }
