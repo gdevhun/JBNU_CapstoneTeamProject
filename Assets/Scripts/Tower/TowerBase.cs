@@ -18,7 +18,6 @@ public class TowerBase : MonoBehaviour
 
     // 타워 공격 관련
     protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
-    //protected WaitForSeconds waitOneSecond = new WaitForSeconds(1f); // 타워 무기 비활성화 대기시간
     public List<GameObject> atkPos; // 타워 무기 발사위치
     public List<Animator> towerAnim; // 타워 애니메이션 
 

@@ -10,6 +10,9 @@ public class MagicTowerBase : TowerBase
     // 매직 타워 무기 충돌 이펙트 반환 대기시간
     protected WaitForSeconds effectWait = new WaitForSeconds(0.5f);
 
+    // 풀링한 무기 충돌 이펙트 저장
+    public List<GameObject> towerWeaponEffectPrefabs = new List<GameObject>();
+
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
@@ -28,6 +31,7 @@ public class MagicTowerBase : TowerBase
             // 타워 무기 충돌 이펙트
             GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
             towerWeaponEffect.transform.position = target.transform.position + transform.up * 3.5f;
+            towerWeaponEffectPrefabs.Add(towerWeaponEffect);
 
             // 타워 무기 발사위치 개수만큼
             for(int i = 0; i < atkPos.Count; i++)

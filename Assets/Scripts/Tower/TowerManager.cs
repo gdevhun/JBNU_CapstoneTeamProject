@@ -159,6 +159,9 @@ public class TowerManager : MonoBehaviour
     // 타워 해제
     public void DeleteTower()
     {
+        // 매직 타워는 이전에 생성된 이펙트 비활성화
+        MagicTowerEffectInit();
+
         // 자식에 있던 타워 파괴
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);
 
@@ -177,6 +180,9 @@ public class TowerManager : MonoBehaviour
 
         // 최대레벨이면 리턴
         if(selectedTowerBase.towerLv == 3) return;
+
+        // 매직 타워는 이전에 생성된 이펙트 비활성화
+        MagicTowerEffectInit();
 
         // 다음레벨 타워 설치
         GameObject buildTower = Instantiate(towers[selectedTowerBase.towerType].towerPrefabs[selectedTowerBase.towerLv], selectedTowerBuildPos.position, Quaternion.identity);
@@ -200,5 +206,21 @@ public class TowerManager : MonoBehaviour
         upgradePanelTowerLvText.text = "타워 레벨 : " + upgradeTowerBase.towerLv.ToString();
         upgradePanelTowerPriceText.text = (upgradeTowerBase.towerUpgradeBasicPrice * upgradeTowerBase.towerLv).ToString();
         if(upgradeTowerBase.towerLv == 3) upgradePanelTowerPriceText.text = "";
+    }
+
+    // 매직 타워 충돌 이펙트 초기화
+    private void MagicTowerEffectInit()
+    {
+        // 매직 타워는 이전에 생성된 이펙트 비활성화
+        MagicTowerBase magicTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<MagicTowerBase>();
+        if(magicTowerBase != null)
+        {
+            for(int i = 0; i < magicTowerBase.towerWeaponEffectPrefabs.Count; i++)
+            {
+                magicTowerBase.towerWeaponEffectPrefabs[i].gameObject.SetActive(false);
+            }
+
+            magicTowerBase.towerWeaponEffectPrefabs.Clear();
+        }
     }
 }
