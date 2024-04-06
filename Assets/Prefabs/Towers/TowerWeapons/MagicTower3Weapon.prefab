@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8995572581797626559}
   - component: {fileID: 3188651873921523009}
   - component: {fileID: 141590012732579446}
+  - component: {fileID: -9047164735253529021}
   - component: {fileID: 2501169435225992493}
   m_Layer: 0
   m_Name: MagicTower3Weapon
@@ -131,6 +132,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.084, y: 0.262}
   m_EdgeRadius: 0
+--- !u!114 &-9047164735253529021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152912836768447438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5f5cfea8b4f2f4da92779c2f744af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2501169435225992493
 Rigidbody2D:
   serializedVersion: 4

@@ -18,7 +18,8 @@ public class TowerBase : MonoBehaviour
 
     // 타워 공격 관련
     protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
-    protected WaitForSeconds waitOneSecond = new WaitForSeconds(1f); // 타워 무기 비활성화 대기시간
+    //protected WaitForSeconds waitOneSecond = new WaitForSeconds(1f); // 타워 무기 비활성화 대기시간
+    public List<GameObject> atkPos; // 타워 무기 발사위치
 
     // 타워 타입 관련
     public TowerType towerType; // 타워 타입
@@ -64,33 +65,58 @@ public class TowerBase : MonoBehaviour
             // 공격속도만큼 대기
             yield return new WaitForSeconds(attackSpeed);
 
-            // 타워 무기 가져오기
-            GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
-            Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
+            // 타워 무기 발사위치 개수만큼
+            for(int i = 0; i < atkPos.Count; i++)
+            {
+                // 타워 무기 가져오기
+                GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
+                Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
 
-            // 위치 및 회전 초기화
-            towerWeapon.transform.position = transform.position;
-            towerWeapon.transform.rotation = towerWeapon.transform.rotation;
+                // 위치 및 회전 초기화
+                towerWeapon.transform.position = atkPos[i].transform.position;
+                towerWeapon.transform.rotation = towerWeapon.transform.rotation;
 
-            // 타워 무기 발사
-            Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-            towerWeaponRigid.velocity = direction * 5f;
+                // 타워 무기 발사
+                Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
+                towerWeaponRigid.velocity = direction * 5f;
 
-            // 무기 발사 각도
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            if(towerWeapon.CompareTag("ArcherWeapon123")) angle -= 45;
-            towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                // 무기 발사 각도
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+                if(towerWeapon.CompareTag("ArcherWeapon123")) angle -= 45;
+                towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-            // 몬스터 체력 감소
-            // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
-            // target.GetComponent<Enemy>().health -= basicDamage;
-            Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+                // 몬스터 체력 감소
+                // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
+                // target.GetComponent<Enemy>().health -= basicDamage;
+                Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+            }
+            // // 타워 무기 가져오기
+            // GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
+            // Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
 
-            // 1초 대기 후 타워 무기 비활성화
-            // TowerWeapon 스크립트 만들어서 타워 무기에 붙이고
-            // 타겟 정보 넘겨서 타겟과 충돌하면 비활성화
-            yield return waitOneSecond;
-            towerWeapon.gameObject.SetActive(false);
+            // // 위치 및 회전 초기화
+            // towerWeapon.transform.position = transform.position;
+            // towerWeapon.transform.rotation = towerWeapon.transform.rotation;
+
+            // // 타워 무기 발사
+            // Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
+            // towerWeaponRigid.velocity = direction * 5f;
+
+            // // 무기 발사 각도
+            // float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            // if(towerWeapon.CompareTag("ArcherWeapon123")) angle -= 45;
+            // towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // // 몬스터 체력 감소
+            // // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
+            // // target.GetComponent<Enemy>().health -= basicDamage;
+            // Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+
+            // // 1초 대기 후 타워 무기 비활성화
+            // // TowerWeapon 스크립트 만들어서 타워 무기에 붙이고
+            // // 타겟 정보 넘겨서 타겟과 충돌하면 비활성화
+            // yield return waitOneSecond;
+            // towerWeapon.gameObject.SetActive(false);
         }
     }
 }

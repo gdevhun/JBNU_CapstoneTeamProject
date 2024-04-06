@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5039339332109515273}
   - component: {fileID: 4669635448491002723}
   - component: {fileID: 230748872667251175}
+  - component: {fileID: -8275754471087042276}
   m_Layer: 0
   m_Name: ArcherTower4Lv3Weapon
   m_TagString: TowerWeapon
@@ -158,3 +159,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.072, y: 0.468}
   m_EdgeRadius: 0
+--- !u!114 &-8275754471087042276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876152008327596022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5f5cfea8b4f2f4da92779c2f744af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

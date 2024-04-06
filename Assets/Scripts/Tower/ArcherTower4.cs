@@ -24,7 +24,7 @@ public class ArcherTower4 : TowerBase
             Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
 
             // 위치 및 회전 초기화
-            towerWeapon.transform.position = transform.position;
+            towerWeapon.transform.position = atkPos[0].transform.position;
             towerWeapon.transform.rotation = towerWeapon.transform.rotation;
 
             // 타워 무기 발사
@@ -51,12 +51,6 @@ public class ArcherTower4 : TowerBase
             // 디버깅용
             Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
             Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
-
-            // 1초 대기 후 타워 무기 비활성화
-            // TowerWeapon 스크립트 만들어서 타워 무기에 붙이고
-            // 타겟 정보 넘겨서 타겟과 충돌하면 비활성화
-            yield return waitOneSecond;
-            towerWeapon.gameObject.SetActive(false);
         }
     }
 }
