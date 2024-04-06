@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class MagicTowerBase : TowerBase
 {
+    // 매직 타워 무기 충돌 이펙트
+    public PoolManager.TowerWeaponEffectType towerWeaponEffectType;
+
+    // 매직 타워 무기 충돌 이펙트 반환 대기시간
+    protected WaitForSeconds effectWait = new WaitForSeconds(0.5f);
+
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
@@ -18,6 +24,10 @@ public class MagicTowerBase : TowerBase
             {
                 towerAnim[i].SetTrigger("atkTrig");
             }
+
+            // 타워 무기 충돌 이펙트
+            GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
+            towerWeaponEffect.transform.position = target.transform.position + transform.up * 3.5f;
 
             // 타워 무기 발사위치 개수만큼
             for(int i = 0; i < atkPos.Count; i++)
@@ -63,6 +73,12 @@ public class MagicTowerBase : TowerBase
                 Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
                 Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
             }
+
+            // 잠시 대기 후
+            yield return effectWait;
+            
+            // 타워 무기 충돌 이펙트 비활성화
+            towerWeaponEffect.gameObject.SetActive(false);
         }
     }
 }

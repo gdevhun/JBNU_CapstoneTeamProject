@@ -462,6 +462,7 @@ MonoBehaviour:
   - {fileID: 5842397140735158001}
   towerType: 5
   towerWeaponType: 4
+  towerWeaponEffectType: 1
 --- !u!1 &3017433823348677882
 GameObject:
   m_ObjectHideFlags: 0

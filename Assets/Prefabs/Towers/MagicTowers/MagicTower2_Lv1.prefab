@@ -641,3 +641,4 @@ MonoBehaviour:
   - {fileID: 95934793235886306}
   towerType: 5
   towerWeaponType: 4
+  towerWeaponEffectType: 1
