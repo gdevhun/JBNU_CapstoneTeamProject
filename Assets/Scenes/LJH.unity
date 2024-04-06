@@ -5256,7 +5256,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &84721334
 MonoBehaviour:
@@ -7554,7 +7554,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &298943596
 MonoBehaviour:
@@ -8948,10 +8948,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildPos: {fileID: 513752381}
   towerBuildPanel: {fileID: 297052317}
-  towerUpgradePanel: {fileID: 1815220343}
   towerBuildPosLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  towerUpgradePanel: {fileID: 1815220343}
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
@@ -9497,7 +9497,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &561772425
 MonoBehaviour:
@@ -9694,10 +9694,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildPos: {fileID: 667666206}
   towerBuildPanel: {fileID: 297052317}
-  towerUpgradePanel: {fileID: 1815220343}
   towerBuildPosLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  towerUpgradePanel: {fileID: 1815220343}
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
@@ -12850,7 +12850,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1033532610
 MonoBehaviour:
@@ -13165,7 +13165,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1122544212
 MonoBehaviour:
@@ -13395,6 +13395,10 @@ PrefabInstance:
     - target: {fileID: 3573329054772962495, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
       propertyPath: m_Name
       value: MagicTower1_Lv1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573329054772962495, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8609278820728093143, guid: b1120768c047ed149a9ca8a524700b43, type: 3}
       propertyPath: m_RootOrder
@@ -15187,7 +15191,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1449127300
 MonoBehaviour:
@@ -15360,6 +15364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ArcherTower4_Lv1
       objectReference: {fileID: 0}
+    - target: {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15484,10 +15492,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildPos: {fileID: 1511121954}
   towerBuildPanel: {fileID: 297052317}
-  towerUpgradePanel: {fileID: 1815220343}
   towerBuildPosLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  towerUpgradePanel: {fileID: 1815220343}
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
@@ -15959,7 +15967,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1556637264
 MonoBehaviour:
@@ -16893,7 +16901,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1854911037
 MonoBehaviour:
@@ -17135,10 +17143,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildPos: {fileID: 2057063688}
   towerBuildPanel: {fileID: 297052317}
-  towerUpgradePanel: {fileID: 1815220343}
   towerBuildPosLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  towerUpgradePanel: {fileID: 1815220343}
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
@@ -17335,6 +17343,10 @@ PrefabInstance:
     - target: {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
       propertyPath: m_Name
       value: ArcherTower1_Lv1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3616344445999024545, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
       propertyPath: m_RootOrder
