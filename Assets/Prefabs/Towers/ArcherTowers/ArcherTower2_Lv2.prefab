@@ -247,7 +247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8627747473539600477}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -256,7 +256,7 @@ Transform:
   - {fileID: 3687500168308859621}
   - {fileID: 3190303880416658215}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4119908364677854904
 BoxCollider2D:
@@ -347,5 +347,7 @@ MonoBehaviour:
   towerUpgradeBasicPrice: 100
   atkPos:
   - {fileID: 1565961642739476575}
+  towerAnim:
+  - {fileID: 788538463424503884}
   towerType: 1
   towerWeaponType: 0

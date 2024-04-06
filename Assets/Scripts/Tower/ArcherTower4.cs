@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ArcherTower4 : TowerBase
 {
+    // 타워 애니메이션 실제 공격 타이밍과 싱크 맞춤
+    private WaitForSeconds animWait = new WaitForSeconds(0.5f);
+
     // 스탯 조정
     private void Awake()
     {
@@ -18,6 +21,15 @@ public class ArcherTower4 : TowerBase
         {
             // 공격속도만큼 대기
             yield return new WaitForSeconds(attackSpeed);
+
+            // 타워 애니메이션
+            for(int i = 0; i < towerAnim.Count; i++)
+            {
+                towerAnim[i].SetTrigger("atkTrig");
+            }
+
+            // 타워 애니메이션 실제 공격 타이밍과 싱크 맞춤
+            yield return animWait;
 
             // 타워 무기 가져오기
             GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);

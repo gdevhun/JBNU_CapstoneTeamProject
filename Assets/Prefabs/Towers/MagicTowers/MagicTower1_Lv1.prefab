@@ -345,7 +345,7 @@ Transform:
   - {fileID: 2633584814669472790}
   - {fileID: 3659930097491091795}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &-4869360221788466435
 BoxCollider2D:
@@ -437,6 +437,9 @@ MonoBehaviour:
   atkPos:
   - {fileID: 2878409982605702879}
   - {fileID: 3615608868077035983}
+  towerAnim:
+  - {fileID: 3644404064219687224}
+  - {fileID: 2461097869544400975}
   towerType: 4
   towerWeaponType: 3
 --- !u!1 &3615608868077035983

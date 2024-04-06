@@ -13,6 +13,12 @@ public class MagicTowerBase : TowerBase
             // 공격속도만큼 대기
             yield return new WaitForSeconds(attackSpeed);
 
+            // 타워 애니메이션
+            for(int i = 0; i < towerAnim.Count; i++)
+            {
+                towerAnim[i].SetTrigger("atkTrig");
+            }
+
             // 타워 무기 발사위치 개수만큼
             for(int i = 0; i < atkPos.Count; i++)
             {
