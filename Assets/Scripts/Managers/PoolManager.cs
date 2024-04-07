@@ -7,7 +7,7 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 	#region
 	public enum EnemyType
 	{
-		Enemy1,     // 1¹ø ½ºÅ×ÀÌÁö ¿¡³×¹Ì~ 40¹ø ½ºÅ×ÀÌÁö ¿¡³×¹Ì
+		Enemy1,     // 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¹ï¿½~ 40ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¹ï¿½
 		Enemy2,    Enemy3,     Enemy4,     Enemy5,      
 		Enemy6,    Enemy7,     Enemy8,     Enemy9,      
 		Enemy10,   Enemy11,    Enemy12,    Enemy13,      
@@ -22,59 +22,126 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
 	[System.Serializable]
 	public class EnemyPrefab
-	{   //¿¡³×¹Ì ÇÁ¸®ÆÕ Å¬·¡½º
+	{   //ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 		public EnemyType type;
 		public GameObject prefab;
 	}
+
+	// íƒ€ì›Œ ë¬´ê¸° íƒ€ì…
+	public enum TowerWeaponType
+	{
+		ArcherTower123, ArcherTower4Lv12, ArcherTower4Lv3,
+		MagicTower1, MagicTower2, MagicTower3, MagicTower4
+	}
+
+	// íƒ€ì›Œ ë¬´ê¸° í”„ë¦¬íŒ¹
+	[System.Serializable]
+	public class TowerWeaponPrefab
+	{   //ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+		public TowerWeaponType type;
+		public GameObject prefab;
+	}
+
+	// íƒ€ì›Œ ë¬´ê¸° ì´í™íŠ¸ íƒ€ì…
+	public enum TowerWeaponEffectType
+	{
+		MagicTower1, MagicTower2, MagicTower3, MagicTower4
+	}
+
+	// íƒ€ì›Œ ë¬´ê¸° ì´í™íŠ¸ í”„ë¦¬íŒ¹
+	[System.Serializable]
+	public class TowerWeaponEffectPrefab
+	{   //ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
+		public TowerWeaponEffectType type;
+		public GameObject prefab;
+	}
+
 	#endregion
-	public List<EnemyPrefab> enemyPrefabs; //¿¡³×¹Ì ÇÁ¸®ÆÕ ¸®½ºÆ®
-	private Dictionary<EnemyType, List<GameObject>> enemiesPool; //°¢ ¿¡³×¹Ì ´ãÀ» µñ¼Å³Ê¸®
+	public List<EnemyPrefab> enemyPrefabs; //ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	private Dictionary<EnemyType, List<GameObject>> enemiesPool; //ï¿½ï¿½ ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³Ê¸ï¿½
+	
+	// íƒ€ì›Œ ë¬´ê¸° ë§µí•‘
+	public List<TowerWeaponPrefab> towerWeaponPrefabs;
+	private Dictionary<TowerWeaponType, List<GameObject>> towerWeaponsPool;
+
+	// íƒ€ì›Œ ë¬´ê¸° ì´í™íŠ¸ ë§µí•‘
+	public List<TowerWeaponEffectPrefab> towerWeaponEffectPrefabs;
+	private Dictionary<TowerWeaponEffectType, List<GameObject>> towerWeaponEffectsPool;
+
+	/*ï¿½Î½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½ -> ï¿½Ê±ï¿½È­
+	public GameObject[] EnemyPrefabs; //ï¿½ï¿½ï¿½×¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject[] BossPrefabs;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject[] TowerPrefabs; //Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public GameObject[] EffectPrefabs;  //ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
-	/*ÀÎ½ºÆåÅÍ¿¡¼­ ÇÒ´ç -> ÃÊ±âÈ­
-	public GameObject[] EnemyPrefabs; //¿¡³×¹ÌÇÁ¸®ÆÕ
-    public GameObject[] BossPrefabs;  //º¸½ºÇÁ¸®ÆÕ
-    public GameObject[] TowerPrefabs; //Å¸¿öÇÁ¸®ÆÕ
-	public GameObject[] EffectPrefabs;  //ÀÌÆåÆ® ÇÁ¸®ÆÕ
-
-
-	private List<GameObject>[] enemyPool; //¿¡³×¹Ì´ãÀ» ¸®½ºÆ®
-	private List<GameObject>[] bossPool; //¿¡³×¹Ì´ãÀ» ¸®½ºÆ®
-	private List<GameObject>[] towerPool; //¿¡³×¹Ì´ãÀ» ¸®½ºÆ®
-	private List<GameObject>[] effectPool; //ÀÌÆåÆ®´ãÀ» ¸®½ºÆ®*/
+	private List<GameObject>[] enemyPool; //ï¿½ï¿½ï¿½×¹Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	private List<GameObject>[] bossPool; //ï¿½ï¿½ï¿½×¹Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	private List<GameObject>[] towerPool; //ï¿½ï¿½ï¿½×¹Ì´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	private List<GameObject>[] effectPool; //ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®*/
 
 	protected override void Awake()
     {
         base.Awake();
 		
-        //Ç®ÇÒ ¹è¿­µé ¼±¾ğ ±æÀÌ ÃÊ±âÈ­ => ¿¡³×¹Ì, º¸½º, Å¸¿ö, ÀÌÆåÆ®
+        //Ç®ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ => ï¿½ï¿½ï¿½×¹ï¿½, ï¿½ï¿½ï¿½ï¿½, Å¸ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Æ®
 
-		// µñ¼Å³Ê¸® ÃÊ±âÈ­
+		// ï¿½ï¿½Å³Ê¸ï¿½ ï¿½Ê±ï¿½È­
 		enemiesPool = new Dictionary<EnemyType, List<GameObject>>();
 
-		// °¢ ¿¡³×¹Ì ÇÁ¸®ÆÕ¿¡ ´ëÇÑ Ç® ÃÊ±âÈ­
+		// ï¿½ï¿½ ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç® ï¿½Ê±ï¿½È­
 		foreach (EnemyPrefab enemyPrefab in enemyPrefabs)
 		{
 			List<GameObject> pool = new List<GameObject>();
-			for (int i = 0; i < 30; i++) // °¢ ¿¡³×¹Ì Å¸ÀÔº°·Î 30°³¾¿ »ı¼ºÇÏ¿© Ç®¿¡ Ãß°¡
+			for (int i = 0; i < 30; i++) // ï¿½ï¿½ ï¿½ï¿½ï¿½×¹ï¿½ Å¸ï¿½Ôºï¿½ï¿½ï¿½ 30ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ Ç®ï¿½ï¿½ ï¿½ß°ï¿½
 			{
 				GameObject enemyObject = Instantiate(enemyPrefab.prefab);
-				enemyObject.SetActive(false); // È°¼ºÈ­ÇÏÁö ¾ÊÀº »óÅÂ·Î »ı¼º
+				enemyObject.SetActive(false); // È°ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 				pool.Add(enemyObject);
 			}
-			enemiesPool.Add(enemyPrefab.type, pool); // ¿¡³×¹Ì Å¸ÀÔ°ú ÇØ´ç Å¸ÀÔÀÇ Ç®À» µñ¼Å³Ê¸®¿¡ Ãß°¡
+			enemiesPool.Add(enemyPrefab.type, pool); // ï¿½ï¿½ï¿½×¹ï¿½ Å¸ï¿½Ô°ï¿½ ï¿½Ø´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½Å³Ê¸ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 
 		}
 
+		// íƒ€ì›Œ ë¬´ê¸° ë§µí•‘
+		towerWeaponsPool = new Dictionary<TowerWeaponType, List<GameObject>>();
+
+		foreach (TowerWeaponPrefab towerWeaponPrefab in towerWeaponPrefabs)
+		{
+			List<GameObject> pool = new List<GameObject>();
+
+			for (int i = 0; i < 30; i++)
+			{
+				GameObject towerWeaponObject = Instantiate(towerWeaponPrefab.prefab);
+				towerWeaponObject.SetActive(false);
+				pool.Add(towerWeaponObject);
+			}
+
+			towerWeaponsPool.Add(towerWeaponPrefab.type, pool);
+		}
+
+		// íƒ€ì›Œ ë¬´ê¸° ì´í™íŠ¸ ë§µí•‘
+		towerWeaponEffectsPool = new Dictionary<TowerWeaponEffectType, List<GameObject>>();
+
+		foreach (TowerWeaponEffectPrefab towerWeaponEffectPrefab in towerWeaponEffectPrefabs)
+		{
+			List<GameObject> pool = new List<GameObject>();
+
+			for (int i = 0; i < 30; i++)
+			{
+				GameObject towerWeaponEffectObject = Instantiate(towerWeaponEffectPrefab.prefab);
+				towerWeaponEffectObject.SetActive(false);
+				pool.Add(towerWeaponEffectObject);
+			}
+
+			towerWeaponEffectsPool.Add(towerWeaponEffectPrefab.type, pool);
+		}
 	
-		/*bossPool = new List<GameObject>[EnemyPrefabs.Length];  //4°³
-		towerPool = new List<GameObject>[EnemyPrefabs.Length];  //8°³ ·¹º§º°·Î 3°³ =>24°³
-		effectPool=new List<GameObject>[EffectPrefabs.Length];  //8°³*/
+		/*bossPool = new List<GameObject>[EnemyPrefabs.Length];  //4ï¿½ï¿½
+		towerPool = new List<GameObject>[EnemyPrefabs.Length];  //8ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 3ï¿½ï¿½ =>24ï¿½ï¿½
+		effectPool=new List<GameObject>[EffectPrefabs.Length];  //8ï¿½ï¿½*/
 	}
-    void Start()
-    {
-		
-	}
+
 	public GameObject GetEnemy(EnemyType type)
 	{
 		GameObject selectedEnemy = null;
@@ -99,13 +166,79 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 
 		if (selectedEnemy == null)
 		{
-			// Ç®¿¡¼­ »ç¿ë °¡´ÉÇÑ ÀûÀÌ ¾øÀ¸¸é »õ·Î »ı¼ºÇÏ¿© Ãß°¡
+			// Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ß°ï¿½
 			selectedEnemy = Instantiate(GetEnemyPrefab(type), transform);
 			selectedEnemy.transform.parent = this.transform;
 			enemyList.Add(selectedEnemy);
 		}
 
 		return selectedEnemy;
+	}
+
+	// íƒ€ì›Œ ë¬´ê¸° ê°€ì ¸ì˜¤ê¸°
+	public GameObject GetTowerWeapon(TowerWeaponType type)
+	{
+		GameObject selectedTowerWeapon = null;
+		List<GameObject> towerWeaponList;
+		if (towerWeaponsPool.TryGetValue(type, out towerWeaponList))
+		{
+			foreach (GameObject towerWeapon in towerWeaponList)
+			{
+				if (!towerWeapon.activeSelf)
+				{
+					selectedTowerWeapon = towerWeapon;
+					selectedTowerWeapon.SetActive(true);
+					break;
+				}
+			}
+		}
+		else
+		{
+			towerWeaponList = new List<GameObject>();
+			towerWeaponsPool.Add(type, towerWeaponList);
+		}
+
+		if (selectedTowerWeapon == null)
+		{
+			selectedTowerWeapon = Instantiate(GetTowerWeapon(type), transform);
+			selectedTowerWeapon.transform.parent = this.transform;
+			towerWeaponList.Add(selectedTowerWeapon);
+		}
+
+		return selectedTowerWeapon;
+	}
+
+	// íƒ€ì›Œ ë¬´ê¸° ì´í™íŠ¸ ê°€ì ¸ì˜¤ê¸°
+	public GameObject GetTowerWeaponEffect(TowerWeaponEffectType type)
+	{
+		GameObject selectedTowerWeaponEffect = null;
+		List<GameObject> towerWeaponEffectList;
+		if (towerWeaponEffectsPool.TryGetValue(type, out towerWeaponEffectList))
+		{
+			foreach (GameObject towerWeaponEffect in towerWeaponEffectList)
+			{
+				if (!towerWeaponEffect.activeSelf)
+				{
+					selectedTowerWeaponEffect = towerWeaponEffect;
+					selectedTowerWeaponEffect.SetActive(true);
+					break;
+				}
+			}
+		}
+		else
+		{
+			towerWeaponEffectList = new List<GameObject>();
+			towerWeaponEffectsPool.Add(type, towerWeaponEffectList);
+		}
+
+		if (selectedTowerWeaponEffect == null)
+		{
+			selectedTowerWeaponEffect = Instantiate(GetTowerWeaponEffect(type), transform);
+			selectedTowerWeaponEffect.transform.parent = this.transform;
+			towerWeaponEffectList.Add(selectedTowerWeaponEffect);
+		}
+
+		return selectedTowerWeaponEffect;
 	}
 
 	private GameObject GetEnemyPrefab(EnemyType type)
