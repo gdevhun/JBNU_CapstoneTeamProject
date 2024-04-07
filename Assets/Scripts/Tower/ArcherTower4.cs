@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherTower4 : TowerBase
+public class ArcherTower4 : ArcherTowerBase
 {
     // 스탯 조정
     private void Awake()
@@ -11,7 +11,7 @@ public class ArcherTower4 : TowerBase
     }
 
     // 타겟 공격
-    // 아쳐타워 4는 광역 공격
+    // 아쳐타워4는 광역공격
     protected override IEnumerator Attack()
     {
         while (isTarget)
@@ -38,7 +38,7 @@ public class ArcherTower4 : TowerBase
 
             // 타워 무기 발사
             Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-            towerWeaponRigid.velocity = direction * 5f;
+            towerWeaponRigid.velocity = direction * 15f;
 
             // 무기 발사 각도
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
