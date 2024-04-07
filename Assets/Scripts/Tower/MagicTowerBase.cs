@@ -5,13 +5,10 @@ using UnityEngine;
 public class MagicTowerBase : TowerBase
 {
     // 매직 타워 무기 충돌 이펙트
-    public PoolManager.TowerWeaponEffectType towerWeaponEffectType;
-
-    // 매직 타워 무기 충돌 이펙트 반환 대기시간
-    protected WaitForSeconds effectWait = new WaitForSeconds(0.5f);
+    [Tooltip ("매직타워 무기 이펙트 타입")] public PoolManager.TowerWeaponEffectType towerWeaponEffectType;
 
     // 풀링한 무기 충돌 이펙트 저장
-    public List<GameObject> towerWeaponEffectPrefabs = new List<GameObject>();
+    [HideInInspector] public List<GameObject> towerWeaponEffectPrefabs = new List<GameObject>();
 
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
@@ -79,7 +76,7 @@ public class MagicTowerBase : TowerBase
             }
 
             // 잠시 대기 후
-            yield return effectWait;
+            yield return halfSeconds;
             
             // 타워 무기 충돌 이펙트 비활성화
             towerWeaponEffect.gameObject.SetActive(false);
