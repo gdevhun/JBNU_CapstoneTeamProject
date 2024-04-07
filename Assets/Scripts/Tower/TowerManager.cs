@@ -22,31 +22,32 @@ public class TowerLvList
 public class TowerManager : MonoBehaviour
 {
     // 타워 설치 관련
-    public GameObject towerBuildPos; // 각 타워를 설치할 위치
-    public GameObject towerBuildPanel; // 타워 설치 패널
-    public LayerMask towerBuildPosLayerMask; // 타워 설치 위치만 클릭
+    [Header ("타워 설치")] [Space (10f)]
+    [Tooltip ("각 타워를 설치할 위치")] public GameObject towerBuildPos; // 각 타워를 설치할 위치
+    [Tooltip ("타워 설치 패널")] public GameObject towerBuildPanel; // 타워 설치 패널
+    [Tooltip ("각 타워를 설치할 위치만 클릭되게")] public LayerMask towerBuildPosLayerMask; // 타워 설치 위치만 클릭
 
     // 타워 업글 관련
-    public GameObject towerUpgradePanel; // 타워 업글 패널
-    public Image upgradePanelTowerImage; // 업그레이드 패널 타워 이미지
-    public TMP_Text upgradePanelTowerLvText; // 업그레이드 패널 타워 레벨 텍스트
-    public TMP_Text upgradePanelTowerPriceText; // 업그레이드 패널 타워 업그레이드 비용 텍스트
+    [Header ("타워 업글")] [Space (10f)]
+    [Tooltip ("타워 업글 패널")] public GameObject towerUpgradePanel; // 타워 업글 패널
+    [Tooltip ("타워 업글 패널 타워타입 이미지")] public Image upgradePanelTowerImage; // 업그레이드 패널 타워 이미지
+    [Tooltip ("타워 업글 패널 타워레벨 텍스트")] public TMP_Text upgradePanelTowerLvText; // 업그레이드 패널 타워 레벨 텍스트
+    [Tooltip ("타워 업글 패널 업글비용 텍스트")] public TMP_Text upgradePanelTowerPriceText; // 업그레이드 패널 타워 업그레이드 비용 텍스트
 
     // 타워 공유 관련
-    public static Transform selectedTowerBuildPos; // 선택된 타워를 설치할 위치
-    public static GameObject selectedTowerPref; // 선택된 설치할 타워 프리팹
-    public static bool isPanel = false; // 패널이 활성화중인지 체크
+    private static Transform selectedTowerBuildPos; // 선택된 타워를 설치할 위치
+    private static GameObject selectedTowerPref; // 선택된 설치할 타워 프리팹
+    private static bool isPanel = false; // 패널이 활성화중인지 체크
 
     // 타워 맵핑 관련
-    [SerializeField]
-    public List<TowerLvList> towerPrefs = new List<TowerLvList>(); // 타워 프리팹들 -> 인스펙터에서 할당
-    public List<Sprite> towerSpritePrefs = new List<Sprite>(); // 업그레이드 패널 타워 이미지 바꿀 스프라이트들 -> 인스펙터에서 할당
-
+    [Header ("타워 맵핑")] [Space (10f)]
+    [Tooltip ("각 타워 타입의 Lv1 Lv2 Lv3 타워 프리팹들")] public List<TowerLvList> towerPrefs = new List<TowerLvList>(); // 타워 프리팹들 -> 인스펙터에서 할당
+    [Tooltip ("각 타워 타입에 해당하는 스프라이트들")] public List<Sprite> towerSpritePrefs = new List<Sprite>(); // 업그레이드 패널 타워 이미지 바꿀 스프라이트들 -> 인스펙터에서 할당
     private Dictionary<TowerType, TowerLvList> towers = new Dictionary<TowerType, TowerLvList>(); // (타워타입, 타입에 해당하는 타워 Lv1 ~ Lv3) 맵핑
     private Dictionary<TowerType, Sprite> towerSprites = new Dictionary<TowerType, Sprite>(); // (타워타입, 타입에 해당하는 타워 스프라이트) 맵핑
 
     // 타워 맵핑
-    void Awake()
+    private void Awake()
     {
         for(int i = 0; i < towerPrefs.Count; i++)
         {
@@ -56,7 +57,7 @@ public class TowerManager : MonoBehaviour
     }
 
     // 설치 패널 및 업글 패널 활성화
-    void Update()
+    private void Update()
     {
         // 패널이 활성화중인지 체크
         if(isPanel) return;
