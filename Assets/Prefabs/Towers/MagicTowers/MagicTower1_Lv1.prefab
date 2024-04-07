@@ -335,7 +335,7 @@ Transform:
   m_GameObject: {fileID: 3573329054772962495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5274126902789834353}
@@ -442,6 +442,8 @@ MonoBehaviour:
   - {fileID: 2461097869544400975}
   towerType: 4
   towerWeaponType: 3
+  towerWeaponEffectType: 0
+  towerWeaponEffectPrefabs: []
 --- !u!1 &3615608868077035983
 GameObject:
   m_ObjectHideFlags: 0

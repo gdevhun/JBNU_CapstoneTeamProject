@@ -30,7 +30,7 @@ public class MagicTowerBase : TowerBase
 
             // 타워 무기 충돌 이펙트
             GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
-            towerWeaponEffect.transform.position = target.transform.position + transform.up * 3.5f;
+            towerWeaponEffect.transform.position = target.transform.position + transform.up * 14f;
             towerWeaponEffectPrefabs.Add(towerWeaponEffect);
 
             // 타워 무기 발사위치 개수만큼
