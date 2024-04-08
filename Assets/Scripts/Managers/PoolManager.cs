@@ -31,7 +31,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 	public enum TowerWeaponType
 	{
 		ArcherTower123, ArcherTower4Lv12, ArcherTower4Lv3,
-		MagicTower1, MagicTower2, MagicTower3, MagicTower4
+		MagicTower1, MagicTower2, MagicTower3, MagicTower4,
+		StoneTower1, StoneTower2
 	}
 
 	// 타워 무기 프리팹
