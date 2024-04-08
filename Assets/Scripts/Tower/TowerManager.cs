@@ -8,7 +8,8 @@ using TMPro;
 public enum TowerType
 {
     ArcherTower1, ArcherTower2, ArcherTower3, ArcherTower4,
-    MagicTower1, MagicTower2, MagicTower3, MagicTower4
+    MagicTower1, MagicTower2, MagicTower3, MagicTower4,
+    StoneTower1, StoneTower2
 }
 
 // 각 타워 타입에 해당하는 타워 Lv1 ~ Lv3 리스트
