@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherTower4 : TowerBase
+public class ArcherTower4 : ArcherTowerBase
 {
     // 스탯 조정
     private void Awake()
@@ -11,7 +11,7 @@ public class ArcherTower4 : TowerBase
     }
 
     // 타겟 공격
-    // 아쳐타워 4는 광역 공격
+    // 아쳐타워4는 광역공격
     protected override IEnumerator Attack()
     {
         while (isTarget)

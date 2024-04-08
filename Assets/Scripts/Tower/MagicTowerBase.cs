@@ -43,7 +43,7 @@ public class MagicTowerBase : TowerBase
 
                 // 타워 무기 발사
                 Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-                towerWeaponRigid.velocity = direction * 5f;
+                towerWeaponRigid.velocity = direction * 15f;
 
                 // 무기 발사 각도
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
