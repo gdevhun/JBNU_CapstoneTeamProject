@@ -58,5 +58,9 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 공격
+<<<<<<< HEAD
+=======
+    // 베이스는 단일공격
+>>>>>>> origin/feature/LJH
     protected abstract IEnumerator Attack();
 }
