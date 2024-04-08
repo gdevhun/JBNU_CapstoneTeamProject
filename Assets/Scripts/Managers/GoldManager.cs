@@ -6,7 +6,7 @@ using UnityEngine;
 public class GoldManager : SingletonBehaviour<GoldManager>
 {
     [SerializeField] private int playerGold;
-    [SerializeField] TextMeshProUGUI totalGold;
+    [SerializeField] TMP_Text totalGold;
     void Start()
     {
         playerGold = 0;
