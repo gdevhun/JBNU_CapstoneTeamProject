@@ -164,6 +164,9 @@ public class TowerManager : MonoBehaviour
         // 매직 타워는 이전에 생성된 이펙트 비활성화
         MagicTowerEffectInit();
 
+        // 스톤 타워 1 불 초기화
+        StoneTowerFireInit();
+
         // 자식에 있던 타워 파괴
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);
 
@@ -185,6 +188,9 @@ public class TowerManager : MonoBehaviour
 
         // 매직 타워는 이전에 생성된 이펙트 비활성화
         MagicTowerEffectInit();
+
+        // 스톤 타워 1 불 초기화
+        StoneTowerFireInit();
 
         // 다음레벨 타워 설치
         GameObject buildTower = Instantiate(towers[selectedTowerBase.towerType].towerPrefabs[selectedTowerBase.towerLv], selectedTowerBuildPos.position, Quaternion.identity);
@@ -223,6 +229,22 @@ public class TowerManager : MonoBehaviour
             }
 
             magicTowerBase.towerWeaponEffectPrefabs.Clear();
+        }
+    }
+
+    // 스톤 타워 1 불 초기화
+    private void StoneTowerFireInit()
+    {
+        // 스톤 타워 1은 이전에 생성된 불 비활성화
+        StoneTower1 stoneTower1 = selectedTowerBuildPos.GetChild(0).GetComponent<StoneTower1>();
+        if(stoneTower1 != null)
+        {
+            for(int i = 0; i < stoneTower1.FirePrefabs.Count; i++)
+            {
+                stoneTower1.FirePrefabs[i].gameObject.SetActive(false);
+            }
+
+            stoneTower1.FirePrefabs.Clear();
         }
     }
 }
