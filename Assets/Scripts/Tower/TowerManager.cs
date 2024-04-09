@@ -102,9 +102,6 @@ public class TowerManager : MonoBehaviour
             // 패널이 활성화된 상태
             isPanel = true;
 
-            // 디버깅
-            // Debug.Log(selectedTowerBuildPos);
-
             // 사운드
             OnBtnClickSound();
 
@@ -143,14 +140,17 @@ public class TowerManager : MonoBehaviour
     {
         // 설치할 타워 프리팹 선택
         selectedTowerPref = towers[(TowerType)towerType].towerPrefabs[0]; 
-
-        // 디버깅
-        // Debug.Log(selectedTowerPref);
     }
 
     // 타워 설치
     public void BuildTower()
     {
+        // 골드 체크
+        if(!GoldManager.Instance.UseGold(selectedTowerPref.GetComponent<TowerBase>().towerBuildPrice))
+        {
+            return;
+        }
+
         // 현재 위치에 타워 생성
         GameObject buildTower = Instantiate(selectedTowerPref, selectedTowerBuildPos.position, Quaternion.identity);
 
@@ -173,6 +173,10 @@ public class TowerManager : MonoBehaviour
         // 스톤 타워 1 불 초기화
         StoneTowerFireInit();
 
+        // 타워베이스 가져와서 골드 얻음
+        TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
+        GoldManager.Instance.AcquireGold(selectedTowerBase.towerUpgradeBasicPrice / selectedTowerBase.towerLv);
+
         // 자식에 있던 타워 파괴
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);
 
@@ -192,6 +196,12 @@ public class TowerManager : MonoBehaviour
         // 최대레벨이면 리턴
         if(selectedTowerBase.towerLv == 3) return;
 
+        // 골드 체크
+        if(!GoldManager.Instance.UseGold(selectedTowerBase.towerUpgradeBasicPrice))
+        {
+            return;
+        }
+
         // 매직 타워는 이전에 생성된 이펙트 비활성화
         MagicTowerEffectInit();
 
@@ -205,9 +215,6 @@ public class TowerManager : MonoBehaviour
         // 업그레이드 타워베이스 가져와서
         TowerBase upgradeTowerBase = selectedTowerBuildPos.GetChild(1).GetComponent<TowerBase>();
 
-        //디버깅
-        //Debug.Log(upgradeTowerBase.gameObject.name);
-
         // 이전레벨 타워 스탯을 기준으로 업그레이드 타워 스탯 증가
         upgradeTowerBase.towerLv = ++selectedTowerBase.towerLv;
         upgradeTowerBase.basicDamage = selectedTowerBase.basicDamage * upgradeTowerBase.towerLv;
@@ -218,7 +225,7 @@ public class TowerManager : MonoBehaviour
 
         // 업데이트 패널 갱신
         upgradePanelTowerLvText.text = "타워 레벨 : " + upgradeTowerBase.towerLv.ToString();
-        upgradePanelTowerPriceText.text = (upgradeTowerBase.towerUpgradeBasicPrice * upgradeTowerBase.towerLv).ToString();
+        upgradePanelTowerPriceText.text = upgradeTowerBase.towerUpgradeBasicPrice.ToString();
         if(upgradeTowerBase.towerLv == 3) upgradePanelTowerPriceText.text = "";
     }
 

@@ -8,7 +8,9 @@ public abstract class TowerBase : MonoBehaviour
     [HideInInspector] public int basicDamage = 100; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
 
-    // 타워 업글 관련
+    // 타워 설치 및 업글 관련
+    [Header ("타워 설치")] [Space (10f)]
+    [Tooltip ("타워 설치 비용")] public int towerBuildPrice; // 타워 설치비용
     [HideInInspector] public int towerLv = 1; // 타워 레벨
     [HideInInspector] public int towerUpgradeBasicPrice = 100; // 타워 업그레이드 기본비용
 
@@ -27,11 +29,11 @@ public abstract class TowerBase : MonoBehaviour
     [Tooltip ("타워 무기 타입")] public PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
 
     // 타워 스탯 초기화
-    protected void InitTower(int dmg = 100, float speed = 1.0f, int price = 100)
+    protected void InitTower(int dmg = 100, float speed = 1.0f, int upgradePrice = 100)
     {
         basicDamage = dmg;
         attackSpeed = speed;
-        towerUpgradeBasicPrice = price;
+        towerUpgradeBasicPrice = upgradePrice;
     }
 
     // 타겟 설정

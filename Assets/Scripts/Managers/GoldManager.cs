@@ -9,7 +9,7 @@ public class GoldManager : SingletonBehaviour<GoldManager>
     [SerializeField] TMP_Text totalGold;
     void Start()
     {
-        playerGold = 0;
+        playerGold = 1000;
         InitUIGold();
     }
 
@@ -17,23 +17,23 @@ public class GoldManager : SingletonBehaviour<GoldManager>
     {
         totalGold.text = playerGold.ToString();
     }
-    //°ñµå È¹µæ ÇÔ¼ö
+    //ï¿½ï¿½ï¿½ È¹ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void AcquireGold(int amount)
-    {   //Enemy°¡ Á×¾î¼­ ºñÈ°¼ºÈ­½ÃÅ³¶§ ÇÔ¼ö È£ÃâÇÏ¸éµÊ.
+    {   //Enemyï¿½ï¿½ ï¿½×¾î¼­ ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½Å³ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½.
         playerGold += amount;
         InitUIGold();
     }
 
-    public void UseGold(int amount)
+    public bool UseGold(int amount)
     {
-        // »ç¿ëÇÏ·Á´Â µ·ÀÌ ÇÃ·¹ÀÌ¾îÀÇ ¼ÒÁö±Ýº¸´Ù ÀÛ°Å³ª °°ÀºÁö È®ÀÎ
+        // ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½Û°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         if (amount <= playerGold)
         {
-            playerGold -= amount; // µ· »ç¿ë
-
+            playerGold -= amount; // ï¿½ï¿½ ï¿½ï¿½ï¿½
+            InitUIGold();
+            return true;
         }
         InitUIGold();
-        return;
+        return false;
     }
-
 }
