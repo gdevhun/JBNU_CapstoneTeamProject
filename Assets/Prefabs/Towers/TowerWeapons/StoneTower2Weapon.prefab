@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4692829348910768224}
   - component: {fileID: 2822819538583814694}
   - component: {fileID: 563578273385176922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StoneTower2Weapon
   m_TagString: TowerWeapon
   m_Icon: {fileID: 0}
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 279091ee01618cb4db575390bc209cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stoneHP: 0
