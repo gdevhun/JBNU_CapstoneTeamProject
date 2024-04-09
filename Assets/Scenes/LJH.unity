@@ -6778,6 +6778,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -6830,6 +6831,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &148971774
 GameObject:
@@ -8925,6 +8930,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -8977,6 +8983,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &371522907
 GameObject:
@@ -9958,6 +9968,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -10010,6 +10021,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!61 &513752384
 BoxCollider2D:
@@ -10991,6 +11006,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -11043,6 +11059,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!61 &667666209
 BoxCollider2D:
@@ -14628,6 +14648,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -14680,6 +14701,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &1033532607
 GameObject:
@@ -15122,6 +15147,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -15174,6 +15200,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &1098229655
 GameObject:
@@ -20549,6 +20579,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20601,6 +20632,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &1932099497 stripped
 GameObject:
@@ -20756,6 +20791,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20808,6 +20844,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &2006810054 stripped
 GameObject:
@@ -21035,6 +21075,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -21087,6 +21128,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &2066053996
 GameObject:
@@ -21187,6 +21232,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -21239,6 +21285,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
   buttonSound: {fileID: 1817750029}
 --- !u!1 &2069995645
 GameObject:
@@ -21707,13 +21757,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 184965941}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: upgradePanelTowerPriceText
       value: 
       objectReference: {fileID: 1530172276}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: upgradePanelTowerStarImage
+      value: 
+      objectReference: {fileID: 226947191}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: towerSpritePrefs.Array.size
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: towerSpritePrefs.Array.data[8]
       value: 
