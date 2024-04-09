@@ -643,3 +643,4 @@ MonoBehaviour:
   towerWeaponType: 4
   towerWeaponEffectType: 1
   towerWeaponEffectPrefabs: []
+  soundType: 5

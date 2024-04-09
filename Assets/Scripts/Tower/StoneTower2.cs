@@ -32,6 +32,9 @@ public class StoneTower2 : TowerBase
             // 위치 및 회전 초기화
             towerWeapon.transform.position = target.transform.position;
             towerWeapon.transform.rotation = towerWeapon.transform.rotation;
+
+            // 사운드
+            SoundManager.Instance.PlaySFX(SoundType.스톤타워돌, 1.0f);
         }
     }
 }

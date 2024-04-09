@@ -456,6 +456,7 @@ MonoBehaviour:
   towerWeaponType: 3
   towerWeaponEffectType: 0
   towerWeaponEffectPrefabs: []
+  soundType: 4
 --- !u!1 &4983782548753124986
 GameObject:
   m_ObjectHideFlags: 0

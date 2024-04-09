@@ -40,6 +40,9 @@ public class ArcherTowerBase : TowerBase
 
                 // 타워 애니메이션
                 towerAnim[i].SetTrigger("atkTrig");
+
+                // 사운드
+                SoundManager.Instance.PlaySFX(SoundType.아쳐타워123화살, 0.3f);
             }
         }
     }

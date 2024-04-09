@@ -10,6 +10,9 @@ public class MagicTowerBase : TowerBase
     // 풀링한 무기 충돌 이펙트 저장
     [HideInInspector] public List<GameObject> towerWeaponEffectPrefabs = new List<GameObject>();
 
+    // 공격 사운드 타입
+    [SerializeField] [Tooltip ("매직타워 무기 사운드 타입")] protected SoundType soundType;
+
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
@@ -18,6 +21,12 @@ public class MagicTowerBase : TowerBase
         {
             // 공격속도만큼 대기
             yield return new WaitForSeconds(attackSpeed);
+
+            // 사운드
+            SoundManager.Instance.PlaySFX(soundType, 0.5f);
+
+            // 매직타워시간만 잠시 대기 후
+            yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;
 
             // 타워 애니메이션
             for(int i = 0; i < towerAnim.Count; i++)

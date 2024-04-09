@@ -28,14 +28,14 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		base.Awake();
 
-		// SFX µñ¼Å³Ê¸® ÃÊ±âÈ­
+		// SFX ï¿½ï¿½Å³Ê¸ï¿½ ï¿½Ê±ï¿½È­
 		_sfxDictionary = _sfxs.ToDictionary(s => s.SoundType, s => s.Clip);
 	}
 
 	private void Start()
 	{
 		_bgmPlayer = gameObject.AddComponent<AudioSource>();
-		// SFX ÇÃ·¹ÀÌ¾î ¸î °³¸¦ ÃÊ±â¿¡ »ı¼ºÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡
+		// SFX ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
 		for (int i = 0; i < 20; i++)
 		{
 			AudioSource sfxPlayer = gameObject.AddComponent<AudioSource>();
@@ -75,7 +75,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 			AudioSource sfxPlayer = GetAvailableSFXPlayer();
 			sfxPlayer.clip = clip;
 			sfxPlayer.volume = volume;
-			sfxPlayer.PlayDelayed(delay); // delayÃÊ ÈÄ¿¡ Àç»ı
+			sfxPlayer.PlayDelayed(delay); // delayï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½
 		}
 	}
 
@@ -87,14 +87,14 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		}
 		else
 		{
-			// »õ ÇÃ·¹ÀÌ¾î¸¦ »ı¼ºÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡
+			// ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½
 			AudioSource newSFXPlayer = gameObject.AddComponent<AudioSource>();
 			SfxPlayers.Add(newSFXPlayer);
 			return newSFXPlayer;
 		}
 	}
 
-	// »ç¿îµå ÇÃ·¹ÀÌ°¡ ³¡³ª¸é È£ÃâÇÏ¿© Å¥¿¡ ´Ù½Ã ³Ö±â
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï¿ï¿½ Å¥ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ö±ï¿½
 	public void ReturnSFXPlayerToQueue(AudioSource sfxPlayer)
 	{
 		_sfxQueue.Enqueue(sfxPlayer);
@@ -102,29 +102,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 }
 public enum SoundType
 {
-	MenuBGM = 0,
-	FirstBGM = 1,
-	SecondBGM = 2,
-
-	PlayerWalkSFX = 3,
-	PlayerSwingSFX = 4,
-	PlayerSwingSFX2 = 5,
-	PlayerCounterSFX3 = 6,
-	PlayerJumpSFX = 7,
-	PlayerCutSFX = 8,
-	PlayerHitSFX = 9,
-	PlayerHitSFX2 = 10,
-	PlayerElecSFX = 11,
-	PlayerElecSFX2 = 12,
-	PlayerUsePotion = 13,
-	PlayerUseItem = 14,
-	PlayerGetItem = 15,
-	PlayerBubbleSFX = 16,
-	PlayerInventoryOpen = 17,
-	PlayerUserItem2 = 18,
-	EnemyHit1 = 19,
-	EnemyHit2 = 20,
-	EnmeySfx = 21,
-	EnemySfx2 = 22,
-	EnemySfx3 = 23
+	ì•„ì³íƒ€ì›Œ123í™”ì‚´, ì•„ì³íƒ€ì›Œ4í™”ì‚´,
+	ë§¤ì§íƒ€ì›Œë¶ˆ, ë§¤ì§íƒ€ì›Œì–¼ìŒ, ë§¤ì§íƒ€ì›Œì „ê¸°, ë§¤ì§íƒ€ì›Œì‹œê°„,
+	ìŠ¤í†¤íƒ€ì›Œë¶ˆ, ìŠ¤í†¤íƒ€ì›ŒëŒ
 }

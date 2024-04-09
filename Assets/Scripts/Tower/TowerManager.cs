@@ -47,6 +47,9 @@ public class TowerManager : MonoBehaviour
     private Dictionary<TowerType, TowerLvList> towers = new Dictionary<TowerType, TowerLvList>(); // (타워타입, 타입에 해당하는 타워 Lv1 ~ Lv3) 맵핑
     private Dictionary<TowerType, Sprite> towerSprites = new Dictionary<TowerType, Sprite>(); // (타워타입, 타입에 해당하는 타워 스프라이트) 맵핑
 
+    // 타워 UI 버튼 사운드
+    public GameObject buttonSound;
+
     // 타워 맵핑
     private void Awake()
     {
@@ -101,6 +104,9 @@ public class TowerManager : MonoBehaviour
 
             // 디버깅
             // Debug.Log(selectedTowerBuildPos);
+
+            // 사운드
+            OnBtnClickSound();
 
             // 설치된 상태가 아니면 설치 패널 활성화
             if(selectedTowerBuildPos.transform.childCount == 0) 
@@ -246,5 +252,11 @@ public class TowerManager : MonoBehaviour
 
             stoneTower1.FirePrefabs.Clear();
         }
+    }
+
+    // 타워 UI 버튼 사운드
+    public void OnBtnClickSound()
+    {
+        buttonSound.gameObject.SetActive(true);
     }
 }

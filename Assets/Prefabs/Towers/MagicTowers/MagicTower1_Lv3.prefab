@@ -1720,3 +1720,4 @@ MonoBehaviour:
   towerWeaponType: 3
   towerWeaponEffectType: 0
   towerWeaponEffectPrefabs: []
+  soundType: 4

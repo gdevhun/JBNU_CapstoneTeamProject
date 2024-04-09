@@ -39,8 +39,14 @@ public class StoneTower1 : TowerBase
             towerWeapon.transform.position = target.transform.position;
             towerWeapon.transform.rotation = towerWeapon.transform.rotation;
 
-            // 잠시 대기 후
-            yield return new WaitForSeconds(2.5f);
+            for(int i = 0; i < 4; i++)
+            {
+                // 사운드
+                SoundManager.Instance.PlaySFX(SoundType.스톤타워불, 1.0f);
+
+                // 잠시 대기 후
+                yield return halfSeconds;
+            }
 
             // 불 비활성화
             towerWeapon.gameObject.SetActive(false);
