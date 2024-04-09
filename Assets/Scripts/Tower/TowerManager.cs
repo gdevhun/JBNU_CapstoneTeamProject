@@ -71,18 +71,17 @@ public class TowerManager : MonoBehaviour
     }
 
     // 설치 패널 및 업글 패널 띄우기
-    // 나중에 마우스 클릭 대신 터치포지션으로 변경
     private void EnterPanel()
     {
-        // 마우스 왼쪽 클릭시
-        if (Input.GetMouseButtonDown(0))
+        // 마우스 왼쪽 클릭 또는 모바일 터치하면
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
-            // 마우스 클릭 위치 가져옴
-            Vector3 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            clickPosition.z = 0;
+            // 마우스 클릭 또는 모바일 터치 위치 가져옴
+            Vector3 inputPosition = Input.GetMouseButtonDown(0) ? Camera.main.ScreenToWorldPoint(Input.mousePosition) : Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            inputPosition.z = 0;
 
             // 히트된 설치할 위치 콜라이더 가져와서 선택된 타워 위치로 설정
-            RaycastHit2D hit = Physics2D.Raycast(clickPosition, Vector2.zero, Mathf.Infinity, towerBuildPosLayerMask);
+            RaycastHit2D hit = Physics2D.Raycast(inputPosition, Vector2.zero, Mathf.Infinity, towerBuildPosLayerMask);
 
             // 히트된 콜라이더가 있는지 체크
             if(hit.collider == null) return;
