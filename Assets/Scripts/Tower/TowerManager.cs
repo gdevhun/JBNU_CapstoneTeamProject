@@ -34,6 +34,7 @@ public class TowerManager : MonoBehaviour
     [Tooltip ("타워 업글 패널 타워타입 이미지")] public Image upgradePanelTowerImage; // 업그레이드 패널 타워 이미지
     [Tooltip ("타워 업글 패널 타워레벨 텍스트")] public TMP_Text upgradePanelTowerLvText; // 업그레이드 패널 타워 레벨 텍스트
     [Tooltip ("타워 업글 패널 업글비용 텍스트")] public TMP_Text upgradePanelTowerPriceText; // 업그레이드 패널 타워 업그레이드 비용 텍스트
+    [Tooltip ("타워 업글 패널 업글스타 이미지")] public Image upgradePanelTowerStarImage; // 업그레이드 패널 타워 업글스타 이미지
 
     // 타워 공유 관련
     private static Transform selectedTowerBuildPos; // 선택된 타워를 설치할 위치
@@ -44,8 +45,11 @@ public class TowerManager : MonoBehaviour
     [Header ("타워 맵핑")] [Space (10f)]
     [Tooltip ("각 타워 타입의 Lv1 Lv2 Lv3 타워 프리팹들")] public List<TowerLvList> towerPrefs = new List<TowerLvList>(); // 타워 프리팹들 -> 인스펙터에서 할당
     [Tooltip ("각 타워 타입에 해당하는 스프라이트들")] public List<Sprite> towerSpritePrefs = new List<Sprite>(); // 업그레이드 패널 타워 이미지 바꿀 스프라이트들 -> 인스펙터에서 할당
+    [Tooltip ("타워 레벨에 따른 업글스타 스프라이트들")] public List<Sprite> towerStarPrefs = new List<Sprite>(); // 업그레이드 패널 스타 이미지 바꿀 스프라이트들 -> 인스펙터에서 할당
+
     private Dictionary<TowerType, TowerLvList> towers = new Dictionary<TowerType, TowerLvList>(); // (타워타입, 타입에 해당하는 타워 Lv1 ~ Lv3) 맵핑
     private Dictionary<TowerType, Sprite> towerSprites = new Dictionary<TowerType, Sprite>(); // (타워타입, 타입에 해당하는 타워 스프라이트) 맵핑
+    private Dictionary<int, Sprite> towerStarSprites = new Dictionary<int, Sprite>(); // (타워레벨, 레벨에 해당하는 타워스타 스프라이트) 맵핑
 
     // 타워 UI 버튼 사운드
     public GameObject buttonSound;
@@ -57,6 +61,11 @@ public class TowerManager : MonoBehaviour
         {
             towers[(TowerType)i] = towerPrefs[i];
             towerSprites[(TowerType)i] = towerSpritePrefs[i];
+        }
+
+        for(int i = 0; i < 3; i++)
+        {
+            towerStarSprites[i + 1] = towerStarPrefs[i];
         }
     }
 
@@ -115,11 +124,12 @@ public class TowerManager : MonoBehaviour
             // 설치된 상태면 업그레이드 패널 활성화
             towerUpgradePanel.SetActive(true);
 
-            // 선택된 타워 타입으로 업데이트 패널 갱신
+            // 선택된 타워 타입으로 업그레이드 패널 갱신
             TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
             upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
             upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
             upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
+            upgradePanelTowerStarImage.sprite = towerStarSprites[selectedTowerBase.towerLv];
         }
     }
 
@@ -222,10 +232,11 @@ public class TowerManager : MonoBehaviour
         // 이전레벨 타워 삭제
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);
 
-        // 업데이트 패널 갱신
+        // 업그레이드 패널 갱신
         upgradePanelTowerLvText.text = "타워 레벨 : " + upgradeTowerBase.towerLv.ToString();
         upgradePanelTowerPriceText.text = upgradeTowerBase.towerUpgradeBasicPrice.ToString();
         if(upgradeTowerBase.towerLv == 3) upgradePanelTowerPriceText.text = "";
+        upgradePanelTowerStarImage.sprite = towerStarSprites[upgradeTowerBase.towerLv];
     }
 
     // 매직 타워 충돌 이펙트 초기화
