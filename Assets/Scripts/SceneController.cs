@@ -74,7 +74,7 @@ public class SceneController : MonoBehaviour
 
     public void SettingGame()
     {
-        //세팅구현
+        SettingPanel.SetActive(true);
     }
     public void ExitGame()
     {
