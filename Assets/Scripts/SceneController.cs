@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using Application = UnityEngine.Device.Application;
 
 public class SceneController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class SceneController : MonoBehaviour
     
     public GameObject[] btnList;
     public GameObject loadingPanel;
+    public GameObject SettingPanel;
     public TextMeshProUGUI loadingText;
     public Image progressImage;
     private float fakeDelay = 1.5f;
@@ -68,5 +70,14 @@ public class SceneController : MonoBehaviour
 
         // 인덱스를 사용하여 loadingText를 업데이트
         loadingText.text = loadingTexts[index];
+    }
+
+    public void SettingGame()
+    {
+        //세팅구현
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
