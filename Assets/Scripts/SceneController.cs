@@ -32,6 +32,9 @@ public class SceneController : MonoBehaviour
 
     public void MoveScene(string sceneName)
     {
+        // 게임씬갈때 일반 BGM으로 변경
+        SoundManager.Instance.PlayBGM(SoundType.일반BGM);
+
         foreach (var button in btnList)
         {
             button.SetActive(false);
