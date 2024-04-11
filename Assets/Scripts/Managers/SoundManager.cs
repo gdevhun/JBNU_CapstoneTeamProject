@@ -35,6 +35,10 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	private void Start()
 	{
 		_bgmPlayer = gameObject.AddComponent<AudioSource>();
+
+		// 효과음보다 커서 0.5로 조절
+		_bgmPlayer.volume = 0.3f;
+
 		// SFX �÷��̾� �� ���� �ʱ⿡ �����ϰ� ����Ʈ�� �߰�
 		for (int i = 0; i < 20; i++)
 		{
@@ -42,6 +46,45 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 			SfxPlayers.Add(sfxPlayer);
 			_sfxQueue.Enqueue(sfxPlayer);
 		}
+
+		// 처음은 메뉴 BGM 재생
+		// 게임씬으로 가면 일반 BGM 재생
+		// 보스가 나오면 각 보스 BGM 재생
+		PlayBGM(SoundType.메뉴BGM);
+	}
+
+	// 배경음 테스트
+	private void Update()
+	{
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            PlayBGM(SoundType.메뉴BGM);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            PlayBGM(SoundType.일반BGM);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            PlayBGM(SoundType.보스BGM1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            PlayBGM(SoundType.보스BGM2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            PlayBGM(SoundType.보스BGM3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            PlayBGM(SoundType.보스BGM4);
+        }
 	}
 
 	public void PlayBGM(SoundType soundType)
@@ -65,6 +108,9 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 			sfxPlayer.clip = clip;
 			sfxPlayer.volume = volume;
 			sfxPlayer.Play();
+
+			// 사운드 재생이 끝나면 풀에 반환
+			StartCoroutine(ReturnSFXPlayerWhenFinished(sfxPlayer, clip.length));
 		}
 	}
 
@@ -99,10 +145,21 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		_sfxQueue.Enqueue(sfxPlayer);
 	}
+
+	// 사운드 재생이 끝나면 풀에 반환
+	private IEnumerator ReturnSFXPlayerWhenFinished(AudioSource sfxPlayer, float delay)
+	{
+		// 사운드 재생 시간만큼 대기
+		yield return new WaitForSeconds(delay);
+
+		// 사운드 재생이 끝났으니 큐에 반환
+		ReturnSFXPlayerToQueue(sfxPlayer);
+	}
 }
 public enum SoundType
 {
 	아쳐타워123화살, 아쳐타워4화살,
 	매직타워불, 매직타워얼음, 매직타워전기, 매직타워시간,
-	스톤타워불, 스톤타워돌
+	스톤타워불, 스톤타워돌,
+	메뉴BGM, 일반BGM, 보스BGM1, 보스BGM2, 보스BGM3, 보스BGM4
 }

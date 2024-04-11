@@ -13532,7 +13532,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bc192708324f04da0fbdfea674a51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bgms: []
+  _bgms:
+  - SoundType: 8
+    Clip: {fileID: 8300000, guid: 312bd1688cf10b94bbacf000622f3d12, type: 3}
+  - SoundType: 9
+    Clip: {fileID: 8300000, guid: a27a489a1875f75469e60c8dc9cc5133, type: 3}
+  - SoundType: 10
+    Clip: {fileID: 8300000, guid: 7c4f5355ab2b2864b8c2579808377eaa, type: 3}
+  - SoundType: 11
+    Clip: {fileID: 8300000, guid: c30c9218a49c63f4889ec59975326709, type: 3}
+  - SoundType: 12
+    Clip: {fileID: 8300000, guid: b799c794977d0b34783ae00886deb670, type: 3}
+  - SoundType: 13
+    Clip: {fileID: 8300000, guid: 95b3ffe8fea19bb4fb87f7cb591fbaac, type: 3}
   _sfxs:
   - SoundType: 0
     Clip: {fileID: 8300000, guid: 267c41f5b671a4541869a15be3f6e889, type: 3}
