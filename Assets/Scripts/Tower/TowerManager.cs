@@ -275,5 +275,6 @@ public class TowerManager : MonoBehaviour
     public void OnBtnClickSound()
     {
         buttonSound.gameObject.SetActive(true);
+        buttonSound.GetComponent<AudioSource>().volume = SoundManager.Instance.sfxVolume;
     }
 }

@@ -34,7 +34,7 @@ public class StoneTower2 : TowerBase
             towerWeapon.transform.rotation = towerWeapon.transform.rotation;
 
             // 사운드
-            SoundManager.Instance.PlaySFX(SoundType.스톤타워돌, 1.0f);
+            SoundManager.Instance.PlaySFX(SoundType.스톤타워돌);
         }
     }
 }

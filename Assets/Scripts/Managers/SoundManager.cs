@@ -24,6 +24,10 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 
 	private Queue<AudioSource> _sfxQueue = new Queue<AudioSource>();
 
+	public float bgmVolume, sfxVolume; // 배경음 볼륨 및 효과음 볼륨
+
+    public GameObject buttonSound; // UI 버튼 사운드
+
 	protected override void Awake()
 	{
 		base.Awake();
@@ -36,8 +40,9 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		_bgmPlayer = gameObject.AddComponent<AudioSource>();
 
-		// 효과음보다 커서 0.5로 조절
-		_bgmPlayer.volume = 0.3f;
+        // 볼륨 초기화
+        bgmVolume = 0.5f;
+        sfxVolume = 1f;
 
 		// SFX �÷��̾� �� ���� �ʱ⿡ �����ϰ� ����Ʈ�� �߰�
 		for (int i = 0; i < 20; i++)
@@ -91,6 +96,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		var bgm = _bgms.First(b => b.SoundType == soundType);
 		_bgmPlayer.clip = bgm.Clip;
+		_bgmPlayer.volume = bgmVolume; // 볼륨 조절
 		_bgmPlayer.loop = true;
 		_bgmPlayer.Play();
 	}
@@ -100,13 +106,13 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		_bgmPlayer.Stop();
 	}
 
-	public void PlaySFX(SoundType soundType, float volume = 1.0f)
+	public void PlaySFX(SoundType soundType)
 	{
 		if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
 		{
 			AudioSource sfxPlayer = GetAvailableSFXPlayer();
 			sfxPlayer.clip = clip;
-			sfxPlayer.volume = volume;
+			sfxPlayer.volume = sfxVolume; // 볼륨 조절
 			sfxPlayer.Play();
 
 			// 사운드 재생이 끝나면 풀에 반환
@@ -114,16 +120,27 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		}
 	}
 
-	public void PlaySFX(SoundType soundType, float volume = 1.0f, float delay = 1.0f)
-	{
-		if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
-		{
-			AudioSource sfxPlayer = GetAvailableSFXPlayer();
-			sfxPlayer.clip = clip;
-			sfxPlayer.volume = volume;
-			sfxPlayer.PlayDelayed(delay); // delay�� �Ŀ� ���
-		}
-	}
+	// public void PlaySFX(SoundType soundType, float volume = 1.0f)
+	// {
+	// 	if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
+	// 	{
+	// 		AudioSource sfxPlayer = GetAvailableSFXPlayer();
+	// 		sfxPlayer.clip = clip;
+	// 		sfxPlayer.volume = volume;
+	// 		sfxPlayer.Play();
+	// 	}
+	// }
+
+	// public void PlaySFX(SoundType soundType, float volume = 1.0f, float delay = 1.0f)
+	// {
+	// 	if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
+	// 	{
+	// 		AudioSource sfxPlayer = GetAvailableSFXPlayer();
+	// 		sfxPlayer.clip = clip;
+	// 		sfxPlayer.volume = volume;
+	// 		sfxPlayer.PlayDelayed(delay); // delay�� �Ŀ� ���
+	// 	}
+	// }
 
 	private AudioSource GetAvailableSFXPlayer()
 	{
@@ -155,6 +172,30 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		// 사운드 재생이 끝났으니 큐에 반환
 		ReturnSFXPlayerToQueue(sfxPlayer);
 	}
+
+    // 배경음 볼륨 조절
+    public void SetBgmVolume(float volume)
+    {
+        // 슬라이더 값에따라 볼륨 적용
+        _bgmPlayer.volume = volume;
+
+        // 슬라이더 값을 변수에 저장해서 배경음악을 실행할때마다 볼륨을 지정
+        bgmVolume = volume;
+    }
+
+    // 효과음 볼륨 조절
+    public void SetSfxVolume(float volume)
+    {
+        // 슬라이더 값을 변수에 저장해서 효과음을 실행할때마다 볼륨을 지정
+        sfxVolume = volume;
+    }
+
+    // UI 버튼 사운드
+    public void OnBtnClickSound()
+    {
+        buttonSound.gameObject.SetActive(true);
+        buttonSound.GetComponent<AudioSource>().volume = sfxVolume;
+    }
 }
 public enum SoundType
 {

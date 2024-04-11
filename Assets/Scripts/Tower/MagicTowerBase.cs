@@ -23,7 +23,7 @@ public class MagicTowerBase : TowerBase
             yield return new WaitForSeconds(attackSpeed);
 
             // 사운드
-            SoundManager.Instance.PlaySFX(soundType, 0.5f);
+            SoundManager.Instance.PlaySFX(soundType);
 
             // 매직타워시간만 잠시 대기 후
             yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;

@@ -42,7 +42,7 @@ public class StoneTower1 : TowerBase
             for(int i = 0; i < 4; i++)
             {
                 // 사운드
-                SoundManager.Instance.PlaySFX(SoundType.스톤타워불, 1.0f);
+                SoundManager.Instance.PlaySFX(SoundType.스톤타워불);
 
                 // 잠시 대기 후
                 yield return halfSeconds;

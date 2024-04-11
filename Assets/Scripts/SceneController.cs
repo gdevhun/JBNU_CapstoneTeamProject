@@ -20,6 +20,16 @@ public class SceneController : MonoBehaviour
     public TextMeshProUGUI loadingText;
     public Image progressImage;
     private float fakeDelay = 1.5f;
+
+    public Slider bgmSlider; // ë°°ê²½ìŒ ìŠ¬ë¼ì´ë”
+    public Slider sfxSlider; // íš¨ê³¼ìŒ ìŠ¬ë¼ì´ë”
+
+	private void Start()
+	{
+        bgmSlider.onValueChanged.AddListener(SoundManager.Instance.SetBgmVolume); // ë°°ê²½ìŒ ì¡°ì ˆ ì´ë²¤íŠ¸ë¦¬ìŠ¤ë„ˆ ë“±ë¡
+        sfxSlider.onValueChanged.AddListener(SoundManager.Instance.SetSfxVolume); // íš¨ê³¼ìŒ ì¡°ì ˆ ì´ë²¤íŠ¸ë¦¬ìŠ¤ë„ˆ ë“±ë¡
+	}
+
     public void MoveScene(string sceneName)
     {
         foreach (var button in btnList)
@@ -42,7 +52,7 @@ public class SceneController : MonoBehaviour
             progress = Mathf.Lerp(progress, asyncOp.progress, 0.95f);
             progressImage.fillAmount = progress;
             
-            // progress°¡ 10, 20, 30, 40, 50, 60, 70, 80ÀÏ ¶§¸¶´Ù loadingText ¾÷µ¥ÀÌÆ®
+            // progressï¿½ï¿½ 10, 20, 30, 40, 50, 60, 70, 80ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ loadingText ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             int progressPercent = (int)(progress * 100);
             if (progressPercent % 10 == 0 && progressPercent > 0)
             {
@@ -59,16 +69,16 @@ public class SceneController : MonoBehaviour
 
         yield return null;
     }
-    // progressPercent¿¡ µû¶ó loadingText ¾÷µ¥ÀÌÆ®
+    // progressPercentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ loadingText ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     private void UpdateLoadingText(int progressPercent)
     {
-        // loadingText¿¡ µû¶ó ¹Ýº¹µÇ´Â ÆÐÅÏÀÇ ¹è¿­À» »ý¼º
+        // loadingTextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         string[] loadingTexts = { loadingtext1, loadingtext2, loadingtext3, loadingtext4 };
 
-        // progressPercent¸¦ 10À¸·Î ³ª´« ¸ò¿¡ µû¶ó ÇØ´çÇÏ´Â loadingTextsÀÇ ÀÎµ¦½º
+        // progressPercentï¿½ï¿½ 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ loadingTextsï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
         int index = (progressPercent / 10) % 4;
 
-        // ÀÎµ¦½º¸¦ »ç¿ëÇÏ¿© loadingText¸¦ ¾÷µ¥ÀÌÆ®
+        // ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ loadingTextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         loadingText.text = loadingTexts[index];
     }
 

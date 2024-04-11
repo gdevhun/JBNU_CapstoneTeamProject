@@ -26,7 +26,7 @@ public class ArcherTower4 : ArcherTowerBase
             }
 
             // 사운드
-            SoundManager.Instance.PlaySFX(SoundType.아쳐타워4화살, 0.5f);
+            SoundManager.Instance.PlaySFX(SoundType.아쳐타워4화살);
 
             // 타워 애니메이션 실제 공격 타이밍과 싱크 맞춤
             yield return halfSeconds;
