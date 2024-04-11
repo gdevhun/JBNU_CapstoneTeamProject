@@ -5259,6 +5259,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &84721334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6766,6 +6778,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -6818,6 +6831,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &148971774
 GameObject:
   m_ObjectHideFlags: 0
@@ -6876,7 +6894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 400
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -7732,7 +7750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -8059,6 +8077,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8900,6 +8930,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -8952,6 +8983,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &371522907
 GameObject:
   m_ObjectHideFlags: 0
@@ -9189,7 +9225,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -9324,7 +9360,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 400
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -9932,6 +9968,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -9984,6 +10021,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!61 &513752384
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10303,7 +10345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -10479,6 +10521,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10896,7 +10950,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &667666206
 GameObject:
@@ -10952,6 +11006,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -11004,6 +11059,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!61 &667666209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11456,6 +11516,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: upgrade
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &727807191
@@ -13393,7 +13465,7 @@ RectTransform:
   - {fileID: 1815220344}
   - {fileID: 1441924424}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13430,6 +13502,82 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1344711143}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &863921421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863921423}
+  - component: {fileID: 863921422}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &863921422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863921421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bc192708324f04da0fbdfea674a51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bgms:
+  - SoundType: 8
+    Clip: {fileID: 8300000, guid: 312bd1688cf10b94bbacf000622f3d12, type: 3}
+  - SoundType: 9
+    Clip: {fileID: 8300000, guid: a27a489a1875f75469e60c8dc9cc5133, type: 3}
+  - SoundType: 10
+    Clip: {fileID: 8300000, guid: 7c4f5355ab2b2864b8c2579808377eaa, type: 3}
+  - SoundType: 11
+    Clip: {fileID: 8300000, guid: c30c9218a49c63f4889ec59975326709, type: 3}
+  - SoundType: 12
+    Clip: {fileID: 8300000, guid: b799c794977d0b34783ae00886deb670, type: 3}
+  - SoundType: 13
+    Clip: {fileID: 8300000, guid: 95b3ffe8fea19bb4fb87f7cb591fbaac, type: 3}
+  _sfxs:
+  - SoundType: 0
+    Clip: {fileID: 8300000, guid: 267c41f5b671a4541869a15be3f6e889, type: 3}
+  - SoundType: 1
+    Clip: {fileID: 8300000, guid: d4aaf4a3f1a67434db40328feb75c18c, type: 3}
+  - SoundType: 2
+    Clip: {fileID: 8300000, guid: c912dafa1ec695642a6248c2a6a4be29, type: 3}
+  - SoundType: 3
+    Clip: {fileID: 8300000, guid: a21ff8dac9c776346bf2135d63f9e6d8, type: 3}
+  - SoundType: 4
+    Clip: {fileID: 8300000, guid: 327fe35519344d949a52bfc2ad0281e4, type: 3}
+  - SoundType: 5
+    Clip: {fileID: 8300000, guid: bbaa01f08409bbc4f81195f97a5691b0, type: 3}
+  - SoundType: 6
+    Clip: {fileID: 8300000, guid: 4ef595bf9b2479f499868105ee2ba52b, type: 3}
+  - SoundType: 7
+    Clip: {fileID: 8300000, guid: cabfae866cab347928b74b7d0ca6bfa9, type: 3}
+  _bgmPlayer: {fileID: 0}
+  SfxPlayers: []
+--- !u!4 &863921423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863921421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 104.234886, y: 58.33428, z: -6.254711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865188732
 GameObject:
@@ -13524,6 +13672,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: build
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &865188735
@@ -13898,7 +14058,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -14351,6 +14511,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1010648242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14488,6 +14660,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -14540,6 +14713,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &1033532607
 GameObject:
   m_ObjectHideFlags: 0
@@ -14639,6 +14817,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14782,6 +14972,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1062356004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14856,7 +15058,7 @@ Transform:
   - {fileID: 1502675616}
   - {fileID: 371522908}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1079857770
 GameObject:
@@ -14957,6 +15159,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -15009,6 +15212,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &1098229655
 GameObject:
   m_ObjectHideFlags: 0
@@ -15108,6 +15316,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15344,6 +15564,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15630,7 +15862,7 @@ Transform:
   - {fileID: 367104073}
   - {fileID: 2066053997}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1255017679
 PrefabInstance:
@@ -15817,7 +16049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 400
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -16000,7 +16232,7 @@ Transform:
   - {fileID: 917459078}
   - {fileID: 1562317835}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1344711144
 MonoBehaviour:
@@ -17436,7 +17668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1441924424
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17627,6 +17859,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1511121956}
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: BuildTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18291,7 +18535,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552986513 stripped
 GameObject:
@@ -18456,6 +18700,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1556637264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18552,7 +18808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -19518,6 +19774,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1782800413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19598,7 +19866,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815220343
 GameObject:
@@ -19679,6 +19947,148 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815220343}
   m_CullTransparentMesh: 1
+--- !u!1 &1817750029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817750032}
+  - component: {fileID: 1817750031}
+  - component: {fileID: 1817750030}
+  m_Layer: 0
+  m_Name: TowerBtnSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1817750030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817750029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d7748303162c94ba7529deeabd9c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1817750031}
+--- !u!82 &1817750031
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817750029}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1817750032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817750029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 104.234886, y: 58.33428, z: -6.254711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1826910548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8063781933348602700, guid: 2d62c8ad915a9a94fbdd6fc74115a5da, type: 3}
@@ -19847,7 +20257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 400
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -20032,6 +20442,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1854911037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20169,6 +20591,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20221,6 +20644,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &1932099497 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 976883018232007093, guid: bb106f106a801da40a53e59d9c226879, type: 3}
@@ -20375,6 +20803,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20427,6 +20856,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &2006810054 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9130881952494656961, guid: aed4cfca6713599439b0a0df5524519e, type: 3}
@@ -20653,6 +21087,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20705,6 +21140,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &2066053996
 GameObject:
   m_ObjectHideFlags: 0
@@ -20804,6 +21244,7 @@ MonoBehaviour:
   upgradePanelTowerImage: {fileID: 683156007}
   upgradePanelTowerLvText: {fileID: 184965941}
   upgradePanelTowerPriceText: {fileID: 1530172276}
+  upgradePanelTowerStarImage: {fileID: 226947191}
   towerPrefs:
   - towerPrefabs:
     - {fileID: 1838920826944768807, guid: 212b3fd0bf4e47840a5e741986ae0bec, type: 3}
@@ -20856,6 +21297,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4499d38a520560c4697f97cf048d606f, type: 3}
   - {fileID: 21300000, guid: 0a55e02d5e428df4fa3a9b56ccde8d50, type: 3}
   - {fileID: 21300000, guid: b41aee2035c55db45b3436206fd326b7, type: 3}
+  towerStarPrefs:
+  - {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+  - {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+  - {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
+  buttonSound: {fileID: 1817750029}
 --- !u!1 &2069995645
 GameObject:
   m_ObjectHideFlags: 0
@@ -21299,6 +21745,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1216021831}
     m_Modifications:
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: buttonSound
+      value: 
+      objectReference: {fileID: 1817750029}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: towerBuildPanel
       value: 
       objectReference: {fileID: 297052317}
@@ -21319,13 +21769,33 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 184965941}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: upgradePanelTowerPriceText
       value: 
       objectReference: {fileID: 1530172276}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: upgradePanelTowerStarImage
+      value: 
+      objectReference: {fileID: 226947191}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: towerSpritePrefs.Array.size
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: e309c65f059b3d042a4de6fe3cfc4bae, type: 3}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 50c615a19adcb8d4b9c1eb6d1709991f, type: 3}
+    - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
+      propertyPath: towerStarPrefs.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 49ebea81abd49a14082a62a8c7d7dcd3, type: 3}
     - target: {fileID: 37958845927249947, guid: fdbdbe0d1bba86c45b4912c76d7cc0d8, type: 3}
       propertyPath: towerSpritePrefs.Array.data[8]
       value: 
