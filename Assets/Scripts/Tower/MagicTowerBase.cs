@@ -59,9 +59,8 @@ public class MagicTowerBase : TowerBase
                 towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
                 // 타겟팅된 몬스터 체력 감소
-                // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
-                // target.GetComponent<Enemy>().health -= basicDamage;
-                Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+                target.GetComponent<Enemy>().hp -= basicDamage;
+                //Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
                 // 타겟팅된 몬스터 주변 두명 몬스터 스플래쉬 데미지
                 Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 1f);
@@ -72,16 +71,15 @@ public class MagicTowerBase : TowerBase
                 {
                     if (hit.CompareTag("Enemy") && splashCnt < 2 && hit.gameObject != target.gameObject)
                     {
-                        //몬스터 Enemy 스크립트 접근해서 실제로 까야함
-                        //hit.GetComponent<Enemy>().health -= splashDamage;
-                        Debug.Log("스플래쉬 : " + hit.gameObject.name + ", 데미지 : " + basicDamage / 2);
+                        hit.GetComponent<Enemy>().hp -= basicDamage / 2;
+                        //Debug.Log("스플래쉬 : " + hit.gameObject.name + ", 데미지 : " + basicDamage / 2);
                         splashCnt++;
                     }
                 }
 
                 // 디버깅용
-                Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
-                Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
+                //Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
+                //Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
             }
 
             // 잠시 대기 후

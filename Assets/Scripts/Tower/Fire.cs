@@ -9,6 +9,10 @@ public class Fire : MonoBehaviour
     // 스톤타워 1 불
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) Debug.Log("지속 : " + other.gameObject.name + ", 데미지 : " + fireDamage);
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Enemy>().hp -= fireDamage;
+            //Debug.Log("지속 : " + other.gameObject.name + ", 데미지 : " + fireDamage);
+        }
     }
 }

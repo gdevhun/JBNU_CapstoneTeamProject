@@ -37,11 +37,10 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 설정
-    // 일단 타겟이 나갔을때만 처리
-    // 나중에 타겟 몬스터의 스크립트 Die 코루틴에서 죽었는지 체크하고 타겟 재탐색 해야함
+    // 타겟이 범위를 나갔거나 죽으면 재타겟팅
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") && !isTarget) TargetEnemy(other.transform);
+        if (other.CompareTag("Enemy") && (!isTarget || target.GetComponent<Enemy>().isdead)) TargetEnemy(other.transform);
     }
 
     // 타겟 나감
@@ -60,7 +59,5 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 공격
-    
-    // 베이스는 단일공격
     protected abstract IEnumerator Attack();
 }

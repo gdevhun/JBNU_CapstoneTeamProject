@@ -11,11 +11,11 @@ public class Enemy : MonoBehaviour
     public int hp = 100;
     public int power;
    
-    public int spawnpoint_num; //1. °¡ÀåÀ§, 2. Áß°£, 3. ¾Æ·¡ , 4. ¸Ç ¾Æ·¡
+    public int spawnpoint_num; //1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2. ï¿½ß°ï¿½, 3. ï¿½Æ·ï¿½ , 4. ï¿½ï¿½ ï¿½Æ·ï¿½
 
-    //ÃÑ 3°³ÀÇ ·çÆ® 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
-    public int movepoint_num;  // 1. Áß°£  2. ¸¶Áö¸·Æ÷ÀÎÆ® À§  3. ¸¶Áö¸·Æ÷ÀÎÆ® °¡¿îµ¥  4. ¸¶Áö¸·Æ÷ÀÎÆ® ¾Æ·¡  5. ³Ø¼­½º  
-    private GameObject[] movepoints;// ÀÎ½ºÆåÅÍÃ¢¿¡ ÀÚµ¿À¸·Î ¼³Á¤µÊ.
+    //ï¿½ï¿½ 3ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
+    public int movepoint_num;  // 1. ï¿½ß°ï¿½  2. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½  3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½îµ¥  4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Æ·ï¿½  5. ï¿½Ø¼ï¿½ï¿½ï¿½  
+    private GameObject[] movepoints;// ï¿½Î½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
     private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5" };
 
     private NavMeshAgent navmesh;
@@ -23,11 +23,11 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private Coroutine co;
 
-    // attackÄÚ·çÆ¾ ÇÑ¹ø¸¸ ½ÇÇàÇÒ¼öÀÖ°Ô ÇÏµµ·Ï ÇÏ´Â º¯¼ö
+    // attackï¿½Ú·ï¿½Æ¾ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½Ö°ï¿½ ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public bool isattack = false;
     public bool isdead = false;
 
-    //ÀÌµ¿Æ÷ÀÎÆ®¿Í Àå¾Ö¹°(³Ø¼­½º Æ÷ÇÔ) °¨Áö
+    //ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½(ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½
     private GameObject position;
     public GameObject hit_target;
 
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
             Enemy_Move();
         }
 
-        if(hp == 0)
+        if(hp <= 0)
         {
             isdead = true;
             StartCoroutine("Enemy_dead");
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
         }   
     }
 
-    void Scan() //Àå¾Ö¹° ¹× Movepoint °¨Áö
+    void Scan() //ï¿½ï¿½Ö¹ï¿½ ï¿½ï¿½ Movepoint ï¿½ï¿½ï¿½ï¿½
     {
         Vector2 v2 = rigid.velocity.normalized;
         Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
         }
         catch
         {
-            Debug.Log("null°ª ¿À·ù¹® ¹ÝÈ¯");
+            Debug.Log("nullï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯");
         }
 
 
@@ -148,7 +148,7 @@ public class Enemy : MonoBehaviour
 
         if (hit_object.gameObject.tag == "Stone")
         {
-            while (hit_object.GetComponent<Stone>().stoneHP > 0 && !isdead) // ¶§¸®´Â µµÁß¿¡ Á×´Â °æ¿ìµµ ÀÖÀ»¼ö ÀÖ±â¿¡ Á¶°ÇÈ®ÀÎ.
+            while (hit_object.GetComponent<Stone>().stoneHP > 0 && !isdead) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×´ï¿½ ï¿½ï¿½ìµµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±â¿¡ ï¿½ï¿½ï¿½ï¿½È®ï¿½ï¿½.
             {
                 hit_object.GetComponent<Stone>().stoneHP -= power;
                 if (hit_object.GetComponent<Stone>().stoneHP <= 0)
@@ -162,12 +162,12 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //if tag ³Ø¼­½º
+        //if tag ï¿½Ø¼ï¿½ï¿½ï¿½
         //else if (hit_object.gameObject.tag == "Nexus")
         //{
             //while (hit_object.GetComponent<Stone>().stoneHP > 0)
             //{
-                // ³Ø¼­½ºÃ¼·Â°®°í¿À±â
+                // ï¿½Ø¼ï¿½ï¿½ï¿½Ã¼ï¿½Â°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 //if (hit_object.GetComponent<Stone>().stoneHP <= 0)
                 //{
                    // Remove_Obstacle(hit_object);
@@ -181,8 +181,8 @@ public class Enemy : MonoBehaviour
 
     }
 
-    //Àå¾Ö¹° Ç®¿¡ false»óÅÂ·Î ¹ÝÈ¯ÇÏ°í enemy ÀÌµ¿ ´Ù½Ã ¼öÇà.
-    // 1.º´»ç°¡ Àå¾Ö¹° hp 0¸¸µé ½ÃÁ¡¿¡, 2. ÇÑ º´»ç°¡ ¸ÕÀú Àå¾Ö¹°À» ¾ø¾Ö°í ³ª¸é ³ª¸ÓÁö º´»çµéµµ ¿òÁ÷ÀÌ°Ô ÇÏ±â À§ÇÑ ¹× ÃÊ±âÈ­¸¦ À§ÇØ Scan¿¡µµ.
+    //ï¿½ï¿½Ö¹ï¿½ Ç®ï¿½ï¿½ falseï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯ï¿½Ï°ï¿½ enemy ï¿½Ìµï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    // 1.ï¿½ï¿½ï¿½ç°¡ ï¿½ï¿½Ö¹ï¿½ hp 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2. ï¿½ï¿½ ï¿½ï¿½ï¿½ç°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½éµµ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Scanï¿½ï¿½ï¿½ï¿½.
     void Remove_Obstacle(GameObject hit_object)
     {
         anim.SetBool("isAttack", false);
@@ -198,7 +198,7 @@ public class Enemy : MonoBehaviour
     {
         if (isdead)
         {
-            //¾Ö´Ï¸ÞÀÌ¼Ç °ãÄ§¹æÁö
+            //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½Ä§ï¿½ï¿½ï¿½ï¿½
             anim.SetBool("isAttack", false);
             anim.SetBool("isDead", true);
             navmesh.enabled = false;
@@ -206,7 +206,7 @@ public class Enemy : MonoBehaviour
             
             yield return new WaitForSeconds(1f);
 
-            //Á×¾úÀ¸´Ï setfalseÇÏ°í¸ðµç Á¶°Çº¯¼ö ÃÊ±âÈ­.
+            //ï¿½×¾ï¿½ï¿½ï¿½ï¿½ï¿½ setfalseï¿½Ï°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­.
             gameObject.SetActive(false);
             navmesh.enabled = true;
             isdead = false;

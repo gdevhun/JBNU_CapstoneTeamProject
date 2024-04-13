@@ -34,9 +34,8 @@ public class ArcherTowerBase : TowerBase
                 towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
                 // 몬스터 체력 감소
-                // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
-                // target.GetComponent<Enemy>().health -= basicDamage;
-                Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
+                target.GetComponent<Enemy>().hp -= basicDamage;
+                //Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
                 // 타워 애니메이션
                 towerAnim[i].SetTrigger("atkTrig");

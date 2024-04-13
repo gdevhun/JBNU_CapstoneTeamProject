@@ -54,15 +54,14 @@ public class ArcherTower4 : ArcherTowerBase
             {
                 if (hit.CompareTag("Enemy"))
                 {
-                    // 몬스터 Enemy 스크립트 접근해서 실제로 까야함
-                    //hit.GetComponent<Enemy>().health -= basicDamage;
-                    Debug.Log("광역 : " + hit.gameObject.name + ", 데미지 : " + basicDamage);
+                    hit.GetComponent<Enemy>().hp -= basicDamage;
+                    //Debug.Log("광역 : " + hit.gameObject.name + ", 데미지 : " + basicDamage);
                 }
             }
 
             // 디버깅용
-            Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
-            Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
+            //Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
+            //Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
         }
     }
 }
