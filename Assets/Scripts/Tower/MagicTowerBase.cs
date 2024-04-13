@@ -17,6 +17,9 @@ public class MagicTowerBase : TowerBase
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
     {
+        // 매직 타워 충돌 이펙트 초기화
+        MagicTowerEffectInit();
+        
         while (isTarget)
         {
             // 공격속도만큼 대기
@@ -29,10 +32,7 @@ public class MagicTowerBase : TowerBase
             yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;
 
             // 타워 애니메이션
-            for(int i = 0; i < towerAnim.Count; i++)
-            {
-                towerAnim[i].SetTrigger("atkTrig");
-            }
+            for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
 
             // 타워 무기 충돌 이펙트
             GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
@@ -60,7 +60,6 @@ public class MagicTowerBase : TowerBase
 
                 // 타겟팅된 몬스터 체력 감소
                 target.GetComponent<Enemy>().hp -= basicDamage;
-                //Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
                 // 타겟팅된 몬스터 주변 두명 몬스터 스플래쉬 데미지
                 Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 1f);
@@ -72,14 +71,9 @@ public class MagicTowerBase : TowerBase
                     if (hit.CompareTag("Enemy") && splashCnt < 2 && hit.gameObject != target.gameObject)
                     {
                         hit.GetComponent<Enemy>().hp -= basicDamage / 2;
-                        //Debug.Log("스플래쉬 : " + hit.gameObject.name + ", 데미지 : " + basicDamage / 2);
                         splashCnt++;
                     }
                 }
-
-                // 디버깅용
-                //Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
-                //Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
             }
 
             // 잠시 대기 후
@@ -88,5 +82,13 @@ public class MagicTowerBase : TowerBase
             // 타워 무기 충돌 이펙트 비활성화
             towerWeaponEffect.gameObject.SetActive(false);
         }
+    }
+
+    // 매직 타워 충돌 이펙트 초기화
+    private void MagicTowerEffectInit()
+    {
+        for(int i = 0; i < towerWeaponEffectPrefabs.Count; i++) towerWeaponEffectPrefabs[i].gameObject.SetActive(false);
+
+        towerWeaponEffectPrefabs.Clear();
     }
 }

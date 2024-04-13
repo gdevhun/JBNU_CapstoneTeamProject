@@ -35,7 +35,6 @@ public class ArcherTowerBase : TowerBase
 
                 // 몬스터 체력 감소
                 target.GetComponent<Enemy>().hp -= basicDamage;
-                //Debug.Log("단일 : " + target.name + ", 데미지 : " + basicDamage);
 
                 // 타워 애니메이션
                 towerAnim[i].SetTrigger("atkTrig");

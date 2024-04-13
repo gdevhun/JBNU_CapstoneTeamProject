@@ -10,13 +10,16 @@ public class StoneTower1 : TowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(50, 5f, 200);
+        InitTower(50, 1f, 200);
     }
 
     // 타겟 공격
     // 스톤타워 1은 지속딜 불 생성
     protected override IEnumerator Attack()
     {
+        // 스톤 타워 1 불 초기화
+        StoneTowerFireInit();
+
         while (isTarget)
         {
             // 공격속도만큼 대기
@@ -51,5 +54,13 @@ public class StoneTower1 : TowerBase
             // 불 비활성화
             towerWeapon.gameObject.SetActive(false);
         }
+    }
+
+    // 스톤 타워 1 불 초기화
+    private void StoneTowerFireInit()
+    {
+        for(int i = 0; i < FirePrefabs.Count; i++) FirePrefabs[i].gameObject.SetActive(false);
+
+        FirePrefabs.Clear();
     }
 }

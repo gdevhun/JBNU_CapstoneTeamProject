@@ -20,10 +20,7 @@ public class ArcherTower4 : ArcherTowerBase
             yield return new WaitForSeconds(attackSpeed);
 
             // 타워 애니메이션
-            for(int i = 0; i < towerAnim.Count; i++)
-            {
-                towerAnim[i].SetTrigger("atkTrig");
-            }
+            for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
 
             // 사운드
             SoundManager.Instance.PlaySFX(SoundType.아쳐타워4화살);
@@ -52,16 +49,8 @@ public class ArcherTower4 : ArcherTowerBase
 
             foreach (Collider2D hit in hits)
             {
-                if (hit.CompareTag("Enemy"))
-                {
-                    hit.GetComponent<Enemy>().hp -= basicDamage;
-                    //Debug.Log("광역 : " + hit.gameObject.name + ", 데미지 : " + basicDamage);
-                }
+                if (hit.CompareTag("Enemy")) hit.GetComponent<Enemy>().hp -= basicDamage;
             }
-
-            // 디버깅용
-            //Debug.DrawLine(target.position + new Vector3(-1f, 0f, 0f), target.position + new Vector3(1f, 0f, 0f), Color.red, 2f);
-            //Debug.DrawLine(target.position + new Vector3(0f, -1f, 0f), target.position + new Vector3(0f, 1f, 0f), Color.red, 2f);
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - ArcherWeapon123
   - Stone
   - Nexus
+  - Border
   layers:
   - Default
   - TransparentFX
