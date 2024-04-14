@@ -45,18 +45,42 @@ public class MagicTowerBase : TowerBase
         }
     }
 
+    // 무기 발사
+    protected override void Shot()
+    {
+        // 타워 무기 발사위치 개수만큼
+        for(int i = 0; i < atkPos.Count; i++)
+        {
+            // 타워 무기 가져오기
+            GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
+            Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
+
+            // 위치 및 회전 초기화
+            towerWeapon.transform.position = atkPos[i].transform.position;
+            towerWeapon.transform.rotation = towerWeapon.transform.rotation;
+
+            // 타워 무기 발사
+            Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
+            towerWeaponRigid.velocity = direction * 15f;
+
+            // 무기 발사 각도
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+            towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            // 몬스터 체력 감소
+            MonsterInteraction();
+        }
+    }
+
     // 몬스터 처리
     protected override void MonsterInteraction()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
 
-        // 타겟팅된 몬스터 처리
-        target.GetComponent<Enemy>().hp -= basicDamage;
-
-        // 타겟 주변 몬스터 처리
+        // 스플래쉬 처리
         foreach (Collider2D hit in hits)
         {
-            if (hit.CompareTag("Enemy") && hit.gameObject != target.gameObject) hit.GetComponent<Enemy>().hp -= basicDamage / 2;
+            if (hit.CompareTag("Enemy")) hit.GetComponent<Enemy>().hp -= hit.gameObject == target.gameObject ? basicDamage : basicDamage / 2;
         }
     }
 

@@ -63,35 +63,7 @@ public abstract class TowerBase : MonoBehaviour
     protected abstract IEnumerator Attack();
 
     // 무기 발사
-    protected virtual void Shot()
-    {
-        // 타워 무기 발사위치 개수만큼
-        for(int i = 0; i < atkPos.Count; i++)
-        {
-            // 타워 무기 가져오기
-            GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
-            Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
-
-            // 위치 및 회전 초기화
-            towerWeapon.transform.position = atkPos[i].transform.position;
-            towerWeapon.transform.rotation = towerWeapon.transform.rotation;
-
-            // 타워 무기 발사
-            Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-            towerWeaponRigid.velocity = direction * 15f;
-
-            // 무기 발사 각도
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-            if(towerWeapon.CompareTag("ArcherWeapon123")) angle -= 45;
-            towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-            // 몬스터 체력 감소
-            MonsterInteraction();
-
-            // 타워 애니메이션
-            if(towerWeapon.CompareTag("ArcherWeapon123")) towerAnim[i].SetTrigger("atkTrig");
-        }
-    }
+    protected abstract void Shot();
 
     // 몬스터 처리
     protected virtual void MonsterInteraction() {}

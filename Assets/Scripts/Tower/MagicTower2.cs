@@ -17,19 +17,14 @@ public class MagicTower2 : MagicTowerBase
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
 
-        // 타겟팅된 몬스터 처리
-        Enemy tartgetEnemy = target.GetComponent<Enemy>();
-        tartgetEnemy.hp -= basicDamage;
-        tartgetEnemy.navmesh.speed /= 2;
-
-        // 타겟 주변 몬스터 처리
+        // 스플래쉬 + 속도감소 처리
         foreach (Collider2D hit in hits)
         {
-            if (hit.CompareTag("Enemy") && hit.gameObject != target.gameObject)
+            if (hit.CompareTag("Enemy"))
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
-                enemy.hp -= basicDamage / 2;
-                enemy.navmesh.speed /= 2;
+                enemy.hp -= hit.gameObject == target.gameObject ? basicDamage : basicDamage / 2;
+                enemy.navmesh.speed *= 0.5f;
             }
         }
     }
