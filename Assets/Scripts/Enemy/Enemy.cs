@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     public int hp = 100;
     public int power;
+    public int dotDamage; // 몬스터한테 입힐 도트 데미지
+    public float originSpeed; // 몬스터 원래 속도
    
     public int spawnpoint_num; //1. ������, 2. �߰�, 3. �Ʒ� , 4. �� �Ʒ�
 
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour
     private GameObject[] movepoints;// �ν�����â�� �ڵ����� ������.
     private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5" };
 
-    private NavMeshAgent navmesh;
+    public NavMeshAgent navmesh;
     private Rigidbody2D rigid;
     private Animator anim;
     private Coroutine co;
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
     // attack�ڷ�ƾ �ѹ��� �����Ҽ��ְ� �ϵ��� �ϴ� ����
     public bool isattack = false;
     public bool isdead = false;
+    public bool isDot = false; // 도트딜을 입는 상태인지 체크
 
     //�̵�����Ʈ�� ��ֹ�(�ؼ��� ����) ����
     private GameObject position;
@@ -39,10 +42,13 @@ public class Enemy : MonoBehaviour
         navmesh = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        originSpeed = navmesh.speed; // 몬스터 원래 속도 백업
+        dotDamage = hp / 100; // 몬스터한테 입힐 도트 데미지 
     }
     void Start()
     {
         GetMovePoints();
+        StartCoroutine(DotDamaged()); // 도트 데미지
     }
 
     // Update is called once per frame
@@ -212,8 +218,26 @@ public class Enemy : MonoBehaviour
             isdead = false;
             hp = 100;
             anim.SetBool("isDead", false);
+            navmesh.speed = originSpeed; // 죽으면 다시 원래 속도로
+            isDot = false; // 죽으면 도트딜 없는 상태로
         }
 
     }
 
+    // 도트데미지 : 체력 1%씩 감소
+    IEnumerator DotDamaged()
+    {
+        while (true)
+        {
+            if(isDot)
+            {
+                hp -= dotDamage;
+                yield return new WaitForSeconds(0.1f);
+
+                continue;
+            }
+
+            yield return null;
+        }
+    }
 }

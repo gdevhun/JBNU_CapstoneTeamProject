@@ -7,6 +7,31 @@ public class ArcherTower3 : ArcherTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(30, 0.3f, 200);
+        InitTower(30, 0.5f, 200);
+    }
+
+    // 아쳐타워3
+    // 50% 확률로 연사공격
+    protected override IEnumerator Attack()
+    {
+        while (isTarget)
+        {
+            // 공격속도만큼 대기
+            yield return new WaitForSeconds(attackSpeed);
+
+            // 발사
+            Shot();
+
+            // 사운드
+            SoundManager.Instance.PlaySFX(soundType);
+
+            // 연사
+            if (Random.value < 0.5f)
+            {
+                yield return new WaitForSeconds(attackSpeed * 0.5f);
+                Shot();
+                SoundManager.Instance.PlaySFX(soundType);
+            }
+        }
     }
 }

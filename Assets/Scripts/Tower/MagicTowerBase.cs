@@ -10,11 +10,9 @@ public class MagicTowerBase : TowerBase
     // 풀링한 무기 충돌 이펙트 저장
     [HideInInspector] public List<GameObject> towerWeaponEffectPrefabs = new List<GameObject>();
 
-    // 공격 사운드 타입
-    [SerializeField] [Tooltip ("매직타워 무기 사운드 타입")] protected SoundType soundType;
-
     // 타겟 공격
-    // 매직타워는 스플래쉬 공격
+    // 매직타워1,4 데미지 높지만 몬스터 제어기능 X
+    // 매직타워2,3 데미지 낮지만 몬스터 제어기능 O
     protected override IEnumerator Attack()
     {        
         while (isTarget)
@@ -28,7 +26,7 @@ public class MagicTowerBase : TowerBase
             // 매직타워시간만 잠시 대기 후
             yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;
 
-            // 타워 애니메이션
+            // 애니메이션
             for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
 
             // 타워 무기 충돌 이펙트
@@ -36,48 +34,29 @@ public class MagicTowerBase : TowerBase
             towerWeaponEffect.transform.position = target.transform.position + transform.up * 14f;
             towerWeaponEffectPrefabs.Add(towerWeaponEffect);
 
-            // 타워 무기 발사위치 개수만큼
-            for(int i = 0; i < atkPos.Count; i++)
-            {
-                // 타워 무기 가져오기
-                GameObject towerWeapon = PoolManager.Instance.GetTowerWeapon(towerWeaponType);
-                Rigidbody2D towerWeaponRigid = towerWeapon.GetComponent<Rigidbody2D>();
-
-                // 위치 및 회전 초기화
-                towerWeapon.transform.position = atkPos[i].transform.position;
-                towerWeapon.transform.rotation = towerWeapon.transform.rotation;
-
-                // 타워 무기 발사
-                Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-                towerWeaponRigid.velocity = direction * 15f;
-
-                // 무기 발사 각도
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
-                towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-                // 타겟팅된 몬스터 체력 감소
-                target.GetComponent<Enemy>().hp -= basicDamage;
-
-                // 타겟팅된 몬스터 주변 두명 몬스터 스플래쉬 데미지
-                Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
-
-                int splashCnt = 0; // 스플래쉬 횟수
-
-                foreach (Collider2D hit in hits)
-                {
-                    if (hit.CompareTag("Enemy") && splashCnt < 2 && hit.gameObject != target.gameObject)
-                    {
-                        hit.GetComponent<Enemy>().hp -= basicDamage / 2;
-                        splashCnt++;
-                    }
-                }
-            }
+            // 발사
+            Shot();
 
             // 잠시 대기 후
             yield return halfSeconds;
 
             // 매직 타워 충돌 이펙트 초기화
             MagicTowerEffectInit();
+        }
+    }
+
+    // 몬스터 처리
+    protected override void MonsterInteraction()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
+
+        // 타겟팅된 몬스터 처리
+        target.GetComponent<Enemy>().hp -= basicDamage;
+
+        // 타겟 주변 몬스터 처리
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Enemy") && hit.gameObject != target.gameObject) hit.GetComponent<Enemy>().hp -= basicDamage / 2;
         }
     }
 

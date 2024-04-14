@@ -823,6 +823,7 @@ MonoBehaviour:
   - {fileID: 2345572417293084778}
   towerType: 3
   towerWeaponType: 1
+  soundType: 1
 --- !u!1 &6999032941314208381
 GameObject:
   m_ObjectHideFlags: 0
