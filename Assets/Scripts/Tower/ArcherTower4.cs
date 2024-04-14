@@ -7,7 +7,7 @@ public class ArcherTower4 : ArcherTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(500, 2.5f, 300);
+        InitTower(100, 2.5f, 400);
     }
 
     // 타겟 공격
@@ -45,7 +45,7 @@ public class ArcherTower4 : ArcherTowerBase
             towerWeapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             // 광역 몬스터 체력 감소
-            Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 1f);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
 
             foreach (Collider2D hit in hits)
             {

@@ -7,7 +7,7 @@ public class StoneTower2 : TowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(50, 1f, 200);
+        InitTower(50, 1.5f, 400);
     }
 
     // 타겟 공격
@@ -19,7 +19,7 @@ public class StoneTower2 : TowerBase
             // 공격속도만큼 대기
             yield return new WaitForSeconds(attackSpeed);
 
-            // 타워 애니메이션
+            //타워 애니메이션
             towerAnim[0].SetTrigger("atkTrig");
 
             // 잠시 대기 후

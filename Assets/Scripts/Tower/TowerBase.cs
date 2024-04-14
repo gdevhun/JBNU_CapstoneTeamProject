@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class TowerBase : MonoBehaviour
 {
     // 타워 스탯 관련
-    [HideInInspector] public int basicDamage = 100; // 타워 기본 데미지
+    [HideInInspector] public int basicDamage = 10; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
 
     // 타워 설치 및 업글 관련
@@ -29,7 +29,7 @@ public abstract class TowerBase : MonoBehaviour
     [Tooltip ("타워 무기 타입")] public PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
 
     // 타워 스탯 초기화
-    protected void InitTower(int dmg = 100, float speed = 1.0f, int upgradePrice = 100)
+    protected void InitTower(int dmg = 10, float speed = 1.0f, int upgradePrice = 100)
     {
         basicDamage = dmg;
         attackSpeed = speed;

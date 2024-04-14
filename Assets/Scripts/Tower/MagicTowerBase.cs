@@ -16,10 +16,7 @@ public class MagicTowerBase : TowerBase
     // 타겟 공격
     // 매직타워는 스플래쉬 공격
     protected override IEnumerator Attack()
-    {
-        // 매직 타워 충돌 이펙트 초기화
-        MagicTowerEffectInit();
-        
+    {        
         while (isTarget)
         {
             // 공격속도만큼 대기
@@ -62,7 +59,7 @@ public class MagicTowerBase : TowerBase
                 target.GetComponent<Enemy>().hp -= basicDamage;
 
                 // 타겟팅된 몬스터 주변 두명 몬스터 스플래쉬 데미지
-                Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 1f);
+                Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
 
                 int splashCnt = 0; // 스플래쉬 횟수
 
@@ -78,9 +75,9 @@ public class MagicTowerBase : TowerBase
 
             // 잠시 대기 후
             yield return halfSeconds;
-            
-            // 타워 무기 충돌 이펙트 비활성화
-            towerWeaponEffect.gameObject.SetActive(false);
+
+            // 매직 타워 충돌 이펙트 초기화
+            MagicTowerEffectInit();
         }
     }
 
