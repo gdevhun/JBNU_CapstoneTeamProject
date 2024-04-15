@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     //�� 3���� ��Ʈ 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
     public int movepoint_num;  // 1. �߰�  2. ����������Ʈ ��  3. ����������Ʈ ���  4. ����������Ʈ �Ʒ�  5. �ؼ���  
     private GameObject[] movepoints;// �ν�����â�� �ڵ����� ������.
-    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5" };
+    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5", "move_point6"};
 
     public NavMeshAgent navmesh;
     private Rigidbody2D rigid;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        movepoints = new GameObject[5];
+        movepoints = new GameObject[6];
         navmesh = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
     void GetMovePoints()
     {
         GameObject point;
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {          
             point = GameObject.Find("MovePoints").transform.Find(movepoints_name[i]).gameObject;
             movepoints[i] = point;
@@ -92,34 +92,14 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void Change_MovePosition()
-    {
-        if (movepoint_num == 1)
-        {
-            movepoint_num = 3;
-        }
-        else if (movepoint_num == 2 || movepoint_num == 3 || movepoint_num == 4)
-        {
-            movepoint_num = 5;
-        }   
-    }
-
     void Scan() //��ֹ� �� Movepoint ����
     {
         Vector2 v2 = rigid.velocity.normalized;
         Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
         RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
-        RaycastHit2D rayHit_movepoint = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("MovePoint"));
 
         try
         {
-            if (rayHit_movepoint.collider != null)
-            {
-                position = rayHit_movepoint.transform.gameObject;
-                Change_MovePosition();
-            }
-
-
             if (rayHit_obstacle.collider != null)
             {
 
@@ -169,21 +149,20 @@ public class Enemy : MonoBehaviour
 
 
         //if tag �ؼ���
-        //else if (hit_object.gameObject.tag == "Nexus")
-        //{
-            //while (hit_object.GetComponent<Stone>().stoneHP > 0)
-            //{
-                // �ؼ���ü�°�������
-                //if (hit_object.GetComponent<Stone>().stoneHP <= 0)
-                //{
-                   // Remove_Obstacle(hit_object);
-                    //Debug.Log(gameObject.name + "hi");
-                   // break;
-               // }
-               // yield return new WaitForSeconds(0.5f);
+        else if (hit_object.gameObject.tag == "Nexus")
+        {
+            while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
+            {
+                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
+                if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp <= 0)
+                {
+                    //Remove_Obstacle(hit_object);
+                    break;
+                }
+                yield return new WaitForSeconds(0.5f);
 
-           // }
-        //}
+            }
+        }
 
     }
 
