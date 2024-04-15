@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     //�� 3���� ��Ʈ 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
     public int movepoint_num;  // 1. �߰�  2. ����������Ʈ ��  3. ����������Ʈ ���  4. ����������Ʈ �Ʒ�  5. �ؼ���  
     private GameObject[] movepoints;// �ν�����â�� �ڵ����� ������.
-    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5", "move_point6"};
+    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5", "move_point6", "move_point7", "move_point8"};
 
     public NavMeshAgent navmesh;
     private Rigidbody2D rigid;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
-        movepoints = new GameObject[6];
+        movepoints = new GameObject[8];
         navmesh = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -84,7 +84,7 @@ public class Enemy : MonoBehaviour
     void GetMovePoints()
     {
         GameObject point;
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 8; i++)
         {          
             point = GameObject.Find("MovePoints").transform.Find(movepoints_name[i]).gameObject;
             movepoints[i] = point;

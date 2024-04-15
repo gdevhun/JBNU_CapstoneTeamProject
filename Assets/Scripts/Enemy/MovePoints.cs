@@ -17,9 +17,17 @@ public class MovePoints : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Enemy>().movepoint_num = 3;
             }
-            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 4|| collision.gameObject.GetComponent<Enemy>().movepoint_num == 3|| collision.gameObject.GetComponent<Enemy>().movepoint_num == 5)
+            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 5)
             {
                 collision.gameObject.GetComponent<Enemy>().movepoint_num = 6;
+            }
+            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 3)
+            {
+                collision.gameObject.GetComponent<Enemy>().movepoint_num = 8;
+            }
+            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 4)
+            {
+                collision.gameObject.GetComponent<Enemy>().movepoint_num = 7;
             }
 
         }
