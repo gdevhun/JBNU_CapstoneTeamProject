@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : SingletonBehaviour<GameManager>
 {
     private bool _isGameOver;
-    private float _nexusHp;
+    public float _nexusHp;
     public Image nexusHpBar;
 
     public void NexusDamaged(float dmg)
