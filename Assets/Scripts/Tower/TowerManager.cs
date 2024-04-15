@@ -155,10 +155,7 @@ public class TowerManager : MonoBehaviour
     public void BuildTower()
     {
         // 골드 체크
-        if(!GoldManager.Instance.UseGold(selectedTowerPref.GetComponent<TowerBase>().towerBuildPrice))
-        {
-            return;
-        }
+        if(!GoldManager.Instance.UseGold(selectedTowerPref.GetComponent<TowerBase>().towerBuildPrice)) return;
 
         // 현재 위치에 타워 생성
         GameObject buildTower = Instantiate(selectedTowerPref, selectedTowerBuildPos.position, Quaternion.identity);
@@ -206,10 +203,7 @@ public class TowerManager : MonoBehaviour
         if(selectedTowerBase.towerLv == 3) return;
 
         // 골드 체크
-        if(!GoldManager.Instance.UseGold(selectedTowerBase.towerUpgradeBasicPrice))
-        {
-            return;
-        }
+        if(!GoldManager.Instance.UseGold(selectedTowerBase.towerUpgradeBasicPrice)) return;
 
         // 매직 타워는 이전에 생성된 이펙트 비활성화
         MagicTowerEffectInit();
@@ -246,10 +240,7 @@ public class TowerManager : MonoBehaviour
         MagicTowerBase magicTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<MagicTowerBase>();
         if(magicTowerBase != null)
         {
-            for(int i = 0; i < magicTowerBase.towerWeaponEffectPrefabs.Count; i++)
-            {
-                magicTowerBase.towerWeaponEffectPrefabs[i].gameObject.SetActive(false);
-            }
+            for(int i = 0; i < magicTowerBase.towerWeaponEffectPrefabs.Count; i++) magicTowerBase.towerWeaponEffectPrefabs[i].gameObject.SetActive(false);
 
             magicTowerBase.towerWeaponEffectPrefabs.Clear();
         }
@@ -262,10 +253,7 @@ public class TowerManager : MonoBehaviour
         StoneTower1 stoneTower1 = selectedTowerBuildPos.GetChild(0).GetComponent<StoneTower1>();
         if(stoneTower1 != null)
         {
-            for(int i = 0; i < stoneTower1.FirePrefabs.Count; i++)
-            {
-                stoneTower1.FirePrefabs[i].gameObject.SetActive(false);
-            }
+            for(int i = 0; i < stoneTower1.FirePrefabs.Count; i++) stoneTower1.FirePrefabs[i].gameObject.SetActive(false);
 
             stoneTower1.FirePrefabs.Clear();
         }

@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - TowerWeapon
   - ArcherWeapon123
+  - Stone
+  - Nexus
+  - Border
   layers:
   - Default
   - TransparentFX
@@ -14,8 +17,8 @@ TagManager:
   - TowerBuildPos
   - Water
   - UI
-  - Stone
-  - 
+  - Hit
+  - MovePoints
   - 
   - 
   - 

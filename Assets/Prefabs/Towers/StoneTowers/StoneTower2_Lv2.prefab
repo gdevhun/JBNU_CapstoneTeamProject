@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicDamage: 100
+  towerBuildPrice: 0
   towerLv: 1
   towerUpgradeBasicPrice: 100
   atkPos: []
@@ -212,6 +213,7 @@ MonoBehaviour:
   - {fileID: 7724887009078988158}
   towerType: 9
   towerWeaponType: 8
+  soundType: 7
 --- !u!1 &3103605310603394072
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,6 @@ public class MagicTower1 : MagicTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(200, 1.5f);
+        InitTower(50, 1.5f, 200);
     }
 }

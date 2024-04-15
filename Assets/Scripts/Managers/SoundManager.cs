@@ -61,35 +61,12 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	// 배경음 테스트
 	private void Update()
 	{
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            PlayBGM(SoundType.메뉴BGM);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            PlayBGM(SoundType.일반BGM);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            PlayBGM(SoundType.보스BGM1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            PlayBGM(SoundType.보스BGM2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            PlayBGM(SoundType.보스BGM3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            PlayBGM(SoundType.보스BGM4);
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) PlayBGM(SoundType.메뉴BGM);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) PlayBGM(SoundType.일반BGM);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) PlayBGM(SoundType.보스BGM1);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) PlayBGM(SoundType.보스BGM2);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) PlayBGM(SoundType.보스BGM3);
+        if (Input.GetKeyDown(KeyCode.Alpha6)) PlayBGM(SoundType.보스BGM4);
 	}
 
 	public void PlayBGM(SoundType soundType)

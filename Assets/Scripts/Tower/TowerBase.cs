@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class TowerBase : MonoBehaviour
 {
     // 타워 스탯 관련
-    [HideInInspector] public int basicDamage = 100; // 타워 기본 데미지
+    [HideInInspector] public int basicDamage = 10; // 타워 기본 데미지
     protected float attackSpeed = 1.0f; // 타워 기본 공격속도
 
     // 타워 설치 및 업글 관련
@@ -27,9 +27,10 @@ public abstract class TowerBase : MonoBehaviour
     // 타워 타입 관련
     [Header ("타워 타입")] [Space (10f)] [Tooltip ("타워 타입")] public TowerType towerType; // 타워 타입
     [Tooltip ("타워 무기 타입")] public PoolManager.TowerWeaponType towerWeaponType; // 타워 무기 타입
+    [SerializeField] [Tooltip ("타워 사운드 타입")] protected SoundType soundType; // 타워 사운드 타입
 
     // 타워 스탯 초기화
-    protected void InitTower(int dmg = 100, float speed = 1.0f, int upgradePrice = 100)
+    protected void InitTower(int dmg = 10, float speed = 1.0f, int upgradePrice = 100)
     {
         basicDamage = dmg;
         attackSpeed = speed;
@@ -37,11 +38,10 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 설정
-    // 일단 타겟이 나갔을때만 처리
-    // 나중에 타겟 몬스터의 스크립트 Die 코루틴에서 죽었는지 체크하고 타겟 재탐색 해야함
+    // 타겟이 범위를 나갔거나 죽으면 재타겟팅
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") && !isTarget) TargetEnemy(other.transform);
+        if (other.CompareTag("Enemy") && (!isTarget || target.GetComponent<Enemy>().isdead)) TargetEnemy(other.transform);
     }
 
     // 타겟 나감
@@ -60,7 +60,11 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 공격
-    
-    // 베이스는 단일공격
     protected abstract IEnumerator Attack();
+
+    // 무기 발사
+    protected abstract void Shot();
+
+    // 몬스터 처리
+    protected virtual void MonsterInteraction() {}
 }

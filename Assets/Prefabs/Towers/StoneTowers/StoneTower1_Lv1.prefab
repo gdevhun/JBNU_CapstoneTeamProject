@@ -437,6 +437,7 @@ MonoBehaviour:
   - {fileID: 781820391860948572}
   towerType: 8
   towerWeaponType: 7
+  soundType: 6
   FirePrefabs: []
 --- !u!1 &7011806063470621769
 GameObject:
