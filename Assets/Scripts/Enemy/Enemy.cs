@@ -151,7 +151,13 @@ public class Enemy : MonoBehaviour
         //if tag �ؼ���
         else if (hit_object.gameObject.tag == "Nexus")
         {
-            while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
+            while (!GameManager.Instance._isGameOver)
+            {
+                GameManager.Instance.NexusDamaged(power);
+                yield return new WaitForSeconds(0.5f);
+            }
+            Remove_Obstacle(hit_object);
+            /*while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
             {
                 GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
                 if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp <= 0)
@@ -161,7 +167,7 @@ public class Enemy : MonoBehaviour
                 }
                 yield return new WaitForSeconds(0.5f);
 
-            }
+            }*/
         }
 
     }
