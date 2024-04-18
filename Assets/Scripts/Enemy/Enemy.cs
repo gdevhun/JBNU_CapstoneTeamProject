@@ -160,7 +160,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //if tag �ؼ���
+        //gameManager함수만 정의되면 boss_skill함수 실행가능. 테스트결과 gameManager함수없이 실행 됨.
         else if (hit_object.gameObject.tag == "Nexus")
         {
             while (!GameManager.Instance._isGameOver && !isdead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
@@ -171,7 +171,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isskill == false)
                     {
                         gameObject.GetComponent<Boss>().isskill = true;
-                        gameObject.GetComponent<Boss>().Boss_skill1(0, hit_object);
+                        gameObject.GetComponent<Boss>().Boss_skill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
                         GameManager.Instance.NexusDamaged(Boss_power);
                     }
                     boss_attack_num = 0;

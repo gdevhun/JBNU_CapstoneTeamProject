@@ -14,8 +14,13 @@ public class Boss : MonoBehaviour
     
     public void Boss_skill1(int power , GameObject hitObject)
     {
+        
         anim.SetBool("isSkill1", true);
-        hitObject.GetComponent<Stone>().stoneHP -= power;
+        Debug.Log("hhhi");
+        if(hitObject.gameObject.tag == "Stone")
+        {
+            hitObject.GetComponent<Stone>().stoneHP -= power;
+        }
 
         Invoke("Stop_Skill", 0.5f);
     }
