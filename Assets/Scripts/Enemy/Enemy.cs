@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     public int hp = 100;
     public int power;
+    public int Boss_power;
     public int dotDamage; // 몬스터한테 입힐 도트 데미지
     public float originSpeed; // 몬스터 원래 속도
    
@@ -35,7 +36,7 @@ public class Enemy : MonoBehaviour
     public GameObject hit_target;
 
 
-
+    public int  boss_attack_num;
     void Awake()
     {
         movepoints = new GameObject[8];
@@ -134,8 +135,19 @@ public class Enemy : MonoBehaviour
 
         if (hit_object.gameObject.tag == "Stone")
         {
-            while (hit_object.GetComponent<Stone>().stoneHP > 0 && !isdead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
+            while (!isdead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
             {
+                boss_attack_num++;
+                if(boss_attack_num == 5 && gameObject.layer ==  10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isskill = true;
+                        gameObject.GetComponent<Boss>().Boss_skill1(Boss_power * 2, hit_object);
+                    }
+                    boss_attack_num = 0;
+                    continue;
+                }
                 hit_object.GetComponent<Stone>().stoneHP -= power;
                 if (hit_object.GetComponent<Stone>().stoneHP <= 0)
                 {
@@ -151,12 +163,24 @@ public class Enemy : MonoBehaviour
         //if tag �ؼ���
         else if (hit_object.gameObject.tag == "Nexus")
         {
-            while (!GameManager.Instance._isGameOver)
+            while (!GameManager.Instance._isGameOver && !isdead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
             {
+                boss_attack_num++;
+                if (boss_attack_num == 5 && gameObject.layer == 10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isskill = true;
+                        gameObject.GetComponent<Boss>().Boss_skill1(0, hit_object);
+                        GameManager.Instance.NexusDamaged(Boss_power);
+                    }
+                    boss_attack_num = 0;
+                    continue;
+                }
                 GameManager.Instance.NexusDamaged(power);
                 yield return new WaitForSeconds(0.5f);
             }
-            Remove_Obstacle(hit_object);
+
             /*while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
             {
                 GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
@@ -185,12 +209,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //체력0되면 Enemy는 알아서 fasle 되면서 풀로 들어감.
     IEnumerator Enemy_dead()
     {
         if (isdead)
         {
             //�ִϸ��̼� ��ħ����
             anim.SetBool("isAttack", false);
+            anim.SetBool("isSkill1", false);
             anim.SetBool("isDead", true);
             navmesh.enabled = false;
             rigid.velocity = Vector2.zero;
@@ -205,6 +231,7 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isDead", false);
             navmesh.speed = originSpeed; // 죽으면 다시 원래 속도로
             isDot = false; // 죽으면 도트딜 없는 상태로
+            boss_attack_num = 0;
         }
 
     }
