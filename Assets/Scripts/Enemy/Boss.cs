@@ -16,7 +16,6 @@ public class Boss : MonoBehaviour
     {
         
         anim.SetBool("isSkill1", true);
-        Debug.Log("hhhi");
         if(hitObject.gameObject.tag == "Stone")
         {
             hitObject.GetComponent<Stone>().stoneHP -= power;

@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isskill == false)
                     {
                         gameObject.GetComponent<Boss>().isskill = true;
-                        gameObject.GetComponent<Boss>().Boss_skill1(Boss_power * 2, hit_object);
+                        gameObject.GetComponent<Boss>().Boss_skill1(Boss_power, hit_object);
                     }
                     boss_attack_num = 0;
                     continue;
@@ -235,6 +235,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
+
 
     // 도트데미지 : 체력 1%씩 감소
     IEnumerator DotDamaged()
