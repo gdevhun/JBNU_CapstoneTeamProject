@@ -9,7 +9,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public bool _isGameOver; //게임오버 BOOL 변수
     public Image nexusHpBar; //Image
     private int _nexusHp; //넥서스 hp
-    protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
         Application.targetFrameRate = 60;
