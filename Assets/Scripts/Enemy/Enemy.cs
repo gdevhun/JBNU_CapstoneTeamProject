@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     public int hp = 100;
     public int power;
+    public int Boss_power;
     public int dotDamage; // 몬스터한테 입힐 도트 데미지
     public float originSpeed; // 몬스터 원래 속도
    
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
     //�� 3���� ��Ʈ 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
     public int movepoint_num;  // 1. �߰�  2. ����������Ʈ ��  3. ����������Ʈ ���  4. ����������Ʈ �Ʒ�  5. �ؼ���  
     private GameObject[] movepoints;// �ν�����â�� �ڵ����� ������.
-    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5" };
+    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5", "move_point6", "move_point7", "move_point8"};
 
     public NavMeshAgent navmesh;
     private Rigidbody2D rigid;
@@ -35,10 +36,10 @@ public class Enemy : MonoBehaviour
     public GameObject hit_target;
 
 
-
+    public int  boss_attack_num;
     void Awake()
     {
-        movepoints = new GameObject[5];
+        movepoints = new GameObject[8];
         navmesh = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -84,7 +85,7 @@ public class Enemy : MonoBehaviour
     void GetMovePoints()
     {
         GameObject point;
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 8; i++)
         {          
             point = GameObject.Find("MovePoints").transform.Find(movepoints_name[i]).gameObject;
             movepoints[i] = point;
@@ -92,34 +93,14 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void Change_MovePosition()
-    {
-        if (movepoint_num == 1)
-        {
-            movepoint_num = 3;
-        }
-        else if (movepoint_num == 2 || movepoint_num == 3 || movepoint_num == 4)
-        {
-            movepoint_num = 5;
-        }   
-    }
-
     void Scan() //��ֹ� �� Movepoint ����
     {
         Vector2 v2 = rigid.velocity.normalized;
         Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
         RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
-        RaycastHit2D rayHit_movepoint = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("MovePoint"));
 
         try
         {
-            if (rayHit_movepoint.collider != null)
-            {
-                position = rayHit_movepoint.transform.gameObject;
-                Change_MovePosition();
-            }
-
-
             if (rayHit_obstacle.collider != null)
             {
 
@@ -154,8 +135,19 @@ public class Enemy : MonoBehaviour
 
         if (hit_object.gameObject.tag == "Stone")
         {
-            while (hit_object.GetComponent<Stone>().stoneHP > 0 && !isdead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
+            while (!isdead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
             {
+                boss_attack_num++;
+                if(boss_attack_num == 5 && gameObject.layer ==  10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isskill = true;
+                        gameObject.GetComponent<Boss>().Boss_skill1(Boss_power, hit_object);
+                    }
+                    boss_attack_num = 0;
+                    continue;
+                }
                 hit_object.GetComponent<Stone>().stoneHP -= power;
                 if (hit_object.GetComponent<Stone>().stoneHP <= 0)
                 {
@@ -168,22 +160,39 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //if tag �ؼ���
-        //else if (hit_object.gameObject.tag == "Nexus")
-        //{
-            //while (hit_object.GetComponent<Stone>().stoneHP > 0)
-            //{
-                // �ؼ���ü�°�������
-                //if (hit_object.GetComponent<Stone>().stoneHP <= 0)
-                //{
-                   // Remove_Obstacle(hit_object);
-                    //Debug.Log(gameObject.name + "hi");
-                   // break;
-               // }
-               // yield return new WaitForSeconds(0.5f);
+        //gameManager함수만 정의되면 boss_skill함수 실행가능. 테스트결과 gameManager함수없이 실행 됨.
+        else if (hit_object.gameObject.tag == "Nexus")
+        {
+            while (!GameManager.Instance._isGameOver && !isdead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
+            {
+                boss_attack_num++;
+                if (boss_attack_num == 5 && gameObject.layer == 10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isskill = true;
+                        gameObject.GetComponent<Boss>().Boss_skill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
+                        GameManager.Instance.NexusDamaged(Boss_power);
+                    }
+                    boss_attack_num = 0;
+                    continue;
+                }
+                GameManager.Instance.NexusDamaged(power);
+                yield return new WaitForSeconds(0.5f);
+            }
 
-           // }
-        //}
+            /*while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
+            {
+                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
+                if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp <= 0)
+                {
+                    //Remove_Obstacle(hit_object);
+                    break;
+                }
+                yield return new WaitForSeconds(0.5f);
+
+            }*/
+        }
 
     }
 
@@ -200,12 +209,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //체력0되면 Enemy는 알아서 fasle 되면서 풀로 들어감.
     IEnumerator Enemy_dead()
     {
         if (isdead)
         {
             //�ִϸ��̼� ��ħ����
             anim.SetBool("isAttack", false);
+            anim.SetBool("isSkill1", false);
             anim.SetBool("isDead", true);
             navmesh.enabled = false;
             rigid.velocity = Vector2.zero;
@@ -220,9 +231,11 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isDead", false);
             navmesh.speed = originSpeed; // 죽으면 다시 원래 속도로
             isDot = false; // 죽으면 도트딜 없는 상태로
+            boss_attack_num = 0;
         }
 
     }
+
 
     // 도트데미지 : 체력 1%씩 감소
     IEnumerator DotDamaged()

@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Animator anim;
+
+    public bool isskill;
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void Boss_skill1(int power , GameObject hitObject)
     {
         
+        anim.SetBool("isSkill1", true);
+        if(hitObject.gameObject.tag == "Stone")
+        {
+            hitObject.GetComponent<Stone>().stoneHP -= power;
+        }
+
+        Invoke("Stop_Skill", 0.5f);
     }
+
+    private void Stop_Skill()
+    {
+        anim.SetBool("isSkill1", false);
+        isskill = false;
+    }
+
 }

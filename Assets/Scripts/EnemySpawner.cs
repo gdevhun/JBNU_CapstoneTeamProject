@@ -15,4 +15,9 @@ public class EnemySpawner : MonoBehaviour
         GameObject Enemy = PoolManager.Instance.GetEnemy(PoolManager.EnemyType.Enemy1);
         Enemy.gameObject.transform.SetPositionAndRotation(SpawnPoints[1].position, Quaternion.identity);
     }
+
+    /*private IEnumerator SpawnEnemy()
+    {
+        yield break;
+    }*/
 }
