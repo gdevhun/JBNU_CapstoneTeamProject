@@ -60,6 +60,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
             cnt--;
             nextStageIntervalSec.text = cnt.ToString();
         }
+        nextStageIntervalSec.text = "10";
         yield return new WaitForSeconds(1f);
         nextStageIntervalSec.gameObject.SetActive(false);
         StartCoroutine(ActiveWaveStage()); //카운트가 끝나면 스폰 시작
