@@ -85,15 +85,18 @@ public class EnemySpawner : MonoBehaviour
         if(waveTimeImage.fillAmount >= 0.99) _isCurWaveEnded = true; //현재스테이지 종료
         yield return null;
     }
+
     private void SpawnEnemyInRanSp()
     {
-        GameObject enemy = PoolManager.Instance.GetEnemy(PoolManager.EnemyType.Enemy1);
+        GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
         int randomSp = Random.Range(0, 4); //sp 0,1,2,3, 랜덤리턴
+        
         enemy.gameObject.transform.SetPositionAndRotation(spawnPoints[randomSp].position, Quaternion.identity);
+        
     }
-    
+
     /*private void SpawnBoss()
     {
-       
+
     }*/
 }

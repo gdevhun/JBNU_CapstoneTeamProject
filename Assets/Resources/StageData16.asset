@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a4ca13baa4b974588955a97a30ac1f, type: 3}
   m_Name: StageData16
   m_EditorClassIdentifier: 
+  description: "\uC2E4\uC81C StageTime = \uC2A4\uD3F0\uC778\uD130\uBC8C * \uC2A4\uD3F0
+    \uB118 + 2 + [\uCD94\uAC00 \uC2DC\uAC04]"
   stageInfo: Wave 16
+  enemyType: 15
   stageSpawnInteval: 0
   stageSpawnNum: 0
   stageTime: 0
+  stageEnemyNum: 0

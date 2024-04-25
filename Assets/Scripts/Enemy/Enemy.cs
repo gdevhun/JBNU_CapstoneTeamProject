@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -50,6 +53,14 @@ public class Enemy : MonoBehaviour
     {
         GetMovePoints();
         StartCoroutine(DotDamaged()); // 도트 데미지
+    }
+
+    private void OnEnable()
+    {
+        int randomMovePoint = Random.Range(1, 4);
+        //1,2,3 
+        if (randomMovePoint == 3) randomMovePoint = 4;
+        movepoint_num = randomMovePoint;
     }
 
     // Update is called once per frame
