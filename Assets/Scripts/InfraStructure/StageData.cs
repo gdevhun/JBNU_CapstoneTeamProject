@@ -11,5 +11,5 @@ public class StageData : ScriptableObject
     public int stageSpawnInteval;  //각 스테이지가 가진 스폰간격
     public int stageSpawnNum;  //스폰 
     public int stageTime; //스테이지시간
-    public int stageEnemyNum; //에네미 소환 
+    public int stageEnableSpawnPt; //에네미 소환 
 }

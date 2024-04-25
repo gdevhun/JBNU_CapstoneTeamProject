@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     public Image waveTimeImage;
     [SerializeField] private Transform[] spawnPoints;
     private int _thisStageSpawnInterval; //현재스테이지 스폰간격
-    private int _thisStageSpawnNum;  //현재스테이지 스폰 횟수
+    private int _thisStageEnableSpawnPt;  //현재 스테이지 사용할 스폰포인트
     private int _thisStageTime;  //현재 스테이지 시간
     private int _thisStageEnemyNum; //간격별 에네미 소환 수
     private readonly string _stageName = "StageData";
@@ -41,10 +41,15 @@ public class EnemySpawner : MonoBehaviour
         if (!StageManager.Instance.isLoadedData) return; //데이터로드 오류
         
         thisStageInfo.text = StageManager.Instance.stageData.stageInfo; //HUD wave 텍스트 업뎃
+        
         _thisStageSpawnInterval = StageManager.Instance.stageData.stageSpawnInteval; //인터벌 로드
-        _thisStageSpawnNum = StageManager.Instance.stageData.stageSpawnNum; //스폰 횟수 로드
+        
+        _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; //스폰 횟수 로드
+        
         _thisStageTime = StageManager.Instance.stageData.stageTime; //스테이지시간 로드
-        _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; //에네미 소환수 로드
+        
+        _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt; //스폰포인트 사용
+        
         waveTimeImage.fillAmount = 0f;
         
     }
@@ -71,12 +76,13 @@ public class EnemySpawner : MonoBehaviour
         waveTimeImage.fillAmount += (Time.deltaTime/_thisStageTime);
         InitStageData(); //현재 스폰에 대한 데이터 로드
         
-        for (int i = 0; i < _thisStageSpawnNum; i++)  //총 스폰 횟수
+        for (int i = 0; i < _thisStageEnemyNum; i++)  //총 스폰 횟수
         {
-            while (_thisStageEnemyNum != 0)
-            {   //하나의 스폰에 스폰할 애네미 수
-                SpawnEnemyInRanSp();
-                _thisStageEnemyNum--;
+            _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt;
+            while (_thisStageEnableSpawnPt > 0)
+            {   //각각 스폰포인트에 소환. stageEnableSpawnPt=1 맨위 차례로 4까지.
+                SpawnEnemyInRanSp(_thisStageEnableSpawnPt);
+                _thisStageEnableSpawnPt--;
             }
             //인터벌 만큼 대기 후 다시 스폰
             yield return new WaitForSeconds(_thisStageSpawnInterval);
@@ -86,12 +92,12 @@ public class EnemySpawner : MonoBehaviour
         yield return null;
     }
 
-    private void SpawnEnemyInRanSp()
+    private void SpawnEnemyInRanSp(int sp)
     {
         GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
-        int randomSp = Random.Range(0, 4); //sp 0,1,2,3, 랜덤리턴
+        //int randomSp = Random.Range(0, 4); //sp 0,1,2,3, 랜덤리턴
         
-        enemy.gameObject.transform.SetPositionAndRotation(spawnPoints[randomSp].position, Quaternion.identity);
+        enemy.gameObject.transform.position = (spawnPoints[sp].position);
         
     }
 
