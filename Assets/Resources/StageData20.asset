@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a4ca13baa4b974588955a97a30ac1f, type: 3}
   m_Name: StageData20
   m_EditorClassIdentifier: 
-  stageInfo: 
+  stageInfo: Wave 20
   stageSpawnInteval: 0
   stageSpawnNum: 0
   stageTime: 0

@@ -7,8 +7,10 @@ public class StageManager : SingletonBehaviour<StageManager>
     public StageData stageData;
     public bool isLoadedData;
     
-    public void LoadQuestData(string stageName)
-    {   //퀘스트에셋 넘버 불러오기
+    public void LoadStageData(string stageName)
+    {   
+        isLoadedData = false;
+        //퀘스트에셋 넘버 불러오기
         LoadSelectedStage(stageName);
     }
 	
