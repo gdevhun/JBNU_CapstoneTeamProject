@@ -5,19 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingletonBehaviour<EnemySpawner>
 {
     public TextMeshProUGUI nextStageIntervalSec;
     public TextMeshProUGUI thisStageInfo;
-    public Image waveTimeImage;
+    public GameObject stageTimerImage; 
     [SerializeField] private Transform[] spawnPoints;
     private int _thisStageSpawnInterval; //현재스테이지 스폰간격
     private int _thisStageEnableSpawnPt;  //현재 스테이지 사용할 스폰포인트
-    private int _thisStageTime;  //현재 스테이지 시간
     private int _thisStageEnemyNum; //간격별 에네미 소환 수
     private readonly string _stageName = "StageData";
     private int _thisStageNum = 1;
-    private bool _isCurWaveEnded = true;
+    public bool isCurWaveEnded = true;
 
     private void Start()
     {
@@ -29,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
         while (_thisStageNum != 30)
         {
             StartCoroutine(CountDownAndSpawn()); //웨이브시작
-            yield return new WaitUntil(() => _isCurWaveEnded); // 이전 스테이지가 종료될 때까지 대기
+            yield return new WaitUntil(() => isCurWaveEnded); // 이전 스테이지가 종료될 때까지 대기
             _thisStageNum++;
         }
         Debug.Log("끝");
@@ -46,17 +45,13 @@ public class EnemySpawner : MonoBehaviour
         
         _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; //스폰 횟수 로드
         
-        _thisStageTime = StageManager.Instance.stageData.stageTime; //스테이지시간 로드
-        
         _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt; //스폰포인트 사용
-        
-        waveTimeImage.fillAmount = 0f;
         
     }
 
     private IEnumerator CountDownAndSpawn() //브리크 텀 + 웨이브시작 코루틴
     {
-        _isCurWaveEnded = false;
+        isCurWaveEnded = false;
         nextStageIntervalSec.gameObject.SetActive(true);
         int cnt = 10;
         while (cnt > 0)
@@ -73,32 +68,30 @@ public class EnemySpawner : MonoBehaviour
     
     private IEnumerator ActiveWaveStage() //스폰시작 함수
     {   //실제 StageTime = 스폰인터벌 * 스폰 넘 + 2 + [추가 시간]
-        waveTimeImage.fillAmount += (Time.deltaTime/_thisStageTime);
+        
         InitStageData(); //현재 스폰에 대한 데이터 로드
+        stageTimerImage.SetActive(true);
         
         for (int i = 0; i < _thisStageEnemyNum; i++)  //총 스폰 횟수
         {
             _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt;
-            while (_thisStageEnableSpawnPt > 0)
+            while (_thisStageEnableSpawnPt >= 0)
             {   //각각 스폰포인트에 소환. stageEnableSpawnPt=1 맨위 차례로 4까지.
-                SpawnEnemyInRanSp(_thisStageEnableSpawnPt);
+                SpawnEnemyInSp(_thisStageEnableSpawnPt);
                 _thisStageEnableSpawnPt--;
             }
             //인터벌 만큼 대기 후 다시 스폰
             yield return new WaitForSeconds(_thisStageSpawnInterval);
         }
         yield return new WaitForSeconds(2f);
-        if(waveTimeImage.fillAmount >= 0.99) _isCurWaveEnded = true; //현재스테이지 종료
         yield return null;
     }
-
-    private void SpawnEnemyInRanSp(int sp)
+    
+    
+    private void SpawnEnemyInSp(int sp)
     {
         GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
-        //int randomSp = Random.Range(0, 4); //sp 0,1,2,3, 랜덤리턴
-        
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
-        
     }
 
     /*private void SpawnBoss()

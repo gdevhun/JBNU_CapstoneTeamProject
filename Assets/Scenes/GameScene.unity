@@ -1062,13 +1062,14 @@ GameObject:
   - component: {fileID: 119759917}
   - component: {fileID: 119759919}
   - component: {fileID: 119759918}
+  - component: {fileID: 119759920}
   m_Layer: 5
   m_Name: WaveGuage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &119759917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1127,6 +1128,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119759916}
   m_CullTransparentMesh: 1
+--- !u!114 &119759920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119759916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ebdf181f5332141acb8563bcb0eccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveTimeImage: {fileID: 119759918}
 --- !u!1 &136175612
 GameObject:
   m_ObjectHideFlags: 0
@@ -26934,12 +26948,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextStageIntervalSec: {fileID: 478922792}
   thisStageInfo: {fileID: 1797401188}
-  waveTimeImage: {fileID: 119759918}
+  stageTimerImage: {fileID: 119759916}
   spawnPoints:
   - {fileID: 861686151}
   - {fileID: 1448125236}
   - {fileID: 917459078}
   - {fileID: 1562317835}
+  isCurWaveEnded: 1
 --- !u!1 &1346275035
 GameObject:
   m_ObjectHideFlags: 0
