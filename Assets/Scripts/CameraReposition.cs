@@ -1,55 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraReposition : MonoBehaviour
 {
-    private Vector3 firstMapPos;
-    private Vector3 secondMapPos;
-    private Vector3 thirdMapPos;
-    private Vector3 curCameraPos;
+    public Sprite rightBtn;
+    public Sprite leftBtn;
+    private readonly Vector3 _firstMapPos = new Vector3(0f, 0f, -1f);
+    private readonly Vector3 _secondMapPos = new Vector3(80f, 0f, -1f);
+    private bool _isFirstMap = true;
+    private Vector3 _curCameraPos;
     
     // Start is called before the first frame update
     void Start()
     {
-        firstMapPos = new Vector3(0, 0, -10f);
-        secondMapPos = new Vector3(17.5f, 0, -10f);
-        thirdMapPos = new Vector3(35f, 0, -10f);
-        //transform.position = firstMapPos;
-        curCameraPos = firstMapPos;
-        transform.position = curCameraPos;
+        // ï¿½Ê±ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
+        _curCameraPos = _isFirstMap ? _firstMapPos : _secondMapPos;
+        Camera.main.transform.position = _curCameraPos;
     }
-    public void MoveRightScreen()
-	{
-        if (curCameraPos == firstMapPos)
-        {
-            curCameraPos = secondMapPos;
-        }
-        else if (curCameraPos == secondMapPos)
-        {
-            curCameraPos = thirdMapPos;
-        }
-        else return;
-
-        // Ä«¸Þ¶ó À§Ä¡ º¯°æ
-        transform.position = curCameraPos;
-    }
-    public void MoveLeftScreen()
-	{
-        if (curCameraPos == thirdMapPos)
-        {
-            curCameraPos = secondMapPos;
-        }
-        else if (curCameraPos == secondMapPos)
-        {
-            curCameraPos = firstMapPos;
-        }
-        else return;
-        transform.position = curCameraPos;
-    }
-    // Update is called once per frame
-    void Update()
+    public void MoveButton()
     {
-        
+        if (_isFirstMap)
+        {
+            Camera.main.transform.position = _secondMapPos;
+            gameObject.GetComponent<Image>().sprite = leftBtn;
+            _isFirstMap = false;
+        }
+        else 
+        {
+            Camera.main.transform.position = _firstMapPos;
+            gameObject.GetComponent<Image>().sprite = rightBtn;
+            _isFirstMap = true;
+        }
     }
+
 }

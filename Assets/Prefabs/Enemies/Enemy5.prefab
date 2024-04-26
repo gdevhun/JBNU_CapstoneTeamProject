@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1472567979
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 460c83246cd226547a447b6a77aa50fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -222,8 +222,14 @@ MonoBehaviour:
   target: {fileID: 0}
   hp: 100
   power: 5
+  Boss_power: 0
+  dotDamage: 0
+  originSpeed: 0
   spawnpoint_num: 0
   movepoint_num: 0
+  navmesh: {fileID: 0}
   isattack: 0
   isdead: 0
+  isDot: 0
   hit_target: {fileID: 0}
+  boss_attack_num: 0
