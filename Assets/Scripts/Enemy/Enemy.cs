@@ -15,7 +15,9 @@ public class Enemy : MonoBehaviour
     public int power;
     public int Boss_power;
     public int dotDamage; // 몬스터한테 입힐 도트 데미지
-    public float originSpeed; // 몬스터 원래 속도
+
+    public float originSpeed = 0.1f; // 몬스터 원래 속도
+    public float moveSpeed;
 
     public GameObject target; //목표위치
 
@@ -88,7 +90,7 @@ public class Enemy : MonoBehaviour
 
     void Enemy_Move(int movenum)
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, originSpeed);
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed);
     }
 
     //첫번째 이동 위치 입력.
