@@ -60,6 +60,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(target);
+        Debug.Log(next_position);
         if (!isattack  &&  !isdead)
         {
             Enemy_Move(movepoint_num);
@@ -70,6 +72,11 @@ public class Enemy : MonoBehaviour
             isdead = true;
             StartCoroutine("Enemy_dead");
         }
+    }
+
+    void OnEnable()
+    {
+        first_movetarget();
     }
 
     void FixedUpdate()
@@ -93,7 +100,7 @@ public class Enemy : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed);
     }
 
-    //첫번째 이동 위치 입력.
+    //첫번째 이동 위치 입력 및 풀매니저를 통해 enable될때  초기화.
     void first_movetarget()
     {
         switch (movepoint_num)
@@ -283,6 +290,7 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isDead", false);
             isDot = false; // 죽으면 도트딜 없는 상태로
             boss_attack_num = 0;
+            next_position = 0;
         }
 
     }
