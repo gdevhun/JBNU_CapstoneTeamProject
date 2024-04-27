@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8032069252895015655}
   - component: {fileID: 7254423020075718952}
   - component: {fileID: 8031352529059718068}
-  - component: {fileID: 1320788323239709488}
-  - component: {fileID: 180937095418101518}
   - component: {fileID: 7467375236226482698}
   - component: {fileID: 8624919709476889336}
   - component: {fileID: 3970960053792050979}
@@ -112,40 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &1320788323239709488
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562169134005206712}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 2.2
-  m_Speed: 5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 4.4
-  m_BaseOffset: -1.04
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
---- !u!114 &180937095418101518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3562169134005206712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7467375236226482698
 Rigidbody2D:
   serializedVersion: 4
@@ -220,20 +184,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bf54ba737349840afb266b688e9554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   hp: 100
   power: 5
   Boss_power: 10
   dotDamage: 0
-  originSpeed: 0
-  spawnpoint_num: 0
-  movepoint_num: 0
-  navmesh: {fileID: 0}
+  originSpeed: 0.1
+  target: {fileID: 0}
   isattack: 0
   isdead: 0
   isDot: 0
   hit_target: {fileID: 0}
   boss_attack_num: 0
+  movepoint_num: 0
+  movepoints: {fileID: 0}
 --- !u!114 &1109679470919566230
 MonoBehaviour:
   m_ObjectHideFlags: 0
