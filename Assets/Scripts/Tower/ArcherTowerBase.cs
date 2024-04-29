@@ -40,7 +40,7 @@ public class ArcherTowerBase : TowerBase
 
             // 타워 무기 발사
             Vector2 direction = (target.position - towerWeapon.transform.position).normalized;
-            towerWeaponRigid.velocity = direction * 15f;
+            towerWeaponRigid.velocity = direction * 45f;
 
             // 무기 발사 각도
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
@@ -60,5 +60,6 @@ public class ArcherTowerBase : TowerBase
     {
         // 단일 처리
         target.GetComponent<Enemy>().hp -= basicDamage;
+        Debug.Log(basicDamage);
     }
 }

@@ -1,27 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform target;
+
 
     public int hp = 100;
     public int power;
     public int Boss_power;
     public int dotDamage; // 몬스터한테 입힐 도트 데미지
-    public float originSpeed; // 몬스터 원래 속도
-   
-    public int spawnpoint_num; //1. ������, 2. �߰�, 3. �Ʒ� , 4. �� �Ʒ�
 
-    //�� 3���� ��Ʈ 1) 1 -> 3->  5 , 2) 2 -> 5, 3)4 -> 5
-    public int movepoint_num;  // 1. �߰�  2. ����������Ʈ ��  3. ����������Ʈ ���  4. ����������Ʈ �Ʒ�  5. �ؼ���  
-    private GameObject[] movepoints;// �ν�����â�� �ڵ����� ������.
-    private string[] movepoints_name = { "move_point1", "move_point2", "move_point3", "move_point4", "move_point5", "move_point6", "move_point7", "move_point8"};
+    public float originSpeed = 0.1f; // 몬스터 원래 속도
+    public float moveSpeed;
 
-    public NavMeshAgent navmesh;
+    public GameObject target; //목표위치
+
+
     private Rigidbody2D rigid;
     private Animator anim;
     private Coroutine co;
@@ -32,32 +32,36 @@ public class Enemy : MonoBehaviour
     public bool isDot = false; // 도트딜을 입는 상태인지 체크
 
     //�̵�����Ʈ�� ��ֹ�(�ؼ��� ����) ����
-    private GameObject position;
     public GameObject hit_target;
 
 
     public int  boss_attack_num;
+
+    public int movepoint_num;  // 1~4가지 동선 결정.
+    public MovePoints movepoints;
+
+
+    private int next_position = 0;
+
     void Awake()
     {
-        movepoints = new GameObject[8];
-        navmesh = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        originSpeed = navmesh.speed; // 몬스터 원래 속도 백업
+        //originSpeed = navmesh.speed; // 몬스터 원래 속도 백업
         dotDamage = hp / 100; // 몬스터한테 입힐 도트 데미지 
+        movepoints = GameObject.Find("MovePoints").gameObject.GetComponent<MovePoints>();
     }
     void Start()
     {
-        GetMovePoints();
         StartCoroutine(DotDamaged()); // 도트 데미지
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isattack  &&  !isdead)
+        if (!isattack  &&  !isdead)
         {
-            Enemy_Move();
+            Enemy_Move(movepoint_num);
         }
 
         if(hp <= 0)
@@ -67,7 +71,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-     void FixedUpdate()
+    void FixedUpdate()
     {
         if (!isdead)
         {
@@ -75,28 +79,79 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-
-    void Enemy_Move()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        navmesh.SetDestination(movepoints[movepoint_num - 1].transform.position);
+
+        change_moveptarget(collision);
+
     }
 
-    void GetMovePoints()
+
+    void Enemy_Move(int movenum)
     {
-        GameObject point;
-        for (int i = 0; i < 8; i++)
-        {          
-            point = GameObject.Find("MovePoints").transform.Find(movepoints_name[i]).gameObject;
-            movepoints[i] = point;
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed);
+    }
+
+    //첫번째 이동 위치 입력 및 풀매니저를 통해 enable될때  초기화.
+    public void first_movetarget()
+    {
+        switch (movepoint_num)
+        {
+            case 1:
+                target = GameObject.Find("MovePoints").transform.Find("move_point6").gameObject;
+                break;
+            case 2:
+                target = GameObject.Find("MovePoints").transform.Find("move_point7").gameObject;
+                break;
+            case 3:
+                target = GameObject.Find("MovePoints").transform.Find("move_point3").gameObject;
+                break;
+            case 4:
+                target = GameObject.Find("MovePoints").transform.Find("move_point1").gameObject;
+                break;
         }
-
     }
+
+    void change_moveptarget(Collider2D collision)
+    {
+        try
+        {
+            if (collision.gameObject.tag == "MovePoints")
+            {
+                if (movepoint_num == 1 && collision.gameObject == movepoints.movepoints_1[next_position])
+                {
+                    target = movepoints.movepoints_1[next_position + 1];
+                    next_position++;
+                }
+                else if (movepoint_num == 2 && collision.gameObject == movepoints.movepoints_2[next_position])
+                {
+                    target = movepoints.movepoints_2[next_position + 1];
+                    next_position++;
+                }
+                else if (movepoint_num == 3 && collision.gameObject == movepoints.movepoints_3[next_position])
+                {
+                    target = movepoints.movepoints_3[next_position + 1];
+                    next_position++;
+                }
+                else if (movepoint_num == 4 && collision.gameObject == movepoints.movepoints_4[next_position])
+                {
+                    target = movepoints.movepoints_4[next_position + 1];
+                    next_position++;
+                }
+            }
+        }
+        catch
+        {
+            
+        }
+    }
+
+
 
     void Scan() //��ֹ� �� Movepoint ����
     {
         Vector2 v2 = rigid.velocity.normalized;
-        Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
+        //Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
         RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
 
         try
@@ -118,7 +173,7 @@ public class Enemy : MonoBehaviour
         }
         catch
         {
-            Debug.Log("null�� ������ ��ȯ");
+
         }
 
 
@@ -128,7 +183,6 @@ public class Enemy : MonoBehaviour
     {
        anim.SetBool("isAttack", true);
        isattack = true;
-       navmesh.enabled = false;
        rigid.velocity = Vector2.zero;
 
 
@@ -180,18 +234,6 @@ public class Enemy : MonoBehaviour
                 GameManager.Instance.NexusDamaged(power);
                 yield return new WaitForSeconds(0.5f);
             }
-
-            /*while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
-            {
-                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
-                if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp <= 0)
-                {
-                    //Remove_Obstacle(hit_object);
-                    break;
-                }
-                yield return new WaitForSeconds(0.5f);
-
-            }*/
         }
 
     }
@@ -202,7 +244,6 @@ public class Enemy : MonoBehaviour
     {
         anim.SetBool("isAttack", false);
         isattack = false;
-        navmesh.enabled = true;
         if(hit_object != null)
         {
             hit_object.gameObject.SetActive(false);
@@ -218,20 +259,20 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isAttack", false);
             anim.SetBool("isSkill1", false);
             anim.SetBool("isDead", true);
-            navmesh.enabled = false;
             rigid.velocity = Vector2.zero;
             
             yield return new WaitForSeconds(1f);
 
             //�׾����� setfalse�ϰ���� ���Ǻ��� �ʱ�ȭ.
             gameObject.SetActive(false);
-            navmesh.enabled = true;
             isdead = false;
             hp = 100;
             anim.SetBool("isDead", false);
-            navmesh.speed = originSpeed; // 죽으면 다시 원래 속도로
             isDot = false; // 죽으면 도트딜 없는 상태로
             boss_attack_num = 0;
+            next_position = 0;
+            moveSpeed = originSpeed; // 다시 원래 속도로
+            GoldManager.Instance.AcquireGold(StageManager.Instance.stageData.stageGold); // 골드 증가
         }
 
     }

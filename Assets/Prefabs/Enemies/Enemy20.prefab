@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6728397084962200623}
   - component: {fileID: 3475776008200684579}
   - component: {fileID: 680825050099523598}
-  - component: {fileID: -2374310673699957251}
-  - component: {fileID: -5872795066082272930}
   - component: {fileID: 3356275360292720629}
   - component: {fileID: 8510406712532748531}
   - component: {fileID: -6939758626637414991}
@@ -78,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1472567979
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 91fd90d08e554784a8495cd93419c9d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -111,40 +109,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &-2374310673699957251
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469592856998338871}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 1e+16
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
---- !u!114 &-5872795066082272930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 469592856998338871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e39f6090724e4a4a8aadeb042afa2bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &3356275360292720629
 Rigidbody2D:
   serializedVersion: 4
@@ -219,11 +183,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bf54ba737349840afb266b688e9554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   hp: 100
   power: 5
-  spawnpoint_num: 0
-  movepoint_num: 0
+  Boss_power: 0
+  dotDamage: 0
+  originSpeed: 0.1
+  moveSpeed: 0.1
+  target: {fileID: 0}
   isattack: 0
   isdead: 0
+  isDot: 0
   hit_target: {fileID: 0}
+  boss_attack_num: 0
+  movepoint_num: 0
+  movepoints: {fileID: 0}

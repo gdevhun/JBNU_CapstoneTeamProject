@@ -7,7 +7,7 @@ public class MagicTower2 : MagicTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(20, 1.4f, 300);
+        InitTower(0, 1.4f, 300);
     }
 
     // 몬스터 처리
@@ -24,7 +24,7 @@ public class MagicTower2 : MagicTowerBase
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
                 enemy.hp -= hit.gameObject == target.gameObject ? basicDamage : basicDamage / 2;
-                enemy.navmesh.speed *= 0.5f;
+                enemy.moveSpeed *= 0.8f;
             }
         }
     }

@@ -4,32 +4,9 @@ using UnityEngine;
 
 public class MovePoints : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            if(collision.gameObject.GetComponent<Enemy>().movepoint_num == 1)
-            {
-                collision.gameObject.GetComponent<Enemy>().movepoint_num = 5;
-            }
-            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 2)
-            {
-                collision.gameObject.GetComponent<Enemy>().movepoint_num = 3;
-            }
-            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 5)
-            {
-                collision.gameObject.GetComponent<Enemy>().movepoint_num = 6;
-            }
-            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 3)
-            {
-                collision.gameObject.GetComponent<Enemy>().movepoint_num = 8;
-            }
-            else if (collision.gameObject.GetComponent<Enemy>().movepoint_num == 4)
-            {
-                collision.gameObject.GetComponent<Enemy>().movepoint_num = 7;
-            }
+    public GameObject[] movepoints_1; // 첫번째 동선
+    public GameObject[] movepoints_2;  // 두번째 동선
+    public GameObject[] movepoints_3;   // 세번째 동선
+    public GameObject[] movepoints_4;   // 네번째 동선
 
-        }
-    }
 }

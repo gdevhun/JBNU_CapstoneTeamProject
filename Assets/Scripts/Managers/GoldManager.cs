@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class GoldManager : SingletonBehaviour<GoldManager>
 {
-    [SerializeField] private int playerGold;
+    [SerializeField] public int playerGold;
     [SerializeField] TMP_Text totalGold;
     void Start()
     {
-        playerGold = 2000;
+        playerGold = 200;
         InitUIGold();
     }
 

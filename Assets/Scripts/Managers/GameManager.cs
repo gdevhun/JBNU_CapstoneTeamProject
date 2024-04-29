@@ -8,13 +8,15 @@ public class GameManager : SingletonBehaviour<GameManager>
 {
     public bool _isGameOver; //게임오버 BOOL 변수
     public Image nexusHpBar; //Image
-    private int _nexusHp; //넥서스 hp
+    private float _nexusHp; //넥서스 hp
+    [SerializeField] private GameObject gameoverBtn; // 게임 재시작 버튼
     protected override void Awake()
     {
         base.Awake();
         Application.targetFrameRate = 60;
+        _nexusHp = 1000;
     }
-    private int NexusHp
+    public float NexusHp
     {
         get => _nexusHp;
 
@@ -26,7 +28,8 @@ public class GameManager : SingletonBehaviour<GameManager>
             {
                 _nexusHp = 0;
                 _isGameOver = true;
-                PlayerGameOver();
+                PauseGameBtn();
+                gameoverBtn.SetActive(true);
             }
         }
     }
@@ -36,14 +39,14 @@ public class GameManager : SingletonBehaviour<GameManager>
     }
     private void InitNexusHpBar()
     {
-        nexusHpBar.fillAmount = _nexusHp;
+        nexusHpBar.fillAmount = _nexusHp / 1000f;
     }
 
-    private void PlayerGameOver()
+    public void PlayerGameOver()
     {
         if (_isGameOver)
         {
-            
+            SceneManager.LoadScene("MenuScene");
         }
 
         return;

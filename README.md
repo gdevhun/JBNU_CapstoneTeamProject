@@ -19,7 +19,7 @@
 <img src="https://img.shields.io/badge/csharp-512BD4?style=for-the-badge&logo=csharp&logoColor=white">
 
 ## 협업 가이드 및 규칙 Tool - 프로젝트 스케줄 📅
-- https://www.notion.so/CapstoneTeamProject-de3a45a7dabe47f3b3bb3645cffc6a8d
+- https://river-pearl-643.notion.site/CapstoneTeamProject-de3a45a7dabe47f3b3bb3645cffc6a8d?pvs=4
 
 
 .... 
