@@ -54,14 +54,11 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(DotDamaged()); // 도트 데미지
-        first_movetarget();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(target);
-        Debug.Log(next_position);
         if (!isattack  &&  !isdead)
         {
             Enemy_Move(movepoint_num);
@@ -72,11 +69,6 @@ public class Enemy : MonoBehaviour
             isdead = true;
             StartCoroutine("Enemy_dead");
         }
-    }
-
-    void OnEnable()
-    {
-        first_movetarget();
     }
 
     void FixedUpdate()
@@ -101,7 +93,7 @@ public class Enemy : MonoBehaviour
     }
 
     //첫번째 이동 위치 입력 및 풀매니저를 통해 enable될때  초기화.
-    void first_movetarget()
+    public void first_movetarget()
     {
         switch (movepoint_num)
         {
@@ -150,7 +142,7 @@ public class Enemy : MonoBehaviour
         }
         catch
         {
-            Debug.Log("배열index처리");
+            
         }
     }
 
@@ -159,7 +151,7 @@ public class Enemy : MonoBehaviour
     void Scan() //��ֹ� �� Movepoint ����
     {
         Vector2 v2 = rigid.velocity.normalized;
-        Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
+        //Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
         RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
 
         try
@@ -181,7 +173,7 @@ public class Enemy : MonoBehaviour
         }
         catch
         {
-            Debug.Log("null�� ������ ��ȯ");
+
         }
 
 
@@ -242,18 +234,6 @@ public class Enemy : MonoBehaviour
                 GameManager.Instance.NexusDamaged(power);
                 yield return new WaitForSeconds(0.5f);
             }
-
-            while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusHp > 0 && !isdead)
-            {
-                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusDamaged(power);
-                // if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusHp <= 0)
-                // {
-                //     Remove_Obstacle(hit_object);
-                //     break;
-                // }
-                yield return new WaitForSeconds(0.5f);
-
-            }
         }
 
     }
@@ -292,6 +272,7 @@ public class Enemy : MonoBehaviour
             boss_attack_num = 0;
             next_position = 0;
             moveSpeed = originSpeed; // 다시 원래 속도로
+            GoldManager.Instance.AcquireGold(StageManager.Instance.stageData.stageGold); // 골드 증가
         }
 
     }

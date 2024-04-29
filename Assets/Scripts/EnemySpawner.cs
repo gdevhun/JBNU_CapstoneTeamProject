@@ -11,9 +11,9 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     public TextMeshProUGUI thisStageInfo;
     public GameObject stageTimerImage; 
     [SerializeField] private Transform[] spawnPoints;
-    private int _thisStageSpawnInterval; //ÇöÀç½ºÅ×ÀÌÁö ½ºÆù°£°Ý
-    private int _thisStageEnableSpawnPt;  //ÇöÀç ½ºÅ×ÀÌÁö »ç¿ëÇÒ ½ºÆùÆ÷ÀÎÆ®
-    private int _thisStageEnemyNum; //°£°Ýº° ¿¡³×¹Ì ¼ÒÈ¯ ¼ö
+    private int _thisStageSpawnInterval; //ï¿½ï¿½ï¿½ç½ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private int _thisStageEnableSpawnPt;  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+    private int _thisStageEnemyNum; //ï¿½ï¿½ï¿½Ýºï¿½ ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½
     private readonly string _stageName = "StageData";
     private int _thisStageNum = 1;
     public bool isCurWaveEnded = true;
@@ -23,39 +23,39 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         StartCoroutine(StartGame());
     }
 
-    private IEnumerator StartGame()  //ÀüÃ¼ÀûÀÎ ½ºÆù ÄÚ·çÆ¾ ÇÔ¼ö
+    private IEnumerator StartGame()  //ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½Ô¼ï¿½
     {
         while (_thisStageNum != 30)
         {
-            StartCoroutine(CountDownAndSpawn()); //¿þÀÌºê½ÃÀÛ
-            yield return new WaitUntil(() => isCurWaveEnded); // ÀÌÀü ½ºÅ×ÀÌÁö°¡ Á¾·áµÉ ¶§±îÁö ´ë±â
+            StartCoroutine(CountDownAndSpawn()); //ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½
+            yield return new WaitUntil(() => isCurWaveEnded); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
             _thisStageNum++;
         }
-        Debug.Log("³¡");
+        Debug.Log("ï¿½ï¿½");
     }
-    private void InitStageData()  //½ºÅ×ÀÌÁö µ¥ÀÌÅÍ ÃÊ±âÈ­ ÇÔ¼ö
+    private void InitStageData()  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½
     {
         StageManager.Instance.LoadStageData(_stageName + _thisStageNum);
         
-        if (!StageManager.Instance.isLoadedData) return; //µ¥ÀÌÅÍ·Îµå ¿À·ù
+        if (!StageManager.Instance.isLoadedData) return; //ï¿½ï¿½ï¿½ï¿½ï¿½Í·Îµï¿½ ï¿½ï¿½ï¿½ï¿½
         
-        thisStageInfo.text = StageManager.Instance.stageData.stageInfo; //HUD wave ÅØ½ºÆ® ¾÷µ«
+        thisStageInfo.text = StageManager.Instance.stageData.stageInfo; //HUD wave ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
         
-        _thisStageSpawnInterval = StageManager.Instance.stageData.stageSpawnInteval; //ÀÎÅÍ¹ú ·Îµå
+        _thisStageSpawnInterval = StageManager.Instance.stageData.stageSpawnInteval; //ï¿½ï¿½ï¿½Í¹ï¿½ ï¿½Îµï¿½
         
-        _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; //½ºÆù È½¼ö ·Îµå
+        _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; //ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½ ï¿½Îµï¿½
         
-        _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt; //½ºÆùÆ÷ÀÎÆ® »ç¿ë
+        _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
         
     }
 
-    private IEnumerator CountDownAndSpawn() //ºê¸®Å© ÅÒ + ¿þÀÌºê½ÃÀÛ ÄÚ·çÆ¾
+    private IEnumerator CountDownAndSpawn() //ï¿½ê¸®Å© ï¿½ï¿½ + ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     {
         isCurWaveEnded = false;
         nextStageIntervalSec.gameObject.SetActive(true);
-        int cnt = 2;
+        int cnt = 10;
         while (cnt > 0)
-        {   //10ÃÊ¿¡ °ÉÃÄ¼­ Ä«¿îÆ® ´Ù¿îÀ» ÇØÁÖ°í ÅØ½ºÆ®¸¦ HUD¿¡ Ç¥½ÃÇØÁÜ
+        {   //10ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½Ä¼ï¿½ Ä«ï¿½ï¿½Æ® ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ HUDï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             yield return new WaitForSeconds(1f);
             cnt--;
             nextStageIntervalSec.text = cnt.ToString();
@@ -63,25 +63,25 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         nextStageIntervalSec.text = "10";
         yield return new WaitForSeconds(1f);
         nextStageIntervalSec.gameObject.SetActive(false);
-        StartCoroutine(ActiveWaveStage()); //Ä«¿îÆ®°¡ ³¡³ª¸é ½ºÆù ½ÃÀÛ
+        StartCoroutine(ActiveWaveStage()); //Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         yield return null;
     }
     
-    private IEnumerator ActiveWaveStage() //½ºÆù½ÃÀÛ ÇÔ¼ö
-    {   //½ÇÁ¦ StageTime = ½ºÆùÀÎÅÍ¹ú * ½ºÆù ³Ñ + 2 + [Ãß°¡ ½Ã°£]
+    private IEnumerator ActiveWaveStage() //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+    {   //ï¿½ï¿½ï¿½ï¿½ StageTime = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¹ï¿½ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ + 2 + [ï¿½ß°ï¿½ ï¿½Ã°ï¿½]
         
-        InitStageData(); //ÇöÀç ½ºÆù¿¡ ´ëÇÑ µ¥ÀÌÅÍ ·Îµå
+        InitStageData(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½
         stageTimerImage.SetActive(true);
         
-        for (int i = 0; i < _thisStageEnemyNum; i++)  //ÃÑ ½ºÆù È½¼ö
+        for (int i = 0; i < _thisStageEnemyNum; i++)  //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È½ï¿½ï¿½
         {
             _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt;
             while (_thisStageEnableSpawnPt >= 0)
-            {   //°¢°¢ ½ºÆùÆ÷ÀÎÆ®¿¡ ¼ÒÈ¯. stageEnableSpawnPt=1 ¸ÇÀ§ Â÷·Ê·Î 4±îÁö.
+            {   //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½È¯. stageEnableSpawnPt=1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê·ï¿½ 4ï¿½ï¿½ï¿½ï¿½.
                 SpawnEnemyInSp(_thisStageEnableSpawnPt);
                 _thisStageEnableSpawnPt--;
             }
-            //ÀÎÅÍ¹ú ¸¸Å­ ´ë±â ÈÄ ´Ù½Ã ½ºÆù
+            //ï¿½ï¿½ï¿½Í¹ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
             yield return new WaitForSeconds(_thisStageSpawnInterval);
         }
         yield return new WaitForSeconds(2f);
@@ -93,7 +93,8 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     {
         GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
-        enemy.GetComponent<Enemy>().movepoint_num = sp + 1; // ÀÌµ¿ °æ·Î ¼³Á¤
+        enemy.GetComponent<Enemy>().movepoint_num = sp + 1; // ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        enemy.GetComponent<Enemy>().first_movetarget();
     }
 
     /*private void SpawnBoss()

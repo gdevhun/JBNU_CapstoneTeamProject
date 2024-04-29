@@ -187,8 +187,8 @@ MonoBehaviour:
   power: 5
   Boss_power: 0
   dotDamage: 0
-  originSpeed: 0.1
-  moveSpeed: 0.1
+  originSpeed: 0.15
+  moveSpeed: 0.15
   target: {fileID: 0}
   isattack: 0
   isdead: 0

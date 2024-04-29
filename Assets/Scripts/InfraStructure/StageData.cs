@@ -5,11 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StageData", menuName = "StageData", order = 1)]
 public class StageData : ScriptableObject
 {
-    public string description = "½ÇÁ¦ StageTime = ½ºÆùÀÎÅÍ¹ú * ½ºÆù ³Ñ + 2 + [Ãß°¡ ½Ã°£]";
-    public string stageInfo;  //½ºÅ×ÀÌÁöÁ¤º¸
-    public PoolManager.EnemyType enemyType; //½ºÆùÇÒ¶§ ³Ñ±æ ÆÄ¶ó¹ÌÅÍ
-    public int stageSpawnInteval;  //°¢ ½ºÅ×ÀÌÁö°¡ °¡Áø ½ºÆù°£°İ
-    public int stageSpawnNum;  //½ºÆù 
-    public int stageTime; //½ºÅ×ÀÌÁö½Ã°£
-    public int stageEnableSpawnPt; //¿¡³×¹Ì ¼ÒÈ¯ 
+    public string description = "ï¿½ï¿½ï¿½ï¿½ StageTime = ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¹ï¿½ * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ + 2 + [ï¿½ß°ï¿½ ï¿½Ã°ï¿½]";
+    public string stageInfo;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public PoolManager.EnemyType enemyType; //ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶ï¿½ ï¿½Ñ±ï¿½ ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½
+    public int stageSpawnInteval;  //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public int stageSpawnNum;  //ï¿½ï¿½ï¿½ï¿½ 
+    public int stageTime; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½
+    public int stageEnableSpawnPt; //ï¿½ï¿½ï¿½×¹ï¿½ ï¿½ï¿½È¯ 
+    public int stageGold; // ìŠ¤í…Œì´ì§€ ê³¨ë“œ
 }

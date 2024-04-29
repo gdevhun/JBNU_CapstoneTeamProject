@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class ArcherTower1 : ArcherTowerBase
 {
-    // 아쳐타워 베이스랑 같음
+    // 스탯 조정
+    private void Awake()
+    {
+        InitTower(50, 1.0f, 100);
+    }
 }
