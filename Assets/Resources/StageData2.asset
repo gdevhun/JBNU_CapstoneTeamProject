@@ -17,6 +17,6 @@ MonoBehaviour:
   stageInfo: Wave 2
   enemyType: 1
   stageSpawnInteval: 2
-  stageSpawnNum: 3
+  stageSpawnNum: 2
   stageTime: 20
-  stageEnableSpawnPt: 3
+  stageEnableSpawnPt: 1

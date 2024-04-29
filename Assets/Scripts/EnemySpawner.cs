@@ -53,7 +53,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     {
         isCurWaveEnded = false;
         nextStageIntervalSec.gameObject.SetActive(true);
-        int cnt = 10;
+        int cnt = 2;
         while (cnt > 0)
         {   //10초에 걸쳐서 카운트 다운을 해주고 텍스트를 HUD에 표시해줌
             yield return new WaitForSeconds(1f);
@@ -93,6 +93,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     {
         GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
+        enemy.GetComponent<Enemy>().movepoint_num = sp + 1; // 이동 경로 설정
     }
 
     /*private void SpawnBoss()

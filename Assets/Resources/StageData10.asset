@@ -15,8 +15,8 @@ MonoBehaviour:
   description: "\uC2E4\uC81C StageTime = \uC2A4\uD3F0\uC778\uD130\uBC8C * \uC2A4\uD3F0
     \uB118 + 2 + [\uCD94\uAC00 \uC2DC\uAC04]"
   stageInfo: Wave 10
-  enemyType: 9
+  enemyType: 41
   stageSpawnInteval: 0
-  stageSpawnNum: 0
-  stageTime: 0
-  stageEnemyNum: 0
+  stageSpawnNum: 1
+  stageTime: 50
+  stageEnableSpawnPt: 0

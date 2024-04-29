@@ -243,17 +243,17 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
 
-            /*while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp > 0 && !isdead)
+            while (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusHp > 0 && !isdead)
             {
-                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp -= power;
-                if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>()._nexusHp <= 0)
-                {
-                    //Remove_Obstacle(hit_object);
-                    break;
-                }
+                GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusDamaged(power);
+                // if (GameObject.Find("GameManager").gameObject.GetComponent<GameManager>().NexusHp <= 0)
+                // {
+                //     Remove_Obstacle(hit_object);
+                //     break;
+                // }
                 yield return new WaitForSeconds(0.5f);
 
-            }*/
+            }
         }
 
     }
@@ -291,6 +291,7 @@ public class Enemy : MonoBehaviour
             isDot = false; // 죽으면 도트딜 없는 상태로
             boss_attack_num = 0;
             next_position = 0;
+            moveSpeed = originSpeed; // 다시 원래 속도로
         }
 
     }

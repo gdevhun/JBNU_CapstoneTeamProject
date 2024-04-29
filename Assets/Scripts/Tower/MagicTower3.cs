@@ -24,7 +24,7 @@ public class MagicTower3 : MagicTowerBase
             {
                 Enemy enemy = hit.GetComponent<Enemy>();
                 enemy.hp -= hit.gameObject == target.gameObject ? basicDamage : basicDamage / 2;
-                enemy.navmesh.speed = 0;
+                enemy.moveSpeed *= 0.5f;
             }
         }
     }

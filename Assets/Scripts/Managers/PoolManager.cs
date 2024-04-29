@@ -17,7 +17,8 @@ public class PoolManager : SingletonBehaviour<PoolManager>
 		Enemy26,   Enemy27,    Enemy28,    Enemy29,      
 		Enemy30,   Enemy31,    Enemy32,    Enemy33,      
 		Enemy34,   Enemy35,    Enemy36,    Enemy37,      
-		Enemy38,   Enemy39,    Enemy40,    
+		Enemy38,   Enemy39,    Enemy40,
+		MiddleBoss, LastBoss
 	}
 
 	[System.Serializable]

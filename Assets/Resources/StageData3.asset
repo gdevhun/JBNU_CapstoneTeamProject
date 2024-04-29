@@ -19,4 +19,4 @@ MonoBehaviour:
   stageSpawnInteval: 2
   stageSpawnNum: 3
   stageTime: 20
-  stageEnableSpawnPt: 4
+  stageEnableSpawnPt: 2
