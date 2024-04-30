@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour
     public int movepoint_num;  // 1~4가지 동선 결정.
     public MovePoints movepoints;
 
-
     private int next_position = 0;
 
     void Awake()
@@ -274,6 +273,8 @@ public class Enemy : MonoBehaviour
             next_position = 0;
             moveSpeed = originSpeed; // 다시 원래 속도로
             GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
+
+            if(enemyGold == 10000) GameManager.Instance.gameWinPanel.SetActive(true); // 마지막 보스 킬 시 게임 승리
         }
 
     }

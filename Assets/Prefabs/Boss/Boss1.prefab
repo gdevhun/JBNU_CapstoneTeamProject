@@ -186,10 +186,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 5000
   hp: 5000
-  power: 10
-  Boss_power: 20
+  power: 50
+  Boss_power: 60
   dotDamage: 0
-  enemyGold: 500
+  enemyGold: 2000
   originSpeed: 0.1
   moveSpeed: 0.1
   target: {fileID: 0}
