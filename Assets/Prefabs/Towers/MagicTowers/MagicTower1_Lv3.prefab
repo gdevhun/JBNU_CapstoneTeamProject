@@ -1663,7 +1663,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!50 &-6110207241302796404
 Rigidbody2D:
@@ -1705,6 +1705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicDamage: 100
+  towerBuildPrice: 0
   towerLv: 1
   towerUpgradeBasicPrice: 100
   atkPos:
@@ -1718,6 +1719,6 @@ MonoBehaviour:
   - {fileID: 7087017198464639553}
   towerType: 4
   towerWeaponType: 3
+  soundType: 4
   towerWeaponEffectType: 0
   towerWeaponEffectPrefabs: []
-  soundType: 4

@@ -464,7 +464,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5}
+  m_Size: {x: 5, y: 5}
   m_EdgeRadius: 0
 --- !u!50 &4554390716110342213
 Rigidbody2D:
@@ -519,6 +519,7 @@ MonoBehaviour:
   - {fileID: 5893577722250165856}
   towerType: 2
   towerWeaponType: 0
+  soundType: 0
 --- !u!1 &5447604322795153670
 GameObject:
   m_ObjectHideFlags: 0

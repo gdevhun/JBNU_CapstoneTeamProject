@@ -25,7 +25,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
 
     private IEnumerator StartGame()  //��ü���� ���� �ڷ�ƾ �Լ�
     {
-        while (_thisStageNum != 30)
+        while (_thisStageNum != 11)
         {
             StartCoroutine(CountDownAndSpawn()); //���̺����
             yield return new WaitUntil(() => isCurWaveEnded); // ���� ���������� ����� ������ ���
@@ -72,6 +72,11 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         
         InitStageData(); //���� ������ ���� ������ �ε�
         stageTimerImage.SetActive(true);
+
+        // 배경음
+        if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.MiddleBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM3);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.LastBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM2);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.Enemy6) SoundManager.Instance.PlayBGM(SoundType.일반BGM);
         
         for (int i = 0; i < _thisStageEnemyNum; i++)  //�� ���� Ƚ��
         {

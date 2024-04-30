@@ -128,7 +128,7 @@ public class TowerManager : MonoBehaviour
             TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
             upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
             upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
-            upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
+            upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : selectedTowerBase.towerUpgradeBasicPrice.ToString();
             upgradePanelTowerStarImage.sprite = towerStarSprites[selectedTowerBase.towerLv];
         }
     }
@@ -181,7 +181,7 @@ public class TowerManager : MonoBehaviour
 
         // 타워베이스 가져와서 골드 얻음
         TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
-        GoldManager.Instance.AcquireGold(selectedTowerBase.towerUpgradeBasicPrice / selectedTowerBase.towerLv);
+        GoldManager.Instance.AcquireGold(selectedTowerBase.towerUpgradeBasicPrice / 4);
 
         // 자식에 있던 타워 파괴
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);

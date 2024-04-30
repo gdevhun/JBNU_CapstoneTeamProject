@@ -10,11 +10,12 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
 
-
+    public int maxHp; // 최대체력
     public int hp = 100;
     public int power;
     public int Boss_power;
     public int dotDamage; // 몬스터한테 입힐 도트 데미지
+    public int enemyGold; // 골드량
 
     public float originSpeed = 0.1f; // 몬스터 원래 속도
     public float moveSpeed;
@@ -39,7 +40,6 @@ public class Enemy : MonoBehaviour
 
     public int movepoint_num;  // 1~4가지 동선 결정.
     public MovePoints movepoints;
-
 
     private int next_position = 0;
 
@@ -266,13 +266,15 @@ public class Enemy : MonoBehaviour
             //�׾����� setfalse�ϰ���� ���Ǻ��� �ʱ�ȭ.
             gameObject.SetActive(false);
             isdead = false;
-            hp = 100;
+            hp = maxHp;
             anim.SetBool("isDead", false);
             isDot = false; // 죽으면 도트딜 없는 상태로
             boss_attack_num = 0;
             next_position = 0;
             moveSpeed = originSpeed; // 다시 원래 속도로
-            GoldManager.Instance.AcquireGold(StageManager.Instance.stageData.stageGold); // 골드 증가
+            GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
+
+            if(enemyGold == 10000) GameManager.Instance.gameWinPanel.SetActive(true); // 마지막 보스 킬 시 게임 승리
         }
 
     }

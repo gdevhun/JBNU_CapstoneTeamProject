@@ -725,7 +725,7 @@ Transform:
   - {fileID: 6959184689212260569}
   - {fileID: 1402557706322518465}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4752247172873608100
 BoxCollider2D:
@@ -770,7 +770,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!50 &3225736864240453099
 Rigidbody2D:
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicDamage: 100
-  towerBuildPrice: 1000
+  towerBuildPrice: 750
   towerLv: 1
   towerUpgradeBasicPrice: 100
   atkPos:

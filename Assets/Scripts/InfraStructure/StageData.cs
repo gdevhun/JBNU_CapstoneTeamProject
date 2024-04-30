@@ -12,5 +12,4 @@ public class StageData : ScriptableObject
     public int stageSpawnNum;  //���� 
     public int stageTime; //���������ð�
     public int stageEnableSpawnPt; //���׹� ��ȯ 
-    public int stageGold; // 스테이지 골드
 }
