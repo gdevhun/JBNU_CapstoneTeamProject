@@ -7,12 +7,12 @@ public class MagicTower2 : MagicTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(0, 1.4f, 300);
+        InitTower(2, 1.4f, 200);
     }
 
     // 몬스터 처리
     // 매직타워2
-    // 속도감소
+    // 매직타워 2는 지속시간이 길지만 감소량이 적음
     protected override void MonsterInteraction()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
@@ -22,10 +22,18 @@ public class MagicTower2 : MagicTowerBase
         {
             if (hit.CompareTag("Enemy"))
             {
-                Enemy enemy = hit.GetComponent<Enemy>();
-                enemy.hp -= hit.gameObject == target.gameObject ? basicDamage : basicDamage / 2;
-                enemy.moveSpeed *= 0.8f;
+                StartCoroutine(Slow(hit.GetComponent<Enemy>()));
             }
         }
+    }
+
+    // 속도감소
+    private IEnumerator Slow(Enemy enemy)
+    {
+        enemy.moveSpeed *= 0.8f;  // 슬로우
+
+        yield return new WaitForSeconds(basicDamage);  // 지속시간
+
+        enemy.moveSpeed = enemy.originSpeed;  // 해제
     }
 }

@@ -72,6 +72,11 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         
         InitStageData(); //���� ������ ���� ������ �ε�
         stageTimerImage.SetActive(true);
+
+        // 배경음
+        if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.MiddleBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM3);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.MiddleBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM2);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.Enemy6) SoundManager.Instance.PlayBGM(SoundType.일반BGM);
         
         for (int i = 0; i < _thisStageEnemyNum; i++)  //�� ���� Ƚ��
         {

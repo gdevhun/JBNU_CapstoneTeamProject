@@ -7,6 +7,6 @@ public class ArcherTower2 : ArcherTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(100, 0.75f, 150);
+        InitTower(100, 0.75f, 200);
     }
 }

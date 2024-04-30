@@ -46,6 +46,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         if (_isGameOver)
         {
+            SoundManager.Instance.PlayBGM(SoundType.메뉴BGM);
             SceneManager.LoadScene("MenuScene");
         }
 
