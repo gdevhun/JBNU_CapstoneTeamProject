@@ -274,9 +274,8 @@ public class Enemy : MonoBehaviour
             moveSpeed = originSpeed; // 다시 원래 속도로
             GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
 
-            if(enemyGold == 10000) GameManager.Instance.gameWinPanel.SetActive(true); // 마지막 보스 킬 시 게임 승리
+            BossCheck();
         }
-
     }
 
 
@@ -294,6 +293,20 @@ public class Enemy : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    private void BossCheck()
+    {
+        if(enemyGold == 2000 || enemyGold == 10000)
+        {
+            GameManager.Instance.bossHpPanel.SetActive(false);
+            GameManager.Instance.isBossStage = false;
+        } 
+
+        if(enemyGold == 10000)
+        {
+            GameManager.Instance.gameWinPanel.SetActive(true); // 마지막 보스 킬 시 게임 승리
         }
     }
 }

@@ -96,10 +96,19 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     
     private void SpawnEnemyInSp(int sp)
     {
-        GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
+        Enemy enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType).GetComponent<Enemy>();
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
-        enemy.GetComponent<Enemy>().movepoint_num = sp + 1; // �̵� ��� ����
-        enemy.GetComponent<Enemy>().first_movetarget();
+        enemy.movepoint_num = sp + 1; // �̵� ��� ����
+        enemy.first_movetarget();
+
+        if(enemy.enemyGold == 2000 || enemy.enemyGold == 10000)
+        {
+            GameManager.Instance.bossEnemy = enemy;
+            GameManager.Instance.isBossStage = true;
+            GameManager.Instance.bossHpPanel.SetActive(true);
+
+            if(enemy.enemyGold == 10000) GameManager.Instance.lastBossImage.sprite = GameManager.Instance.lastBossSprite;
+        }
     }
 
     /*private void SpawnBoss()

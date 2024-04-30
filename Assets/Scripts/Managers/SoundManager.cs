@@ -41,7 +41,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		_bgmPlayer = gameObject.AddComponent<AudioSource>();
 
         // 볼륨 초기화
-        bgmVolume = 0.5f;
+        bgmVolume = 0f; // 0.5
         sfxVolume = 1f;
 
 		// SFX �÷��̾� �� ���� �ʱ⿡ �����ϰ� ����Ʈ�� �߰�
@@ -73,7 +73,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		var bgm = _bgms.First(b => b.SoundType == soundType);
 		_bgmPlayer.clip = bgm.Clip;
-		_bgmPlayer.volume = bgmVolume; // 볼륨 조절
+		_bgmPlayer.volume = 0; // 볼륨 조절 bgmVolume
 		_bgmPlayer.loop = true;
 		_bgmPlayer.Play();
 	}
@@ -89,7 +89,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		{
 			AudioSource sfxPlayer = GetAvailableSFXPlayer();
 			sfxPlayer.clip = clip;
-			sfxPlayer.volume = sfxVolume; // 볼륨 조절
+			sfxPlayer.volume = 0f; // 볼륨 조절 sfxVolume
 			sfxPlayer.Play();
 
 			// 사운드 재생이 끝나면 풀에 반환
