@@ -304,9 +304,12 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.isBossStage = false;
         } 
 
+        // 마지막 보스 킬 시 게임 승리
         if(enemyGold == 10000)
         {
-            GameManager.Instance.gameWinPanel.SetActive(true); // 마지막 보스 킬 시 게임 승리
+            GameManager.Instance._isGameOver = true;
+            GameManager.Instance.PauseGameBtn();
+            GameManager.Instance.gameWinPanel.SetActive(true);
         }
     }
 }

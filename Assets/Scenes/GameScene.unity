@@ -7001,7 +7001,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 750
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -9528,7 +9528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 250
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}
@@ -13988,13 +13988,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 810746015}
   m_SourcePrefab: {fileID: 100100000, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
 --- !u!4 &810746012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3017882611284857340, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
   m_PrefabInstance: {fileID: 810746011}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &810746013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6455000608062287484, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+  m_PrefabInstance: {fileID: 810746011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &810746014 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7288702514925043722, guid: ab6ecd3a0492e2f48a52844790a651d1, type: 3}
+  m_PrefabInstance: {fileID: 810746011}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810746013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4fb2eaeb08fc342aef761910e8a730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &810746015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810746013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6e4832d5ccc004db0aa95208e86f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerBase: {fileID: 810746014}
 --- !u!1 &818989643
 GameObject:
   m_ObjectHideFlags: 0
@@ -22855,7 +22887,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7471b738a7914924d9bda498c781736b, type: 2}
   m_sharedMaterial: {fileID: 2764020433065311155, guid: 7471b738a7914924d9bda498c781736b, type: 2}

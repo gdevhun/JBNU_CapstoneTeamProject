@@ -7,7 +7,7 @@ public class ArcherTower4 : ArcherTowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(500, 1.7f, 800);
+        InitTower(700, 1.2f, 800);
     }
 
     // 타겟 공격
@@ -38,7 +38,7 @@ public class ArcherTower4 : ArcherTowerBase
     protected override void MonsterInteraction()
     {
         // 광역 처리
-        Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 6f);
 
         foreach (Collider2D hit in hits)
         {

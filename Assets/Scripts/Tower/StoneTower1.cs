@@ -10,7 +10,7 @@ public class StoneTower1 : TowerBase
     // 스탯 조정
     private void Awake()
     {
-        InitTower(1, 1.2f, 300);
+        InitTower(1, 1.2f, 200);
     }
 
     // 타겟 공격

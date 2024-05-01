@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicDamage: 100
-  towerBuildPrice: 750
+  towerBuildPrice: 500
   towerLv: 1
   towerUpgradeBasicPrice: 100
   atkPos:
