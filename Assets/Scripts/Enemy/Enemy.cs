@@ -10,70 +10,63 @@ using Random = UnityEngine.Random;
 public class Enemy : MonoBehaviour
 {
 
-    public int maxHp; // 최대체력
-    public int hp = 100;
-    public int power;
-    public int Boss_power;
-    public int dotDamage; // 몬스터한테 입힐 도트 데미지
-    public int enemyGold; // 골드량
-
-    public float originSpeed = 0.1f; // 몬스터 원래 속도
-    public float moveSpeed;
-
-    public GameObject target; //목표위치
+    [Header("Enemy Stats")]
+    public int hp = 100;  //체력
+    public int power;     // 데미지
+    public int bossPower;  // 보스스킬데미지
+    public float moveSpeed; // 이동속도
 
 
     private Rigidbody2D rigid;
     private Animator anim;
-    private Coroutine co;
+    private GameObject hitTarget; //몬스터 공격타겟
+    private MovePoints movePoints; // 이동포인트위치 저장
+    private GameObject target; //Enemy 이동타겟
+    private int nextPosition = 0; // 다음 이동포인트를 가르키는 변수
+    private bool isAttack = false; // 공격하는지 체크
+    private int soundNum = 0; // enemy sound 변수 
 
-    // attack�ڷ�ƾ �ѹ��� �����Ҽ��ְ� �ϵ��� �ϴ� ����
-    public bool isattack = false;
-    public bool isdead = false;
-    public bool isDot = false; // 도트딜을 입는 상태인지 체크
+    //다른 스크립트에서 참조하는 변수들
+    [HideInInspector]public int maxHp; // 최대체력
+    [HideInInspector]public int dotDamage; // 몬스터한테 입힐 도트 데미지
+    [HideInInspector]public int enemyGold; // 골드량
+    [HideInInspector]public float originSpeed = 0.1f; // 몬스터 원래 속도
+    [HideInInspector]public int movePointNum;  // 1~4가지 동선 결정.
+    [HideInInspector]public bool isDot = false; // 도트딜을 입는 상태인지 체크
+    [HideInInspector]public bool isDead = false; // 죽었는지 체크
+    [HideInInspector]public int bossAttackNum;  //보스 공격횟수 체크
 
-    //�̵�����Ʈ�� ��ֹ�(�ؼ��� ����) ����
-    public GameObject hit_target;
-
-
-    public int  boss_attack_num;
-
-    public int movepoint_num;  // 1~4가지 동선 결정.
-    public MovePoints movepoints;
-
-    private int next_position = 0;
 
     void Awake()
     {
+        dotDamage = hp / 100;
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        //originSpeed = navmesh.speed; // 몬스터 원래 속도 백업
-        dotDamage = hp / 100; // 몬스터한테 입힐 도트 데미지 
-        movepoints = GameObject.Find("MovePoints").gameObject.GetComponent<MovePoints>();
+        movePoints = GameObject.Find("MovePoints").gameObject.GetComponent<MovePoints>();
+        EnemyCheckForSound();
     }
     void Start()
     {
         StartCoroutine(DotDamaged()); // 도트 데미지
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!isattack  &&  !isdead)
+        if (!isAttack &&  !isDead)
         {
-            Enemy_Move(movepoint_num);
+            EnemyMove();
         }
 
         if(hp <= 0)
         {
-            isdead = true;
-            StartCoroutine("Enemy_dead");
+            isDead = true;
+            StartCoroutine("EnemyDead");
         }
     }
 
     void FixedUpdate()
     {
-        if (!isdead)
+        if (!isDead)
         {
             Scan();
         }
@@ -82,20 +75,52 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-        change_moveptarget(collision);
+        ChangeMovepTarget(collision);
 
     }
 
 
-    void Enemy_Move(int movenum)
+    //공격타겟 스캔
+    void Scan()
+    {
+        Vector2 v2 = rigid.velocity.normalized;
+        //Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
+        RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
+
+        try
+        {
+            if (rayHit_obstacle.collider != null)
+            {
+
+                hitTarget = rayHit_obstacle.transform.gameObject;
+                if (!isAttack)
+                {
+                    StartCoroutine("EnemyAttack", hitTarget);
+                }
+            }
+            else if (rayHit_obstacle.collider == null)
+            {
+                hitTarget = null;
+                RemoveObstacle(hitTarget);
+            }
+        }
+        catch
+        {
+
+        }
+
+
+    }
+    //몬스터 이동
+    void EnemyMove()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed);
     }
 
-    //첫번째 이동 위치 입력 및 풀매니저를 통해 enable될때  초기화.
-    public void first_movetarget()
+    // 몬스터 spawn시 첫이동타겟설정
+    public void FirstMoveTarget()
     {
-        switch (movepoint_num)
+        switch (movePointNum)
         {
             case 1:
                 target = GameObject.Find("MovePoints").transform.Find("move_point6").gameObject;
@@ -112,31 +137,32 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void change_moveptarget(Collider2D collision)
+    // 경로마다 이동타겟 변경
+    void ChangeMovepTarget(Collider2D collision)
     {
         try
         {
             if (collision.gameObject.tag == "MovePoints")
             {
-                if (movepoint_num == 1 && collision.gameObject == movepoints.movepoints_1[next_position])
+                if (movePointNum == 1 && collision.gameObject == movePoints.movepoints_1[nextPosition])
                 {
-                    target = movepoints.movepoints_1[next_position + 1];
-                    next_position++;
+                    target = movePoints.movepoints_1[nextPosition + 1];
+                    nextPosition++;
                 }
-                else if (movepoint_num == 2 && collision.gameObject == movepoints.movepoints_2[next_position])
+                else if (movePointNum == 2 && collision.gameObject == movePoints.movepoints_2[nextPosition])
                 {
-                    target = movepoints.movepoints_2[next_position + 1];
-                    next_position++;
+                    target = movePoints.movepoints_2[nextPosition + 1];
+                    nextPosition++;
                 }
-                else if (movepoint_num == 3 && collision.gameObject == movepoints.movepoints_3[next_position])
+                else if (movePointNum == 3 && collision.gameObject == movePoints.movepoints_3[nextPosition])
                 {
-                    target = movepoints.movepoints_3[next_position + 1];
-                    next_position++;
+                    target = movePoints.movepoints_3[nextPosition + 1];
+                    nextPosition++;
                 }
-                else if (movepoint_num == 4 && collision.gameObject == movepoints.movepoints_4[next_position])
+                else if (movePointNum == 4 && collision.gameObject == movePoints.movepoints_4[nextPosition])
                 {
-                    target = movepoints.movepoints_4[next_position + 1];
-                    next_position++;
+                    target = movePoints.movepoints_4[nextPosition + 1];
+                    nextPosition++;
                 }
             }
         }
@@ -146,66 +172,177 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
-
-    void Scan() //��ֹ� �� Movepoint ����
+    // 공격 후 타겟 제거
+    void RemoveObstacle(GameObject hit_object)
     {
-        Vector2 v2 = rigid.velocity.normalized;
-        //Debug.DrawRay(rigid.position, Vector2.right * 1, new Color(0, 1, 0));
-        RaycastHit2D rayHit_obstacle = Physics2D.Raycast(rigid.position, Vector2.right, 1f, LayerMask.GetMask("Hit"));
-
-        try
+        anim.SetBool("isAttack", false);
+        isAttack = false;
+        if(hit_object != null)
         {
-            if (rayHit_obstacle.collider != null)
-            {
+            hit_object.gameObject.SetActive(false);
+        }
+    }
 
-                hit_target = rayHit_obstacle.transform.gameObject;
-                if (!isattack)
-                {
-                    co = StartCoroutine("Enemy_attack", hit_target);
-                }
-            }
-            else if (rayHit_obstacle.collider == null)
+    //Enmey , Boss별 sound_num 할당
+    private void EnemyCheckForSound()
+    {
+        for (int i = 1; i <= 10; i++)
+        {
+            if (gameObject.name == "Enemy" + i + "(Clone)")
             {
-                hit_target = null;
-                Remove_Obstacle(hit_target);
+                soundNum = i;
             }
         }
-        catch
-        {
 
+        if (soundNum == 0)
+        {
+            for (int i = 1; i <= 2; i++)
+            {
+                if (gameObject.name == "Boss" + i + "(Clone)")
+                    soundNum = i + 10;
+            }
+        }
+    }
+    //Enmey 공격, 죽을 시 소리
+    private void EnemySound()
+    {
+        if (isDead)
+        {
+            switch (soundNum)
+            {
+                case 1:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy1_Death);
+                    break;
+                case 2:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy2_Death);
+                    break;
+                case 3:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy3_Death);
+                    break;
+                case 4:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy4_Death);
+                    break;
+                case 5:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy5_Death);
+                    break;
+                case 6:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy6_Death);
+                    break;
+                case 7:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy7_Death);
+                    break;
+                case 8:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy8_Death);
+                    break;
+                case 9:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy9_Death);
+                    break;
+                case 10:
+                    SoundManager.Instance.PlaySFX(SoundType.Enemy10_Death);
+                    break;
+                case 11:
+                    SoundManager.Instance.PlaySFX(SoundType.보스1_Death);
+                    break;
+                case 12:
+                    SoundManager.Instance.PlaySFX(SoundType.보스2_Death);
+                    break;
+            }
+        }
+        else if (isAttack)
+        {
+            if (bossAttackNum == 5)
+            {
+                switch (soundNum)
+                {
+                    case 11: SoundManager.Instance.PlaySFX(SoundType.보스1_Skill); break;
+                    case 12: SoundManager.Instance.PlaySFX(SoundType.보스2_Skill); break;
+                }
+            }
+            else
+            {
+                SoundManager.Instance.PlaySFX(SoundType.Enemy_Hit);
+            }
         }
 
 
     }
-
-    IEnumerator Enemy_attack(GameObject hit_object)
+    //보스 스테이지 UI용 확인
+    private void BossCheck()
     {
-       anim.SetBool("isAttack", true);
-       isattack = true;
-       rigid.velocity = Vector2.zero;
+        if (enemyGold == 2000 || enemyGold == 10000)
+        {
+            GameManager.Instance.bossHpPanel.SetActive(false);
+            GameManager.Instance.isBossStage = false;
+        }
+
+        // 마지막 보스 킬 시 게임 승리
+        if (enemyGold == 10000)
+        {
+            GameManager.Instance._isGameOver = true;
+            GameManager.Instance.PauseGameBtn();
+            GameManager.Instance.gameWinPanel.SetActive(true);
+        }
+    }
+
+    //체력0되면 Enemy는 알아서 fasle 되면서 풀로 들어감.
+    IEnumerator EnemyDead()
+    {
+        if (isDead)
+        {
+
+            anim.SetBool("isAttack", false);
+            anim.SetBool("isSkill1", false);
+            anim.SetBool("isDead", true);
+            rigid.velocity = Vector2.zero;
+
+            yield return new WaitForSeconds(0.3f);
+
+            EnemySound();
+            anim.SetBool("isDead", false);
+            gameObject.SetActive(false);
+            isDead = false;
+            isDot = false; // 죽으면 도트딜 없는 상태로
+            hp = maxHp;
+            bossAttackNum = 0;
+            nextPosition = 0;
+            moveSpeed = originSpeed; // 다시 원래 속도로
+            GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
+
+            BossCheck();
+        }
+    }
+
+    //Enemy 공격 및 보스 스킬공격
+    IEnumerator EnemyAttack(GameObject hit_object)
+    {
+        anim.SetBool("isAttack", true);
+        isAttack = true;
+        rigid.velocity = Vector2.zero;
 
 
 
         if (hit_object.gameObject.tag == "Stone")
         {
-            while (!isdead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
+            while (!isDead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
             {
-                boss_attack_num++;
-                if(boss_attack_num == 5 && gameObject.layer ==  10) //layer 10 Boss
+                bossAttackNum++;
+                if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
                 {
-                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
-                        gameObject.GetComponent<Boss>().isskill = true;
-                        gameObject.GetComponent<Boss>().Boss_skill1(Boss_power, hit_object);
+                        gameObject.GetComponent<Boss>().isSkill = true;
+                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hit_object);
+                        EnemySound();
                     }
-                    boss_attack_num = 0;
+                    bossAttackNum = 0;
                     continue;
                 }
+                EnemySound();
+
                 hit_object.GetComponent<Stone>().stoneHP -= power;
                 if (hit_object.GetComponent<Stone>().stoneHP <= 0)
                 {
-                    Remove_Obstacle(hit_object);
+                    RemoveObstacle(hit_object);
                     break;
                 }
                 yield return new WaitForSeconds(0.5f);
@@ -214,70 +351,30 @@ public class Enemy : MonoBehaviour
         }
 
 
-        //gameManager함수만 정의되면 boss_skill함수 실행가능. 테스트결과 gameManager함수없이 실행 됨.
         else if (hit_object.gameObject.tag == "Nexus")
         {
-            while (!GameManager.Instance._isGameOver && !isdead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
+            while (!GameManager.Instance._isGameOver && !isDead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
             {
-                boss_attack_num++;
-                if (boss_attack_num == 5 && gameObject.layer == 10) //layer 10 Boss
+                bossAttackNum++;
+                if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
                 {
-                    if (gameObject.GetComponent<Boss>().isskill == false)
+                    if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
-                        gameObject.GetComponent<Boss>().isskill = true;
-                        gameObject.GetComponent<Boss>().Boss_skill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
-                        GameManager.Instance.NexusDamaged(Boss_power);
+                        gameObject.GetComponent<Boss>().isSkill = true;
+                        gameObject.GetComponent<Boss>().BossSkill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
+                        EnemySound();
+                        GameManager.Instance.NexusDamaged(bossPower);
                     }
-                    boss_attack_num = 0;
+                    bossAttackNum = 0;
                     continue;
                 }
+                EnemySound();
                 GameManager.Instance.NexusDamaged(power);
                 yield return new WaitForSeconds(0.5f);
             }
         }
 
     }
-
-    //��ֹ� Ǯ�� false���·� ��ȯ�ϰ� enemy �̵� �ٽ� ����.
-    // 1.���簡 ��ֹ� hp 0���� ������, 2. �� ���簡 ���� ��ֹ��� ���ְ� ���� ������ ����鵵 �����̰� �ϱ� ���� �� �ʱ�ȭ�� ���� Scan����.
-    void Remove_Obstacle(GameObject hit_object)
-    {
-        anim.SetBool("isAttack", false);
-        isattack = false;
-        if(hit_object != null)
-        {
-            hit_object.gameObject.SetActive(false);
-        }
-    }
-
-    //체력0되면 Enemy는 알아서 fasle 되면서 풀로 들어감.
-    IEnumerator Enemy_dead()
-    {
-        if (isdead)
-        {
-            //�ִϸ��̼� ��ħ����
-            anim.SetBool("isAttack", false);
-            anim.SetBool("isSkill1", false);
-            anim.SetBool("isDead", true);
-            rigid.velocity = Vector2.zero;
-            
-            yield return new WaitForSeconds(1f);
-
-            //�׾����� setfalse�ϰ���� ���Ǻ��� �ʱ�ȭ.
-            gameObject.SetActive(false);
-            isdead = false;
-            hp = maxHp;
-            anim.SetBool("isDead", false);
-            isDot = false; // 죽으면 도트딜 없는 상태로
-            boss_attack_num = 0;
-            next_position = 0;
-            moveSpeed = originSpeed; // 다시 원래 속도로
-            GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
-
-            BossCheck();
-        }
-    }
-
 
     // 도트데미지 : 체력 1%씩 감소
     IEnumerator DotDamaged()
@@ -295,21 +392,5 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
     }
-
-    private void BossCheck()
-    {
-        if(enemyGold == 2000 || enemyGold == 10000)
-        {
-            GameManager.Instance.bossHpPanel.SetActive(false);
-            GameManager.Instance.isBossStage = false;
-        } 
-
-        // 마지막 보스 킬 시 게임 승리
-        if(enemyGold == 10000)
-        {
-            GameManager.Instance._isGameOver = true;
-            GameManager.Instance.PauseGameBtn();
-            GameManager.Instance.gameWinPanel.SetActive(true);
-        }
-    }
+    
 }

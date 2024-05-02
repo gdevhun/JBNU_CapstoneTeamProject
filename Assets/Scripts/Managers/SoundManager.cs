@@ -179,5 +179,6 @@ public enum SoundType
 	아쳐타워123화살, 아쳐타워4화살,
 	매직타워불, 매직타워얼음, 매직타워전기, 매직타워시간,
 	스톤타워불, 스톤타워돌,
-	메뉴BGM, 일반BGM, 보스BGM1, 보스BGM2, 보스BGM3, 보스BGM4
+	메뉴BGM, 일반BGM, 보스BGM1, 보스BGM2, 보스BGM3, 보스BGM4,
+	보스1_Death,보스2_Death,보스1_Skill,보스2_Skill,Enemy1_Death, Enemy2_Death, Enemy3_Death, Enemy4_Death, Enemy5_Death, Enemy6_Death, Enemy7_Death, Enemy8_Death, Enemy9_Death, Enemy10_Death,Enemy_Hit
 }

@@ -6,28 +6,29 @@ public class Boss : MonoBehaviour
 {
     Animator anim;
 
-    public bool isskill;
+    //스킬 쓰는지 확인
+    public bool isSkill;
     void Start()
     {
         anim = GetComponent<Animator>();
     }
     
-    public void Boss_skill1(int power , GameObject hitObject)
+    public void BossSkill1(int power , GameObject hitObject)
     {
         
         anim.SetBool("isSkill1", true);
-        if(hitObject.gameObject.tag == "Stone")
+        if (hitObject.gameObject.tag == "Stone")
         {
             hitObject.GetComponent<Stone>().stoneHP -= power;
         }
 
-        Invoke("Stop_Skill", 0.5f);
+        Invoke("StopSkill", 0.5f);
     }
 
-    private void Stop_Skill()
+    private void StopSkill()
     {
         anim.SetBool("isSkill1", false);
-        isskill = false;
+        isSkill = false;
     }
 
 }

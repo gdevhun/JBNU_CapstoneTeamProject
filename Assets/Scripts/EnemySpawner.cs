@@ -98,8 +98,8 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     {
         Enemy enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType).GetComponent<Enemy>();
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
-        enemy.movepoint_num = sp + 1; // �̵� ��� ����
-        enemy.first_movetarget();
+        enemy.movePointNum = sp + 1; // �̵� ��� ����
+        enemy.FirstMoveTarget();
 
         if(enemy.enemyGold == 2000 || enemy.enemyGold == 10000)
         {
