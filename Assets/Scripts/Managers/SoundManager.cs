@@ -41,7 +41,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		_bgmPlayer = gameObject.AddComponent<AudioSource>();
 
         // 볼륨 초기화
-        bgmVolume = 0.5f; // 0.5
+        bgmVolume = 0.3f; // 0.5
         sfxVolume = 1f;
 
 		// SFX �÷��̾� �� ���� �ʱ⿡ �����ϰ� ����Ʈ�� �߰�
