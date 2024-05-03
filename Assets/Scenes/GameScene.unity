@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 14607145}
   - component: {fileID: 14607147}
   - component: {fileID: 14607146}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: nexus
   m_TagString: Nexus
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1472567979
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: c74f58b818ad74147a87fe5a7afd160d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1175,7 +1175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1681,7 +1681,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7361,7 +7361,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 4cdf66c96dee6664da4ff67e00262f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10037,7 +10037,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 4cdf66c96dee6664da4ff67e00262f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11433,7 +11433,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0d4afe8ee2df1564e882566fad8deed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13051,6 +13051,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1783432786}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableClick
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1511121956}
+        m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
+        m_MethodName: OnBtnClickSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &708531744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13457,7 +13481,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0bb020e303499e4489ba53920f1531bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17237,7 +17261,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: f51d4c6a2bb08e542ab8f52be0f1ed38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -17849,7 +17873,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 4cdf66c96dee6664da4ff67e00262f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -19335,7 +19359,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -19823,7 +19847,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -22687,7 +22711,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0d4afe8ee2df1564e882566fad8deed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25889,7 +25913,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26050,7 +26074,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -27891,7 +27915,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28283,7 +28307,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29005,7 +29029,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0d4afe8ee2df1564e882566fad8deed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29997,7 +30021,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 596774573
-  m_SortingLayer: 0
+  m_SortingLayer: 6
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0d4afe8ee2df1564e882566fad8deed6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30239,7 +30263,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30449,6 +30473,7 @@ MonoBehaviour:
   isBossStage: 0
   lastBossSprite: {fileID: 21300000, guid: 6e8edfbb38c4db449b585184ebc1dbc2, type: 3}
   lastBossImage: {fileID: 577029300}
+  disableClick: 0
 --- !u!4 &1783432787
 Transform:
   m_ObjectHideFlags: 0
@@ -33140,7 +33165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 8c0d7a1951b050748ab0d0f5ba5d15fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33329,6 +33354,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: TowerManager, Assembly-CSharp
         m_MethodName: OnBtnClickSound
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1783432786}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableClick
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -34204,7 +34241,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 4cdf66c96dee6664da4ff67e00262f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -34737,7 +34774,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1703069073
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 4
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -36015,95 +36052,95 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 112471266322090024, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 201051421802761563, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 470445949727765401, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1256496686653291999, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1293900877600300003, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1382945679192449870, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3268872487345624923, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3330142319162110742, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3442738229088093427, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4244273045981278721, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4454335559630145313, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4486837468024006707, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4588443553916144561, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4613340918649574819, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4977339625626460802, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5284771582060786055, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5417955745494755017, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5471175641186835177, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5509169414001200418, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6490901598043492890, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6508072766896632564, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6751816654117972134, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7376604983743381883, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7426652536673216161, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Name
@@ -36111,15 +36148,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7663300568908414081, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7915815974093103272, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8234549084071835698, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8577692048582776043, guid: cc1be34d690aacb49a400a92e5756668, type: 3}
       propertyPath: m_RootOrder

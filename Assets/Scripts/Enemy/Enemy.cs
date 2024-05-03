@@ -281,6 +281,7 @@ public class Enemy : MonoBehaviour
             GameManager.Instance._isGameOver = true;
             GameManager.Instance.PauseGameBtn();
             GameManager.Instance.gameWinPanel.SetActive(true);
+            GameManager.Instance.DisableClick(true);
         }
     }
 

@@ -9,7 +9,7 @@ public class GoldManager : SingletonBehaviour<GoldManager>
     [SerializeField] TMP_Text totalGold;
     void Start()
     {
-        playerGold = 250;
+        playerGold = 750;
         InitUIGold();
     }
 

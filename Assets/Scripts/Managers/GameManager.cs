@@ -16,6 +16,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public bool isBossStage; // 보스 스테이지
     public Sprite lastBossSprite; // 최종보스 스프라이트
     public Image lastBossImage; // 최종보스 이미지
+    public bool disableClick; // 타워 설치 위치 클릭 불가능한지 체크
 
     protected override void Awake()
     {
@@ -44,6 +45,7 @@ public class GameManager : SingletonBehaviour<GameManager>
                 _isGameOver = true;
                 PauseGameBtn();
                 gameoverPanel.SetActive(true);
+                DisableClick(true);
             }
         }
     }
@@ -86,5 +88,12 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    // 게임 승리/패배/옵션 상태에서
+    // 타워 설치 위치 터치 안 되게
+    public void DisableClick(bool enable)
+    {
+        disableClick = enable;
     }
 }
