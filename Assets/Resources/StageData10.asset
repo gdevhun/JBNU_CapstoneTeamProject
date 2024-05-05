@@ -20,3 +20,4 @@ MonoBehaviour:
   stageSpawnNum: 1
   stageTime: 50
   stageEnableSpawnPt: 0
+  stageGold: 1000

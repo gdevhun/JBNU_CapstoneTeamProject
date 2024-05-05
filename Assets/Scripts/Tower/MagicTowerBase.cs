@@ -14,7 +14,7 @@ public class MagicTowerBase : TowerBase
     // 매직타워1,4 데미지 높지만 몬스터 제어기능 X
     // 매직타워2,3 데미지 낮지만 몬스터 제어기능 O
     protected override IEnumerator Attack()
-    {        
+    {
         while (isTarget)
         {
             // 공격속도만큼 대기
@@ -28,6 +28,9 @@ public class MagicTowerBase : TowerBase
 
             // 애니메이션
             for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
+
+            // 매직 타워 충돌 이펙트 초기화
+            MagicTowerEffectInit();
 
             // 타워 무기 충돌 이펙트
             GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
@@ -75,7 +78,7 @@ public class MagicTowerBase : TowerBase
     // 몬스터 처리
     protected override void MonsterInteraction()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 4f);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(target.position, 6f);
 
         // 스플래쉬 처리
         foreach (Collider2D hit in hits)

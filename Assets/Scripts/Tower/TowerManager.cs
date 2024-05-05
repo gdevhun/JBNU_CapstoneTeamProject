@@ -85,6 +85,9 @@ public class TowerManager : MonoBehaviour
         // 마우스 왼쪽 클릭 또는 모바일 터치하면
         if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
+            // 게임 승리/패배/옵션 상태인지 체크
+            if(GameManager.Instance.disableClick) return;
+
             // 마우스 클릭 또는 모바일 터치 위치 가져옴
             Vector3 inputPosition = Input.GetMouseButtonDown(0) ? Camera.main.ScreenToWorldPoint(Input.mousePosition) : Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             inputPosition.z = 0;
@@ -128,7 +131,7 @@ public class TowerManager : MonoBehaviour
             TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
             upgradePanelTowerImage.sprite = towerSprites[selectedTowerBase.towerType];
             upgradePanelTowerLvText.text = "타워 레벨 : " + selectedTowerBase.towerLv.ToString();
-            upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : (selectedTowerBase.towerUpgradeBasicPrice * selectedTowerBase.towerLv).ToString();
+            upgradePanelTowerPriceText.text = selectedTowerBase.towerLv == 3 ? "" : selectedTowerBase.towerUpgradeBasicPrice.ToString();
             upgradePanelTowerStarImage.sprite = towerStarSprites[selectedTowerBase.towerLv];
         }
     }
@@ -181,7 +184,7 @@ public class TowerManager : MonoBehaviour
 
         // 타워베이스 가져와서 골드 얻음
         TowerBase selectedTowerBase = selectedTowerBuildPos.GetChild(0).GetComponent<TowerBase>();
-        GoldManager.Instance.AcquireGold(selectedTowerBase.towerUpgradeBasicPrice / selectedTowerBase.towerLv);
+        GoldManager.Instance.AcquireGold(selectedTowerBase.towerUpgradeBasicPrice / 4);
 
         // 자식에 있던 타워 파괴
         Destroy(selectedTowerBuildPos.GetChild(0).gameObject);

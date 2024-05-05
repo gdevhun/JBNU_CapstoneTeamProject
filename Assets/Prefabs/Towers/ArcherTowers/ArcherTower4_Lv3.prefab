@@ -38,7 +38,7 @@ Transform:
   - {fileID: 556500084903049889}
   - {fileID: 2885342624184049660}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3668642145942927128
 BoxCollider2D:
@@ -83,7 +83,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!50 &6237461675381488879
 Rigidbody2D:

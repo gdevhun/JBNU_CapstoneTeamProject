@@ -41,7 +41,7 @@ public abstract class TowerBase : MonoBehaviour
     // 타겟이 범위를 나갔거나 죽으면 재타겟팅
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") && (!isTarget || target.GetComponent<Enemy>().isdead)) TargetEnemy(other.transform);
+        if (other.CompareTag("Enemy") && (!isTarget || target.GetComponent<Enemy>().isDead)) TargetEnemy(other.transform);
     }
 
     // 타겟 나감

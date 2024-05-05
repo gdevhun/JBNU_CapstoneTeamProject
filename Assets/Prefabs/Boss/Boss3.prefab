@@ -184,10 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bf54ba737349840afb266b688e9554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  power: 5
-  Boss_power: 10
+  maxHp: 80000
+  hp: 80000
+  power: 50
+  Boss_power: 60
   dotDamage: 0
+  enemyGold: 10000
   originSpeed: 0.1
   moveSpeed: 0.1
   target: {fileID: 0}

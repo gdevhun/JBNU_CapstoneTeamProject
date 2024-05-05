@@ -10,6 +10,7 @@ TagManager:
   - Stone
   - Nexus
   - Border
+  - MovePoints
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - MovePoints
   - 
   - 
-  - 
+  - Boss
   - 
   - 
   - 

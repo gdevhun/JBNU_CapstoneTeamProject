@@ -25,7 +25,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
 
     private IEnumerator StartGame()  //��ü���� ���� �ڷ�ƾ �Լ�
     {
-        while (_thisStageNum != 30)
+        while (_thisStageNum != 11)
         {
             StartCoroutine(CountDownAndSpawn()); //���̺����
             yield return new WaitUntil(() => isCurWaveEnded); // ���� ���������� ����� ������ ���
@@ -72,6 +72,11 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         
         InitStageData(); //���� ������ ���� ������ �ε�
         stageTimerImage.SetActive(true);
+
+        // 배경음
+        if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.MiddleBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM3);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.LastBoss) SoundManager.Instance.PlayBGM(SoundType.보스BGM2);
+        else if(StageManager.Instance.stageData.enemyType == PoolManager.EnemyType.Enemy6) SoundManager.Instance.PlayBGM(SoundType.일반BGM);
         
         for (int i = 0; i < _thisStageEnemyNum; i++)  //�� ���� Ƚ��
         {
@@ -91,10 +96,19 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     
     private void SpawnEnemyInSp(int sp)
     {
-        GameObject enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType);
+        Enemy enemy = PoolManager.Instance.GetEnemy(StageManager.Instance.stageData.enemyType).GetComponent<Enemy>();
         enemy.gameObject.transform.position = (spawnPoints[sp].position);
-        enemy.GetComponent<Enemy>().movepoint_num = sp + 1; // �̵� ��� ����
-        enemy.GetComponent<Enemy>().first_movetarget();
+        enemy.movePointNum = sp + 1; // �̵� ��� ����
+        enemy.FirstMoveTarget();
+
+        if(enemy.enemyGold == 2000 || enemy.enemyGold == 10000)
+        {
+            GameManager.Instance.bossEnemy = enemy;
+            GameManager.Instance.isBossStage = true;
+            GameManager.Instance.bossHpPanel.SetActive(true);
+
+            if(enemy.enemyGold == 10000) GameManager.Instance.lastBossImage.sprite = GameManager.Instance.lastBossSprite;
+        }
     }
 
     /*private void SpawnBoss()
