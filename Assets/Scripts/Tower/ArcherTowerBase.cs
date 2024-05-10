@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public class ArcherTowerBase : TowerBase
 {
@@ -9,12 +12,30 @@ public class ArcherTowerBase : TowerBase
     // 아쳐타워1,2 연사공격 X
     // 아쳐타워3 연사공격 O
     // 아쳐타워4 연사공격 X 광역공격 O
-    protected override IEnumerator Attack()
+
+    // 코루틴
+    // protected override IEnumerator Attack()
+    // {
+    //     while (isTarget)
+    //     {
+    //         // 공격속도만큼 대기
+    //         yield return new WaitForSeconds(attackSpeed);
+
+    //         // 발사
+    //         Shot();
+
+    //         // 사운드
+    //         SoundManager.Instance.PlaySFX(soundType);
+    //     }
+    // }
+
+    // 유니태스크
+    protected override async UniTaskVoid Attack(CancellationToken tok)
     {
-        while (isTarget)
+        while (!tok.IsCancellationRequested && isTarget)
         {
             // 공격속도만큼 대기
-            yield return new WaitForSeconds(attackSpeed);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackSpeed), cancellationToken: tok);
 
             // 발사
             Shot();

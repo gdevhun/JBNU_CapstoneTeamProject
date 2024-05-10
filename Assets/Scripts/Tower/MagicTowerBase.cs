@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public class MagicTowerBase : TowerBase
 {
@@ -13,18 +16,56 @@ public class MagicTowerBase : TowerBase
     // 타겟 공격
     // 매직타워1,4 데미지 높지만 몬스터 제어기능 X
     // 매직타워2,3 데미지 낮지만 몬스터 제어기능 O
-    protected override IEnumerator Attack()
+
+    // 코루틴
+    // protected override IEnumerator Attack()
+    // {
+    //     while (isTarget)
+    //     {
+    //         // 공격속도만큼 대기
+    //         yield return new WaitForSeconds(attackSpeed);
+
+    //         // 사운드
+    //         SoundManager.Instance.PlaySFX(soundType);
+
+    //         // 매직타워시간만 잠시 대기 후
+    //         yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;
+
+    //         // 애니메이션
+    //         for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
+
+    //         // 매직 타워 충돌 이펙트 초기화
+    //         MagicTowerEffectInit();
+
+    //         // 타워 무기 충돌 이펙트
+    //         GameObject towerWeaponEffect = PoolManager.Instance.GetTowerWeaponEffect(towerWeaponEffectType);
+    //         towerWeaponEffect.transform.position = target.transform.position + transform.up * 14f;
+    //         towerWeaponEffectPrefabs.Add(towerWeaponEffect);
+
+    //         // 발사
+    //         Shot();
+
+    //         // 잠시 대기 후
+    //         yield return halfSeconds;
+
+    //         // 매직 타워 충돌 이펙트 초기화
+    //         MagicTowerEffectInit();
+    //     }
+    // }
+
+    // 유니태스크
+    protected override async UniTaskVoid Attack(CancellationToken tok)
     {
-        while (isTarget)
+        while (!tok.IsCancellationRequested && isTarget)
         {
             // 공격속도만큼 대기
-            yield return new WaitForSeconds(attackSpeed);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackSpeed), cancellationToken: tok);
 
             // 사운드
             SoundManager.Instance.PlaySFX(soundType);
 
             // 매직타워시간만 잠시 대기 후
-            yield return soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? new WaitForSeconds(0.75f) : null;
+            await (soundType == SoundType.매직타워시간 || soundType == SoundType.매직타워불 ? UniTask.Delay(TimeSpan.FromSeconds(0.75f), cancellationToken: tok) : UniTask.CompletedTask);
 
             // 애니메이션
             for(int i = 0; i < towerAnim.Count; i++) towerAnim[i].SetTrigger("atkTrig");
@@ -41,7 +82,7 @@ public class MagicTowerBase : TowerBase
             Shot();
 
             // 잠시 대기 후
-            yield return halfSeconds;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: tok);
 
             // 매직 타워 충돌 이펙트 초기화
             MagicTowerEffectInit();

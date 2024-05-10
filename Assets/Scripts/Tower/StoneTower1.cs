@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public class StoneTower1 : TowerBase
 {
@@ -16,18 +19,51 @@ public class StoneTower1 : TowerBase
     // 타겟 공격
     // 스톤타워1
     // 지속딜 불 생성, 해제 불가능한 도트딜 부여
-    protected override IEnumerator Attack()
+
+    // 코루틴
+    // protected override IEnumerator Attack()
+    // {
+    //     while (isTarget)
+    //     {
+    //         // 공격속도만큼 대기
+    //         yield return new WaitForSeconds(attackSpeed);
+
+    //         // 애니메이션
+    //         towerAnim[0].SetTrigger("atkTrig");
+
+    //         // 잠시 대기 후
+    //         yield return halfSeconds;
+
+    //         // 무기 발사
+    //         Shot();
+
+    //         for(int i = 0; i < 3; i++)
+    //         {
+    //             // 사운드
+    //             SoundManager.Instance.PlaySFX(soundType);
+
+    //             // 잠시 대기 후
+    //             yield return halfSeconds;
+    //         }
+
+    //         // 스톤 타워 1 불 초기화
+    //         StoneTowerFireInit();
+    //     }
+    // }
+
+    // 유니태스크
+    protected override async UniTaskVoid Attack(CancellationToken tok)
     {
-        while (isTarget)
+        while (!tok.IsCancellationRequested && isTarget)
         {
             // 공격속도만큼 대기
-            yield return new WaitForSeconds(attackSpeed);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackSpeed), cancellationToken: tok);
 
             // 애니메이션
             towerAnim[0].SetTrigger("atkTrig");
 
             // 잠시 대기 후
-            yield return halfSeconds;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: tok);
 
             // 무기 발사
             Shot();
@@ -38,7 +74,7 @@ public class StoneTower1 : TowerBase
                 SoundManager.Instance.PlaySFX(soundType);
 
                 // 잠시 대기 후
-                yield return halfSeconds;
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: tok);
             }
 
             // 스톤 타워 1 불 초기화

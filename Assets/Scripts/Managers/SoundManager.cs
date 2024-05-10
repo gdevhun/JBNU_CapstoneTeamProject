@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class SoundManager : SingletonBehaviour<SoundManager>
 {
@@ -83,6 +85,22 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 		_bgmPlayer.Stop();
 	}
 
+	// 코루틴
+	// public void PlaySFX(SoundType soundType)
+	// {
+	// 	if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
+	// 	{
+	// 		AudioSource sfxPlayer = GetAvailableSFXPlayer();
+	// 		sfxPlayer.clip = clip;
+	// 		sfxPlayer.volume = sfxVolume; // 볼륨 조절 sfxVolume
+	// 		sfxPlayer.Play();
+
+	// 		// 사운드 재생이 끝나면 풀에 반환
+	// 		StartCoroutine(ReturnSFXPlayerWhenFinished(sfxPlayer, clip.length));
+	// 	}
+	// }
+
+	// 유니태스크
 	public void PlaySFX(SoundType soundType)
 	{
 		if (_sfxDictionary.TryGetValue(soundType, out AudioClip clip))
@@ -93,7 +111,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 			sfxPlayer.Play();
 
 			// 사운드 재생이 끝나면 풀에 반환
-			StartCoroutine(ReturnSFXPlayerWhenFinished(sfxPlayer, clip.length));
+			ReturnSFXPlayerWhenFinished(sfxPlayer, clip.length).Forget();
 		}
 	}
 
@@ -141,10 +159,22 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	}
 
 	// 사운드 재생이 끝나면 풀에 반환
-	private IEnumerator ReturnSFXPlayerWhenFinished(AudioSource sfxPlayer, float delay)
+
+	// 코루틴
+	// private IEnumerator ReturnSFXPlayerWhenFinished(AudioSource sfxPlayer, float delay)
+	// {
+	// 	// 사운드 재생 시간만큼 대기
+	// 	yield return new WaitForSeconds(delay);
+
+	// 	// 사운드 재생이 끝났으니 큐에 반환
+	// 	ReturnSFXPlayerToQueue(sfxPlayer);
+	// }
+
+	// 유니태스크
+	private async UniTaskVoid ReturnSFXPlayerWhenFinished(AudioSource sfxPlayer, float delay)
 	{
 		// 사운드 재생 시간만큼 대기
-		yield return new WaitForSeconds(delay);
+		await UniTask.Delay(TimeSpan.FromSeconds(delay));
 
 		// 사운드 재생이 끝났으니 큐에 반환
 		ReturnSFXPlayerToQueue(sfxPlayer);

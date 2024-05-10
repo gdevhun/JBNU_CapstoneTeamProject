@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public abstract class TowerBase : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public abstract class TowerBase : MonoBehaviour
     // 타워 타겟 관련 
     protected Transform target; // 타겟 몬스터
     protected bool isTarget = false; // 타겟이 설정되었는지 체크
+    private CancellationTokenSource token; // 현재 공격중인 유니태스크 토큰
 
     // 타워 공격 관련
     protected Coroutine attackCoroutine; // 현재 실행 중인 공격 코루틴
@@ -51,16 +55,33 @@ public abstract class TowerBase : MonoBehaviour
     }
 
     // 타겟 설정
+
+    // 코루틴
+    // private void TargetEnemy(Transform enemy)
+    // {
+    //     target = enemy; // 타겟 설정
+    //     isTarget = true; // 타겟이 설정된 상태
+    //     if (attackCoroutine != null) StopCoroutine(attackCoroutine); // 이전 공격 코루틴 중지
+    //     attackCoroutine = StartCoroutine(Attack()); // 새로운 공격 코루틴 시작
+    // }
+
+    // 유니태스크
     private void TargetEnemy(Transform enemy)
     {
         target = enemy; // 타겟 설정
         isTarget = true; // 타겟이 설정된 상태
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine); // 이전 공격 코루틴 중지
-        attackCoroutine = StartCoroutine(Attack()); // 새로운 공격 코루틴 시작
+        if (token != null && !token.Token.IsCancellationRequested) token.Cancel(); // 이전 공격 유니태스크 중지
+        token = new CancellationTokenSource(); // 토큰 생성
+        Attack(token.Token).Forget(); // 새로운 공격 유니태스크 시작
     }
 
     // 타겟 공격
-    protected abstract IEnumerator Attack();
+
+    // 코루틴
+    //protected abstract IEnumerator Attack();
+
+    // 유니태스크
+    protected virtual async UniTaskVoid Attack(CancellationToken tok) {}
 
     // 무기 발사
     protected abstract void Shot();

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using System;
 
 public class StoneTower2 : TowerBase
 {
@@ -13,18 +16,42 @@ public class StoneTower2 : TowerBase
     // 타겟 공격
     // 스톤타워2
     // 길을 막는 돌 생성
-    protected override IEnumerator Attack()
+
+    // 코루틴
+    // protected override IEnumerator Attack()
+    // {
+    //     while (isTarget)
+    //     {
+    //         // 공격속도만큼 대기
+    //         yield return new WaitForSeconds(attackSpeed);
+
+    //         // 애니메이션
+    //         towerAnim[0].SetTrigger("atkTrig");
+
+    //         // 잠시 대기 후
+    //         yield return halfSeconds;
+
+    //         // 발사
+    //         Shot();
+
+    //         // 사운드
+    //         SoundManager.Instance.PlaySFX(soundType);
+    //     }
+    // }
+
+    // 유니태스크
+    protected override async UniTaskVoid Attack(CancellationToken tok)
     {
-        while (isTarget)
+        while (!tok.IsCancellationRequested && isTarget)
         {
             // 공격속도만큼 대기
-            yield return new WaitForSeconds(attackSpeed);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackSpeed), cancellationToken: tok);
 
             // 애니메이션
             towerAnim[0].SetTrigger("atkTrig");
 
             // 잠시 대기 후
-            yield return halfSeconds;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: tok);
 
             // 발사
             Shot();
