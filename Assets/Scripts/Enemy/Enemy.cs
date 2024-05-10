@@ -7,6 +7,7 @@ using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 using Cysharp.Threading.Tasks;
+using System.Threading;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class Enemy : MonoBehaviour
     private int nextPosition = 0; // 다음 이동포인트를 가르키는 변수
     private bool isAttack = false; // 공격하는지 체크
     private int soundNum = 0; // enemy sound 변수 
+    private CancellationTokenSource tokenDead; // 유니태스크 죽음함수 취소 토큰
+    private CancellationTokenSource tokenAttack; // 유니태스크 공격함수 취소 토큰
+ 
 
     //다른 스크립트에서 참조하는 변수들
     [HideInInspector]public int maxHp; // 최대체력
@@ -36,6 +40,7 @@ public class Enemy : MonoBehaviour
     [HideInInspector]public bool isDot = false; // 도트딜을 입는 상태인지 체크
     [HideInInspector]public bool isDead = false; // 죽었는지 체크
     [HideInInspector]public int bossAttackNum;  //보스 공격횟수 체크
+    [HideInInspector]public CancellationTokenSource tokenDotDamage; // 유니태스크 도트데미지함수 취소 토큰
 
 
     void Awake()
@@ -48,12 +53,15 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
+        tokenDead = new ();
+        tokenAttack = new();
         //  StartCoroutine(DotDamaged()); // 도트 데미지
         Uni_DotDamaged();
     }
 
     void Update()
     {
+        CancelForUni();
         if (!isAttack &&  !isDead)
         {
             EnemyMove();
@@ -80,6 +88,12 @@ public class Enemy : MonoBehaviour
 
         ChangeMovepTarget(collision);
 
+    }
+    void OnEnable()
+    {
+        tokenDead = new();
+        tokenAttack = new();
+        tokenDotDamage = new();
     }
 
 
@@ -186,6 +200,17 @@ public class Enemy : MonoBehaviour
             hit_object.gameObject.SetActive(false);
         }
     }
+
+    //유니태스크용 cancel토큰 초기화
+    void CancelForUni()
+    {
+        if (isDead)
+        {
+            tokenAttack.Cancel();
+        }
+
+    }
+ 
 
     //Enmey , Boss별 sound_num 할당
     private void EnemyCheckForSound()
@@ -318,7 +343,7 @@ public class Enemy : MonoBehaviour
     }
     private async UniTask Uni_EnemyDead()
     {
-        if (isDead)
+        if (isDead && !tokenDead.IsCancellationRequested)
         {
 
             anim.SetBool("isAttack", false);
@@ -326,7 +351,9 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isDead", true);
             rigid.velocity = Vector2.zero;
 
-            await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
+      
+            await UniTask.Delay(TimeSpan.FromSeconds(0.3f), cancellationToken: tokenDead.Token);
+            tokenDead.Cancel();
 
             EnemySound();
             anim.SetBool("isDead", false);
@@ -338,13 +365,15 @@ public class Enemy : MonoBehaviour
             nextPosition = 0;
             moveSpeed = originSpeed; // 다시 원래 속도로
             GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
-
+            tokenDead = new CancellationTokenSource();
             BossCheck();
+
+            
         }
     }
 
     //Enemy 공격 및 보스 스킬공격
-    IEnumerator EnemyAttack(GameObject hit_object)
+    IEnumerator EnemyAttack(GameObject hitObject)
     {
         anim.SetBool("isAttack", true);
         isAttack = true;
@@ -352,7 +381,7 @@ public class Enemy : MonoBehaviour
 
 
 
-        if (hit_object.gameObject.tag == "Stone")
+        if (hitObject.gameObject.tag == "Stone")
         {
             while (!isDead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
             {
@@ -362,7 +391,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
                         gameObject.GetComponent<Boss>().isSkill = true;
-                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hit_object);
+                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hitObject);
                         EnemySound();
                     }
                     bossAttackNum = 0;
@@ -370,10 +399,10 @@ public class Enemy : MonoBehaviour
                 }
                 EnemySound();
 
-                hit_object.GetComponent<Stone>().stoneHP -= power;
-                if (hit_object.GetComponent<Stone>().stoneHP <= 0)
+                hitObject.GetComponent<Stone>().stoneHP -= power;
+                if (hitObject.GetComponent<Stone>().stoneHP <= 0)
                 {
-                    RemoveObstacle(hit_object);
+                    RemoveObstacle(hitObject);
                     break;
                 }
                 yield return new WaitForSeconds(0.5f);
@@ -384,7 +413,7 @@ public class Enemy : MonoBehaviour
         
 
 
-        else if (hit_object.gameObject.tag == "Nexus")
+        else if (hitObject.gameObject.tag == "Nexus")
         {
             while (!GameManager.Instance._isGameOver && !isDead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
             {
@@ -394,7 +423,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
                         gameObject.GetComponent<Boss>().isSkill = true;
-                        gameObject.GetComponent<Boss>().BossSkill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
+                        gameObject.GetComponent<Boss>().BossSkill1(0, hitObject); // 0으로 해서 대미지 x 애니메니션 실행만
                         EnemySound();
                         GameManager.Instance.NexusDamaged(bossPower);
                     }
@@ -409,17 +438,15 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private async UniTask Uni_EnemyAttack(GameObject hit_object)
+    private async UniTask Uni_EnemyAttack(GameObject hitObject)
     {
         anim.SetBool("isAttack", true);
         isAttack = true;
         rigid.velocity = Vector2.zero;
 
-
-
-        if (hit_object.gameObject.tag == "Stone")
+        if (hitObject.gameObject.tag == "Stone")
         {
-            while (!isDead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
+            while (!isDead && !tokenAttack.IsCancellationRequested) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
             {
                 bossAttackNum++;
                 if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
@@ -427,7 +454,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
                         gameObject.GetComponent<Boss>().isSkill = true;
-                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hit_object);
+                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hitObject);
                         EnemySound();
                     }
                     bossAttackNum = 0;
@@ -435,13 +462,13 @@ public class Enemy : MonoBehaviour
                 }
                 EnemySound();
 
-                hit_object.GetComponent<Stone>().stoneHP -= power;
-                if (hit_object.GetComponent<Stone>().stoneHP <= 0)
+                hitObject.GetComponent<Stone>().stoneHP -= power;
+                if (hitObject.GetComponent<Stone>().stoneHP <= 0)
                 {
-                    RemoveObstacle(hit_object);
+                    RemoveObstacle(hitObject);
                     break;
                 }
-                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f) , cancellationToken: tokenAttack.Token);
 
             }
         }
@@ -449,9 +476,9 @@ public class Enemy : MonoBehaviour
 
 
 
-        else if (hit_object.gameObject.tag == "Nexus")
+        else if (hitObject.gameObject.tag == "Nexus")
         {
-            while (!GameManager.Instance._isGameOver && !isDead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
+            while (!GameManager.Instance._isGameOver && !isDead && !tokenAttack.IsCancellationRequested)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
             {
                 bossAttackNum++;
                 if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
@@ -459,7 +486,7 @@ public class Enemy : MonoBehaviour
                     if (gameObject.GetComponent<Boss>().isSkill == false)
                     {
                         gameObject.GetComponent<Boss>().isSkill = true;
-                        gameObject.GetComponent<Boss>().BossSkill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
+                        gameObject.GetComponent<Boss>().BossSkill1(0, hitObject); // 0으로 해서 대미지 x 애니메니션 실행만
                         EnemySound();
                         GameManager.Instance.NexusDamaged(bossPower);
                     }
@@ -468,7 +495,7 @@ public class Enemy : MonoBehaviour
                 }
                 EnemySound();
                 GameManager.Instance.NexusDamaged(power);
-                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f), cancellationToken: tokenAttack.Token);
             }
         }
     }
@@ -494,10 +521,10 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            if (isDot)
+            if (isDot && !tokenDotDamage.IsCancellationRequested)
             {
                 hp -= dotDamage;
-                await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: tokenDotDamage.Token);
 
                 continue;
             }

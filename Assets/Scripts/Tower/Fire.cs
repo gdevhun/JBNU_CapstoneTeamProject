@@ -53,5 +53,6 @@ public class Fire : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(5f)); // 지속시간
 
         enemy.isDot = false; // 해제
+        enemy.tokenDotDamage.Cancel(); // 유니태스크용 dotdamage 함수 취소.
     }
 }
