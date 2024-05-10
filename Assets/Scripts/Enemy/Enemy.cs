@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Animations;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
+using Cysharp.Threading.Tasks;
 
 public class Enemy : MonoBehaviour
 {
@@ -47,7 +48,8 @@ public class Enemy : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(DotDamaged()); // 도트 데미지
+        //  StartCoroutine(DotDamaged()); // 도트 데미지
+        Uni_DotDamaged();
     }
 
     void Update()
@@ -60,7 +62,8 @@ public class Enemy : MonoBehaviour
         if(hp <= 0)
         {
             isDead = true;
-            StartCoroutine("EnemyDead");
+            //StartCoroutine("EnemyDead");
+            Uni_EnemyDead();
         }
     }
 
@@ -95,7 +98,8 @@ public class Enemy : MonoBehaviour
                 hitTarget = rayHit_obstacle.transform.gameObject;
                 if (!isAttack)
                 {
-                    StartCoroutine("EnemyAttack", hitTarget);
+                    //StartCoroutine("EnemyAttack", hitTarget);
+                    Uni_EnemyAttack(hitTarget);
                 }
             }
             else if (rayHit_obstacle.collider == null)
@@ -312,6 +316,32 @@ public class Enemy : MonoBehaviour
             BossCheck();
         }
     }
+    private async UniTask Uni_EnemyDead()
+    {
+        if (isDead)
+        {
+
+            anim.SetBool("isAttack", false);
+            anim.SetBool("isSkill1", false);
+            anim.SetBool("isDead", true);
+            rigid.velocity = Vector2.zero;
+
+            await UniTask.Delay(TimeSpan.FromSeconds(0.3f));
+
+            EnemySound();
+            anim.SetBool("isDead", false);
+            gameObject.SetActive(false);
+            isDead = false;
+            isDot = false; // 죽으면 도트딜 없는 상태로
+            hp = maxHp;
+            bossAttackNum = 0;
+            nextPosition = 0;
+            moveSpeed = originSpeed; // 다시 원래 속도로
+            GoldManager.Instance.AcquireGold(enemyGold); // 골드 증가
+
+            BossCheck();
+        }
+    }
 
     //Enemy 공격 및 보스 스킬공격
     IEnumerator EnemyAttack(GameObject hit_object)
@@ -351,6 +381,8 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        
+
 
         else if (hit_object.gameObject.tag == "Nexus")
         {
@@ -377,6 +409,70 @@ public class Enemy : MonoBehaviour
 
     }
 
+    private async UniTask Uni_EnemyAttack(GameObject hit_object)
+    {
+        anim.SetBool("isAttack", true);
+        isAttack = true;
+        rigid.velocity = Vector2.zero;
+
+
+
+        if (hit_object.gameObject.tag == "Stone")
+        {
+            while (!isDead) // ������ ���߿� �״� ��쵵 ������ �ֱ⿡ ����Ȯ��.
+            {
+                bossAttackNum++;
+                if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isSkill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isSkill = true;
+                        gameObject.GetComponent<Boss>().BossSkill1(bossPower, hit_object);
+                        EnemySound();
+                    }
+                    bossAttackNum = 0;
+                    continue;
+                }
+                EnemySound();
+
+                hit_object.GetComponent<Stone>().stoneHP -= power;
+                if (hit_object.GetComponent<Stone>().stoneHP <= 0)
+                {
+                    RemoveObstacle(hit_object);
+                    break;
+                }
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+
+            }
+        }
+
+
+
+
+        else if (hit_object.gameObject.tag == "Nexus")
+        {
+            while (!GameManager.Instance._isGameOver && !isDead)  //때리는 도중에 죽을수 있기 때문에 isdead변수 추가.
+            {
+                bossAttackNum++;
+                if (bossAttackNum == 5 && gameObject.layer == 10) //layer 10 Boss
+                {
+                    if (gameObject.GetComponent<Boss>().isSkill == false)
+                    {
+                        gameObject.GetComponent<Boss>().isSkill = true;
+                        gameObject.GetComponent<Boss>().BossSkill1(0, hit_object); // 0으로 해서 대미지 x 애니메니션 실행만
+                        EnemySound();
+                        GameManager.Instance.NexusDamaged(bossPower);
+                    }
+                    bossAttackNum = 0;
+                    continue;
+                }
+                EnemySound();
+                GameManager.Instance.NexusDamaged(power);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+            }
+        }
+    }
+
     // 도트데미지 : 체력 1%씩 감소
     IEnumerator DotDamaged()
     {
@@ -391,6 +487,22 @@ public class Enemy : MonoBehaviour
             }
 
             yield return null;
+        }
+    }
+
+    private async UniTask Uni_DotDamaged()
+    {
+        while (true)
+        {
+            if (isDot)
+            {
+                hp -= dotDamage;
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
+
+                continue;
+            }
+
+            await UniTask.Yield();
         }
     }
     
