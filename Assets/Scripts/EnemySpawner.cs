@@ -17,7 +17,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     private int _thisStageEnemyNum; //해당 스테이지 에네미 수
     private readonly string _stageName = "StageData";
     private int _thisStageNum = 1;
-    public bool isCurWaveEnded;
+    public bool isCurWaveEnded = true;
 
     private void Start()
     {
@@ -49,23 +49,25 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     }
 
     private async UniTaskVoid CountDownAndSpawn()
-    {   
+    {
+        isCurWaveEnded = false;
         //10초를 대기하며 HUD 남은 초 수 업데이트
         nextStageIntervalSec.gameObject.SetActive(true);
         int cnt = 10;
         while (cnt > 0)
         {   
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
             cnt--;
             nextStageIntervalSec.text = cnt.ToString();
         }
         nextStageIntervalSec.text = "10";
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
         
         nextStageIntervalSec.gameObject.SetActive(false);
         
         ActiveWaveStage().Forget(); //다음스테이지 활성화
+
     }
    
     private async UniTaskVoid ActiveWaveStage()
@@ -93,8 +95,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
             
         }
         //모두 스폰되면 2초 대기
-        await UniTask.Delay(TimeSpan.FromSeconds(2));
-        isCurWaveEnded = true;
+        await UniTask.Delay(TimeSpan.FromSeconds(2f));
     }
     
     private void SpawnEnemyInSp(int sp)
