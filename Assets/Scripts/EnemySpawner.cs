@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : SingletonBehaviour<EnemySpawner>
 {
-    public TextMeshProUGUI nextStageIntervalSec;
+    public TextMeshProUGUI stageBreakSec;
     public TextMeshProUGUI thisStageInfo;
     public GameObject stageTimerImage; 
     [SerializeField] private Transform[] spawnPoints;
@@ -42,7 +42,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
         thisStageInfo.text = StageManager.Instance.stageData.stageInfo; //HUD wave 업데이트
         
         //각각 해당 스테이지에 대한 정보 업데이트
-        _thisStageSpawnInterval = StageManager.Instance.stageData.stageSpawnInteval; 
+        _thisStageSpawnInterval = StageManager.Instance.stageData.stageSpawnInterval; 
         _thisStageEnemyNum = StageManager.Instance.stageData.stageSpawnNum; 
         _thisStageEnableSpawnPt = StageManager.Instance.stageData.stageEnableSpawnPt; 
         
@@ -52,19 +52,19 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     {
         isCurWaveEnded = false;
         //10초를 대기하며 HUD 남은 초 수 업데이트
-        nextStageIntervalSec.gameObject.SetActive(true);
+        stageBreakSec.gameObject.SetActive(true);
         int cnt = 10;
         while (cnt > 0)
         {   
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
             cnt--;
-            nextStageIntervalSec.text = cnt.ToString();
+            stageBreakSec.text = cnt.ToString();
         }
-        nextStageIntervalSec.text = "10";
+        stageBreakSec.text = "10";
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         
-        nextStageIntervalSec.gameObject.SetActive(false);
+        stageBreakSec.gameObject.SetActive(false);
         
         ActiveWaveStage().Forget(); //다음스테이지 활성화
 
