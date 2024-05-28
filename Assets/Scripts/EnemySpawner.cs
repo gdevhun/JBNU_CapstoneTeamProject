@@ -17,7 +17,7 @@ public class EnemySpawner : SingletonBehaviour<EnemySpawner>
     private int _thisStageEnemyNum; //해당 스테이지 에네미 수
     private readonly string _stageName = "StageData";
     private int _thisStageNum = 1;
-    public bool isCurWaveEnded = true;
+    public bool isCurWaveEnded = false;
 
     private void Start()
     {
