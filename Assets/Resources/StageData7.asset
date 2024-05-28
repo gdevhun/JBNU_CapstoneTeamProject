@@ -16,7 +16,7 @@ MonoBehaviour:
     \uB118 + 2 + [\uCD94\uAC00 \uC2DC\uAC04]"
   stageInfo: Wave 7
   enemyType: 6
-  stageSpawnInterval: 3
+  stageSpawnInterval: 2
   stageSpawnNum: 5
   stageTime: 30
   stageEnableSpawnPt: 3
