@@ -34,6 +34,7 @@ public class SoundManager : SingletonBehaviour<SoundManager>
 	{
 		base.Awake();
 
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		// SFX ��ųʸ� �ʱ�ȭ
 		_sfxDictionary = _sfxs.ToDictionary(s => s.SoundType, s => s.Clip);
 	}

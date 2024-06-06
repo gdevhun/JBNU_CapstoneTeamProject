@@ -516,7 +516,6 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
     }
-
     private async UniTask Uni_DotDamaged()
     {
         while (true)
@@ -524,7 +523,8 @@ public class Enemy : MonoBehaviour
             if (isDot && !tokenDotDamage.IsCancellationRequested)
             {
                 hp -= dotDamage;
-                await UniTask.Delay(TimeSpan.FromSeconds(0.1f), cancellationToken: tokenDotDamage.Token);
+                await UniTask.Delay(TimeSpan.FromSeconds(0.1f), 
+                    cancellationToken: tokenDotDamage.Token);
 
                 continue;
             }
