@@ -17,7 +17,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public Sprite lastBossSprite; // 최종보스 스프라이트
     public Image lastBossImage; // 최종보스 이미지
     public bool disableClick; // 타워 설치 위치 클릭 불가능한지 체크
-
+    private bool _isGamePaused;
     protected override void Awake()
     {
         base.Awake();
@@ -77,13 +77,21 @@ public class GameManager : SingletonBehaviour<GameManager>
     
     public void PauseGameBtn()
     {   //게임 일시정지 버튼
-        Time.timeScale = 0f;
+        if (!_isGamePaused)
+        {
+            Time.timeScale = 0f;
+            _isGamePaused = true;
+            return;
+        }
+        Time.timeScale = 1f;
+        _isGamePaused = false;
     }
 
-    public void PlayAgainGameBtn()
+    /*public void PlayAgainGameBtn()
     {   //게임 재개 버튼
-        Time.timeScale = 1f;
-    }
+        if(!_isGamePaused)
+            Time.timeScale = 1f;
+    }*/
 
     public void ExitGame()
     {
